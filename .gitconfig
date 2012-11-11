@@ -1,0 +1,38 @@
+[user]
+	name = Eliezer Talon
+	email = elitalon@gmail.com
+
+[alias]
+	last = log -1 HEAD
+	co = checkout
+	go = checkout -b
+	ci = commit -m
+	st = status
+	plog = log --oneline --decorate
+	sm = submodule
+	br = branch -av
+	tags = tag -ln
+	remotes = remote -v
+
+[core]
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	editor = vim
+
+[color]
+	branch = auto
+	interactive = auto
+	diff = auto
+	status = auto
+
+[apply]
+	whitespace = fix
+
+[merge]
+	log = true
+
+[credential]
+	helper = osxkeychain
+
+[github]
+	user = elitalon
