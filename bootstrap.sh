@@ -5,7 +5,11 @@ cd "$(dirname "${BASH_SOURCE}")"
 git pull
 
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
+  EXCLUDE_JANUS=
+  if [ -d ~/.vim ]; then
+    EXCLUDE_JANUS='--exclude ".vim"'
+  fi
+	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" ${EXCLUDE_JANUS} -av . ~
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
@@ -18,4 +22,7 @@ else
 	fi
 fi
 unset doIt
+
 source ~/.bash_profile
+
+cd ~/.vim && rake
