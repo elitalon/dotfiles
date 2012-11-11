@@ -25,4 +25,4 @@ unset doIt
 
 source ~/.bash_profile
 
-cd ~/.vim && rake
+cd ~/.vim && rake && cd ${OLDPWD}
