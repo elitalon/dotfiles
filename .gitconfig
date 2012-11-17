@@ -6,11 +6,12 @@
 	last = log -1 HEAD
 	co = checkout
 	go = checkout -b
-	ci = commit -m
+	ci = commit
 	st = status
 	plog = log --oneline --decorate
 	sm = submodule
 	br = branch -av
+	brd = branch -d
 	tags = tag -ln
 	remotes = remote -v
 
