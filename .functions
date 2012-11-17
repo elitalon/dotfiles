@@ -16,3 +16,10 @@ function fs() {
 function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer
 }
+
+# Create all branches
+function git-clone-all() {
+  for branch in `git branch -r | grep origin | grep -v -e HEAD -e master | sed 's/.*\s*origin//'`; do
+    git branch $branch origin/$branch;
+  done
+}
