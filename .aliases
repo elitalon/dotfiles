@@ -2,8 +2,10 @@
 alias sudo='sudo '
 
 # Show line numbers in grep
-alias grep='grep -n'
-alias rgrep='grep -rn'
+alias ngrep='grep -n'
+
+# Recursive grep
+alias rgrep='grep -r'
 
 # Shorcuts for commands installed with MacPorts
 alias mysql='mysql5'
