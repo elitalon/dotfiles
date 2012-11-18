@@ -96,6 +96,6 @@ defaults write com.apple.terminal "Startup Window Settings" -string "IR_Black"
 ###############################################################################
 
 for app in "Dashboard" "Dock" "Finder" "SystemUIServer" "Terminal"; do
-	killall "$app" > /dev/null 2>&1
+  killall "$app" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
