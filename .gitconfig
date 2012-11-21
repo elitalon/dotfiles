@@ -14,6 +14,7 @@
 	brd = branch -d
 	tags = tag -ln
 	remotes = remote -v
+  contributors = shortlog -s -n
 
 [core]
 	excludesfile = ~/.gitignore
