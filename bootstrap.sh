@@ -9,7 +9,7 @@ function doIt() {
   if [ -d ~/.vim ]; then
     EXCLUDE_JANUS='--exclude ".vim"'
   fi
-  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" ${EXCLUDE_JANUS} -av . ~
+  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" ${EXCLUDE_JANUS} --exclude "init" -av . ~
   cd ~/.vim && rake && cd ${OLDPWD}
 }
 
