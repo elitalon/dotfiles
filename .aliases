@@ -10,7 +10,12 @@ alias rgrep='grep -r'
 # Shorcuts for commands installed with MacPorts
 alias mysql='mysql5'
 alias mysqldump='mysqldump5'
-alias ack=`which ack-5.12`
+
+ACK=/opt/local/bin/ack-5.12
+if [ -f $ACK ];then
+  ln -s $ACK /usr/local/bin/ack
+  alias ack=$ACK
+fi
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

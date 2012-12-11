@@ -1,0 +1,2 @@
+" Fix ack program name
+let g:ackprg="/opt/local/bin/ack-5.12 -H --nocolor --nogroup --column""
