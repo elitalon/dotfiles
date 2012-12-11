@@ -12,8 +12,10 @@ alias mysql='mysql5'
 alias mysqldump='mysqldump5'
 
 ACK=/opt/local/bin/ack-5.12
-if [ -f $ACK ];then
-  ln -s $ACK /usr/local/bin/ack
+if [ -f $ACK ]; then
+  if [ ! -f /usr/local/bin/ack ]; then
+    ln -s $ACK /usr/local/bin/ack
+  fi
   alias ack=$ACK
 fi
 
