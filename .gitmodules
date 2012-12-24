@@ -7,6 +7,3 @@
 [submodule ".janus/vim-yaml"]
 	path = .janus/vim-yaml
 	url = git://github.com/avakhov/vim-yaml.git
-[submodule ".vim"]
-	path = .vim
-	url = https://github.com/carlhuda/janus.git

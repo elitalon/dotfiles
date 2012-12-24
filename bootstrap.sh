@@ -2,15 +2,23 @@
 
 cd "$(dirname "${BASH_SOURCE}")"
 
-git pull
-
 function doIt() {
-  EXCLUDE_JANUS=
-  if [ -d ~/.vim ]; then
-    EXCLUDE_JANUS='--exclude ".vim"'
+  git pull
+
+  # Install or upgrade Janus
+  if [ ! -d ~/.vim ]; then
+    read -p "Do you want to install Janus in this system? (y/n) " -n 1
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      curl -Lo- https://bit.ly/janus-bootstrap | bash
+    fi
+  else
+    cd ~/.vim
+    rake
+    cd ${OLDPWD}
   fi
-  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" ${EXCLUDE_JANUS} --exclude "init" -av . ~
-  cd ~/.vim && rake && cd ${OLDPWD}
+
+  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "init" -av . ~
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
