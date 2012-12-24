@@ -5,8 +5,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Create Projects directory in home directory
-PROJECTS_DIR='~/Projects'
-[ ! -d $PROJECTS_DIR ] && mkdir $PROJECTS_DIR
+[ ! -d ~/Projects ] && mkdir ~/Projects
 
 # Enable transparency of menu bar
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
