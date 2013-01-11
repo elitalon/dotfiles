@@ -17,6 +17,3 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # Add MacPorts to PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-# Add Oracle Instant Client lib
-export DYLD_LIBRARY_PATH=/opt/local/lib/oracle
