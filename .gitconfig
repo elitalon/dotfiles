@@ -3,8 +3,8 @@
 	email = elitalon@gmail.com
 
 [alias]
-	last = log -1 HEAD
-	co = checkout
+  last = "!f() { git log -`if [ -z $1  ]; then echo 1; else echo $1; fi` HEAD;  }; f"
+  co = checkout
 	go = checkout -b
 	ci = commit
 	st = status
