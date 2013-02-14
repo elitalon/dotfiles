@@ -146,6 +146,17 @@ defaults write com.apple.terminal "Startup Window Settings" -string "IR_Black"
 
 
 ###############################################################################
+# Quicklook plugin for Markdown                                               #
+###############################################################################
+
+QUICKLOOK="./init/QLMarkdown.qlgenerator"
+QUICKLOOK_PATH=~/Library/QuickLook
+[ ! -d $QUICKLOOK_PATH ] && mkdir $QUICKLOOK_PATH
+[ -f $QUICKLOOK ] && cp -af $QUICKLOOK $QUICKLOOK_PATH
+qlmanage -r
+
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
