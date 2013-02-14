@@ -7,3 +7,6 @@
 [submodule ".janus/vim-yaml"]
 	path = .janus/vim-yaml
 	url = git://github.com/avakhov/vim-yaml.git
+[submodule "init/qlmarkdown"]
+	path = init/qlmarkdown
+	url = git://github.com/toland/qlmarkdown.git
