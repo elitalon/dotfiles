@@ -16,6 +16,7 @@ Thumbs.db
 # SSH keys
 .ssh/known_hosts
 .ssh/id_[dr]sa*
+.ssh/config
 
 ##################################
 ## Xcode4 / OS X Source projects

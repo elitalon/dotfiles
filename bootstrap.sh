@@ -3,6 +3,11 @@
 cd "$(dirname "${BASH_SOURCE}")"
 
 function doIt() {
+  # Update SSH config
+  SSH_CONFIG=~/.ssh/config
+  cat .ssh/config.before > $SSH_CONFIG && cat ~/Dropbox/Software/SSH/config.hosts >> $SSH_CONFIG && cat .ssh/config.after >> $SSH_CONFIG
+
+  # Download changes
   git pull
 
   # Install or upgrade Janus
@@ -18,7 +23,8 @@ function doIt() {
     cd ${OLDPWD}
   fi
 
-  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "init" -av . ~
+  # Update dotfiles
+  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "init" --exclude ".ssh/config" -av . ~
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
