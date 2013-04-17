@@ -1,44 +1,44 @@
 [user]
-	name = Eliezer Talón
-	email = elitalon@gmail.com
+  name = Eliezer Talón
+  email = elitalon@gmail.com
 
 [alias]
   last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
   co = checkout
-	go = checkout -b
-	ci = commit
-	st = status
-	plog = log --oneline --decorate
-	sm = submodule
-	br = branch -av
-	brd = branch -d
-	tags = tag -ln
-	remotes = remote -v
+  go = checkout -b
+  ci = commit
+  st = status
+  plog = log --oneline --decorate
+  sm = submodule
+  br = branch -av
+  brd = branch -d
+  tags = tag -ln
+  remotes = remote -v
   contributors = shortlog -s -n
   lsd = ls-files --deleted
 
 [core]
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	editor = mvim
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  editor = "mvim -f --nomru -c \"au VimLeave * !open -a Terminal\""
 
 [color]
-	branch = auto
-	interactive = auto
-	diff = auto
-	status = auto
+  branch = auto
+  interactive = auto
+  diff = auto
+  status = auto
 
 [apply]
-	whitespace = fix
+  whitespace = fix
 
 [merge]
-	log = true
+  log = true
 
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 
 [github]
-	user = elitalon
+  user = elitalon
 
 [push]
   default = upstream
