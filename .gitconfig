@@ -20,7 +20,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-	editor = vim
+	editor = mvim
 
 [color]
 	branch = auto
