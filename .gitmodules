@@ -12,4 +12,4 @@
 	url = git://github.com/toland/qlmarkdown.git
 [submodule ".janus/obsidian2"]
 	path = .janus/obsidian2
-	url = git://github.com/abra/obsidian2.git
+	url = git@github.com:elitalon/obsidian2.git
