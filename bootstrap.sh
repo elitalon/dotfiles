@@ -11,7 +11,7 @@ function doIt() {
   git pull
 
   # Update dotfiles
-  rsync --exclude "update_ssh.sh" --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "init" --exclude ".ssh/config" -av . ~
+  rsync --exclude "update_ssh.sh" --exclude ".git/" --exclude ".gitmodules" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "init" --exclude ".ssh/config" -av . ~
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
