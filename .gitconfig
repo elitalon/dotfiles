@@ -20,7 +20,8 @@
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
-  editor = "mvim -f --nomru -c \"au VimLeave * !open -a Terminal\""
+#  editor = "mvim -f --nomru -c \"au VimLeave * !open -a Terminal\""
+	editor = "mate -w"
 
 [color]
   branch = auto

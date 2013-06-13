@@ -10,19 +10,6 @@ function doIt() {
   # Download changes
   git pull
 
-  # Install or upgrade Janus
-  if [ ! -d ~/.vim ]; then
-    read -p "Do you want to install Janus in this system? (y/n) " -n 1
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      curl -Lo- https://bit.ly/janus-bootstrap | bash
-    fi
-  else
-    cd ~/.vim
-    rake
-    cd ${OLDPWD}
-  fi
-
   # Update dotfiles
   rsync --exclude "update_ssh.sh" --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "init" --exclude ".ssh/config" -av . ~
 }

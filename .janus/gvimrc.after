@@ -1,9 +1,0 @@
-color obsidian2
-set guifont=Monaco:h12
-set wrap
-
-" Use tabs instead of spaces in PHP
-autocmd FileType php set tabstop=2 | set noexpandtab
-
-" Fix issue with Vimwiki
-let g:vimwiki_ext2syntax = {}

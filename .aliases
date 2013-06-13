@@ -5,7 +5,7 @@ alias sudo='sudo '
 alias ngrep='grep -n'
 
 # Recursive grep
-alias rgrep='grep -r'
+alias rgrep='grep -n -r'
 
 # Shorcuts for commands installed with MacPorts
 alias mysql='mysql5'

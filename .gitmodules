@@ -1,15 +1,3 @@
-[submodule ".janus/auto-pairs"]
-	path = .janus/auto-pairs
-	url = git://github.com/jiangmiao/auto-pairs.git
-[submodule ".janus/vim-align"]
-	path = .janus/vim-align
-	url = git://github.com/vim-scripts/Align.git
-[submodule ".janus/vim-yaml"]
-	path = .janus/vim-yaml
-	url = git://github.com/avakhov/vim-yaml.git
-[submodule "init/qlmarkdown"]
-	path = init/qlmarkdown
-	url = git://github.com/toland/qlmarkdown.git
-[submodule ".janus/obsidian2"]
-	path = .janus/obsidian2
+[submodule ".vim/obsidian2"]
+	path = .vim/obsidian2
 	url = git@github.com:elitalon/obsidian2.git

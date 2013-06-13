@@ -1,5 +1,6 @@
 # Make MacVim the default editor
-export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
+#export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
+export EDITOR="/usr/local/bin/mate -w"
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
