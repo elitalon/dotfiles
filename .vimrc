@@ -1,1 +1,1 @@
-.vim/vimrc.after
+.vim/vimrc
