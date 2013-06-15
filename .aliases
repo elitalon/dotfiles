@@ -11,6 +11,9 @@ alias rgrep='grep -n -r'
 alias mysql='mysql5'
 alias mysqldump='mysqldump5'
 
+# Enable wait mode for TextMate
+alias mate='mate -w'
+
 ACK=/opt/local/bin/ack-5.12
 if [ ! -f /usr/local/bin/ack ]; then
   if [ -f $ACK ]; then
