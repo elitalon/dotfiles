@@ -19,7 +19,6 @@
 
 [core]
   excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
 	editor = "mate -w"
 
 [color]
