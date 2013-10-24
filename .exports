@@ -15,8 +15,13 @@ export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
-# Add MacPorts to PATH
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
 # Add Heroku to PATH
 export PATH=/usr/local/heroku/bin:$PATH
+
+# Add RVM to PATH for scripting
+if [ -d "$HOME/.rvm/bin" ];then
+	PATH=$PATH:$HOME/.rvm/bin
+fi
+
+# Add HomeBrew overrides to PATH
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
