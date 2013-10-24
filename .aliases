@@ -10,13 +10,6 @@ alias rgrep='grep -n -r'
 # Enable wait mode for TextMate
 alias mate='mate -w'
 
-ACK=/opt/local/bin/ack-5.12
-if [ ! -f /usr/local/bin/ack ]; then
-  if [ -f $ACK ]; then
-    ln -s $ACK /usr/local/bin/ack
-  fi
-fi
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
