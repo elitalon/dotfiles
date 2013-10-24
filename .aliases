@@ -7,10 +7,6 @@ alias grep='grep -n'
 # Recursive grep
 alias rgrep='grep -n -r'
 
-# Shorcuts for commands installed with MacPorts
-alias mysql='mysql5'
-alias mysqldump='mysqldump5'
-
 # Enable wait mode for TextMate
 alias mate='mate -w'
 
