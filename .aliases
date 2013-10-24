@@ -2,7 +2,7 @@
 alias sudo='sudo '
 
 # Show line numbers in grep
-alias ngrep='grep -n'
+alias grep='grep -n'
 
 # Recursive grep
 alias rgrep='grep -n -r'
