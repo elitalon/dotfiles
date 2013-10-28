@@ -16,11 +16,15 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # Add Heroku to PATH
-export PATH=/usr/local/heroku/bin:$PATH
+HEROKU_PATH=/usr/local/heroku/bin
+if [ -d "$HEROKU_PATH" ];then
+  export PATH="$HEROKU_PATH:$PATH"
+fi
 
-# Add RVM to PATH for scripting
-if [ -d "$HOME/.rvm/bin" ];then
-	PATH=$PATH:$HOME/.rvm/bin
+# Add rbenv to PATH
+RBENV_PATH="$HOME/.rbenv/bin"
+if [ -d "$RBENV_PATH" ];then
+  export PATH="$RBENV_PATH:$PATH"
 fi
 
 # Add HomeBrew overrides to PATH
