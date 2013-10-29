@@ -17,19 +17,19 @@
   contributors = shortlog -s -n
   lsd = ls-files --deleted
 
+[apply]
+  whitespace = fix
+
 [core]
   excludesfile = ~/.gitignore
-	editor = "mate -w"
-	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+  editor = "mate -w"
+  whitespace = space-before-tab,indent-with-non-tab,trailing-space
 
 [color]
   branch = auto
   interactive = auto
   diff = auto
   status = auto
-
-[apply]
-  whitespace = fix
 
 [merge]
   log = true
