@@ -11,3 +11,8 @@ rbenv global $PREFERRED_VERSION
 
 # Update rubygems
 gem update --system
+rbenv rehash
+
+# Install bundler
+gem install bundle
+rbenv rehash
