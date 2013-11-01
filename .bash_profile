@@ -62,7 +62,7 @@ unset dependencies
 # Load the shell dotfiles
 ###
 for file in ~/.{bash_prompt,exports,aliases,functions}; do
-	[ -r "$file" ] && source "$file"
+  [ -r "$file" ] && source "$file"
 done
 unset file
 
@@ -89,8 +89,8 @@ shopt -s cdspell
 ###
 # Add tab completion for many more commands
 ###
-[ -f /etc/bash_completion ] && source /etc/bash_completion
-if command_exists brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
+[ -r /etc/bash_completion ] && source /etc/bash_completion
+if command_exists brew && [ -r $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
