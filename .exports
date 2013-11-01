@@ -65,5 +65,5 @@ unset heroku_path
 ###
 if command_exists brew && ! path_contains '/libexec/gnubin'; then
   echo "Adding Homebrew binaries to \$PATH"
-  export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 fi
