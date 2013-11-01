@@ -1,2 +1,6 @@
-include="{$include,.*}"
-exclude="{$exclude,.git,.DS_Store}"
+include = "{$include,.*}"
+exclude = "{$exclude,.git,.DS_Store}"
+
+softTabs = true
+softWrap = true
+tabSize = 2
