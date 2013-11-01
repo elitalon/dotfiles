@@ -28,4 +28,6 @@ if [ -d "$RBENV_PATH" ];then
 fi
 
 # Add HomeBrew overrides to PATH
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+if command -v brew >/dev/null 2>&1; then
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+fi
