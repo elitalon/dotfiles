@@ -43,10 +43,12 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 ###
 # Add Heroku binaries to $PATH
 ###
-HEROKU_PATH=/usr/local/heroku/bin
-if [ -d "$HEROKU_PATH" ];then
-  export PATH="$HEROKU_PATH:$PATH"
+heroku_path=/usr/local/heroku/bin
+if ! path_contains $heroku_path && [ -d "$heroku_path" ];then
+  echo "Adding $heroku_path to \$PATH"
+  export PATH="$heroku_path:$PATH"
 fi
+unset heroku_path
 
 ###
 # Add HomeBrew overrides to $PATH
