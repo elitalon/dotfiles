@@ -25,6 +25,18 @@ function command_exists() {
 
 
 ###
+# Ask confirmation if dependencies are not satisfied
+###
+if ! command_exists brew; then
+  read -p "Homebrew is required but has not been found. Continue? (y/n) " -n 1
+  echo
+  if [[ $REPLY =~ ^[Nn]$ ]]; then
+    exit
+  fi
+fi
+
+
+###
 # Load the shell dotfiles
 ###
 for file in ~/.{bash_prompt,exports,aliases,functions}; do
