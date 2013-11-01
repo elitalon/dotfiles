@@ -98,7 +98,7 @@ fi
 ###
 # Initialize rbenv to enable shims and autocompletion
 ###
-if command_exists rbenv && ! path_contains '.rbenv/shims' ; then
+if command_exists rbenv && ! path_contains '.rbenv/shims'; then
   echo 'Initializing rbenv'
   eval "$(rbenv init -)"
 fi
