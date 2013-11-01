@@ -25,6 +25,33 @@ function command_exists() {
 
 
 ###
+# Returns true if given pattern exists in $PATH
+#
+# WARNING: This function is defined here because it's used throughout the dotfiles
+###
+function path_contains() {
+  PATTERN=$1
+  if [ -z "$PATTERN" ]; then
+    false
+  else
+    PATTERN_EXISTS_IN_PATH=0
+
+    IFS_BACKUP=$IFS
+    IFS=:
+    for DIRECTORY in $PATH; do
+      if [[ "$DIRECTORY" == *"$PATTERN"* ]]; then
+        PATTERN_EXISTS_IN_PATH=1
+        break
+      fi
+    done
+    IFS=$IFS_BACKUP
+
+    [ -n $PATTERN_EXISTS_IN_PATH ]
+  fi
+}
+
+
+###
 # Ask confirmation if dependencies are not satisfied
 ###
 if ! command_exists brew; then
@@ -75,21 +102,10 @@ fi
 ###
 # Initialize rbenv to enable shims and autocompletion
 ###
-if command_exists rbenv; then
-  RBENV_EXISTS_IN_PATH=0
-
-  IFS_BACKUP=$IFS
-  IFS=:
-  for DIRECTORY in $PATH; do
-    if [[ "$DIRECTORY" == *".rbenv/shims"* ]]; then
-      RBENV_EXISTS_IN_PATH=1
-      echo "rbenv is already initialized: $DIRECTORY"
-      break
-    fi
-  done
-  IFS=$IFS_BACKUP
-
-  if [ -z $RBENV_EXISTS_IN_PATH ]; then
+if command_exists rbenv ; then
+  if path_contains '.rbenv/shims'; then
+    echo "rbenv is already initialized: $DIRECTORY"
+  else
     echo 'Initializing rbenv'
     eval "$(rbenv init -)"
   fi
