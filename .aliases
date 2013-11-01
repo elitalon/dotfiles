@@ -16,7 +16,9 @@ alias rgrep='grep -n -r'
 ###
 # Enable wait mode for TextMate
 ###
-alias mate='mate -w'
+if command_exists mate; then
+  alias mate='mate -w'
+fi
 
 ###
 # Detect which `ls` flavor is in use

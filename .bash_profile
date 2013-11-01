@@ -56,11 +56,13 @@ shopt -s cdspell
 # Add tab completion for many more commands
 ###
 [ -f /etc/bash_completion ] && source /etc/bash_completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if command_exists brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
 ###
 # Add rbenv init to enable shims and autocompletion
 ###
-eval "$(rbenv init -)"
+if command_exists rbenv; then
+  eval "$(rbenv init -)"
+fi

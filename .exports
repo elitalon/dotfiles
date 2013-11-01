@@ -12,7 +12,11 @@
 ###
 # Make TextMate the default editor
 ###
-export EDITOR='/usr/local/bin/mate -w'
+if command_exists mate; then
+  export EDITOR='/usr/local/bin/mate -w'
+else
+  export EDITOR=vim
+fi
 
 ###
 # Don’t clear the screen after quitting a manual page
@@ -57,6 +61,6 @@ fi
 #
 # WARNING: This should always be the last $PATH modification
 ###
-if command -v brew >/dev/null 2>&1; then
+if command_exists brew; then
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 fi
