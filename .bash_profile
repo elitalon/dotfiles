@@ -92,19 +92,15 @@ shopt -s cdspell
 ###
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 if command_exists brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+  source $(brew --prefix)/etc/bash_completion
 fi
 
 ###
 # Initialize rbenv to enable shims and autocompletion
 ###
-if command_exists rbenv ; then
-  if path_contains '.rbenv/shims'; then
-    echo "rbenv is already initialized: $DIRECTORY"
-  else
-    echo 'Initializing rbenv'
-    eval "$(rbenv init -)"
-  fi
+if command_exists rbenv && ! path_contains '.rbenv/shims' ; then
+  echo 'Initializing rbenv'
+  eval "$(rbenv init -)"
 fi
 
 
