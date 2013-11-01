@@ -44,7 +44,6 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 # Initialize rbenv to enable shims and autocompletion
 ###
 if command_exists rbenv && ! path_contains '.rbenv/shims'; then
-  echo 'Initializing rbenv'
   eval "$(rbenv init -)"
 fi
 
@@ -53,7 +52,6 @@ fi
 ###
 heroku_path=/usr/local/heroku/bin
 if ! path_contains $heroku_path && [ -d "$heroku_path" ];then
-  echo "Adding $heroku_path to \$PATH"
   export PATH="$heroku_path:$PATH"
 fi
 unset heroku_path
@@ -64,6 +62,5 @@ unset heroku_path
 # WARNING: This should always be the last $PATH modification
 ###
 if command_exists brew && ! path_contains '/libexec/gnubin'; then
-  echo "Adding Homebrew binaries to \$PATH"
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 fi
