@@ -15,6 +15,7 @@ brew install findutils
 
 # Install Bash 4
 brew install bash
+brew install bash-completion
 
 # Install other useful binaries
 brew install ack
