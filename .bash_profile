@@ -10,6 +10,21 @@
 
 
 ###
+# Returns true if given command exists
+#
+# WARNING: This function is defined here because it's used throughout the dotfiles
+###
+function command_exists() {
+  COMMAND_NAME=$1
+  if [ -z "$COMMAND_NAME" ]; then
+    false
+  else
+    command -v $COMMAND_NAME >/dev/null 2>&1
+  fi
+}
+
+
+###
 # Load the shell dotfiles
 ###
 for file in ~/.{bash_prompt,exports,aliases,functions}; do
