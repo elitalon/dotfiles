@@ -73,8 +73,24 @@ if command_exists brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 ###
-# Add rbenv init to enable shims and autocompletion
+# Initialize rbenv to enable shims and autocompletion
 ###
 if command_exists rbenv; then
-  eval "$(rbenv init -)"
+  RBENV_EXISTS_IN_PATH=0
+
+  IFS_BACKUP=$IFS
+  IFS=:
+  for DIRECTORY in $PATH; do
+    if [[ "$DIRECTORY" == *".rbenv/shims"* ]]; then
+      RBENV_EXISTS_IN_PATH=1
+      echo "rbenv is already initialized: $DIRECTORY"
+      break
+    fi
+  done
+  IFS=$IFS_BACKUP
+
+  if [ -z $RBENV_EXISTS_IN_PATH ]; then
+    echo 'Initializing rbenv'
+    eval "$(rbenv init -)"
+  fi
 fi
