@@ -15,11 +15,10 @@
 # WARNING: This function is defined here because it's used throughout the dotfiles
 ###
 function command_exists() {
-  COMMAND_NAME=$1
-  if [ -z "$COMMAND_NAME" ]; then
-    false
+  if [ -z "$1" ]; then
+    return 1
   else
-    command -v $COMMAND_NAME >/dev/null 2>&1
+    return $(command -v $1 >/dev/null 2>&1)
   fi
 }
 
@@ -30,23 +29,20 @@ function command_exists() {
 # WARNING: This function is defined here because it's used throughout the dotfiles
 ###
 function path_contains() {
-  PATTERN=$1
-  if [ -z "$PATTERN" ]; then
-    false
+  if [ -z "$1" ]; then
+    return 1
   else
-    PATTERN_EXISTS_IN_PATH=0
-
     IFS_BACKUP=$IFS
     IFS=:
     for DIRECTORY in $PATH; do
-      if [[ "$DIRECTORY" == *"$PATTERN"* ]]; then
-        PATTERN_EXISTS_IN_PATH=1
-        break
+      if [[ "$DIRECTORY" == *"$1"* ]]; then
+        IFS=$IFS_BACKUP
+        return 0
       fi
     done
-    IFS=$IFS_BACKUP
 
-    [ -n $PATTERN_EXISTS_IN_PATH ]
+    IFS=$IFS_BACKUP
+    return 1
   fi
 }
 
