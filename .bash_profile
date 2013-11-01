@@ -106,3 +106,10 @@ if command_exists rbenv ; then
     eval "$(rbenv init -)"
   fi
 fi
+
+
+###
+# Delete functions defined above
+###
+unset -f command_exists
+unset -f path_contains
