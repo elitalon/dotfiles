@@ -58,7 +58,6 @@ for dependency in $dependencies; do
 done
 unset dependencies
 
-
 ###
 # Load the shell dotfiles
 ###
@@ -94,15 +93,6 @@ shopt -s cdspell
 if command_exists brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
-
-###
-# Initialize rbenv to enable shims and autocompletion
-###
-if command_exists rbenv && ! path_contains '.rbenv/shims'; then
-  echo 'Initializing rbenv'
-  eval "$(rbenv init -)"
-fi
-
 
 ###
 # Delete functions defined above

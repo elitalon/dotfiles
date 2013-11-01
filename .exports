@@ -41,6 +41,14 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 ###
+# Initialize rbenv to enable shims and autocompletion
+###
+if command_exists rbenv && ! path_contains '.rbenv/shims'; then
+  echo 'Initializing rbenv'
+  eval "$(rbenv init -)"
+fi
+
+###
 # Add Heroku binaries to $PATH
 ###
 heroku_path=/usr/local/heroku/bin
@@ -51,10 +59,11 @@ fi
 unset heroku_path
 
 ###
-# Add HomeBrew overrides to $PATH
+# Add HomeBrew binaries to $PATH
 #
 # WARNING: This should always be the last $PATH modification
 ###
-if command_exists brew; then
-  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+if command_exists brew && ! path_contains '/libexec/gnubin'; then
+  echo "Adding Homebrew binaries to \$PATH"
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 fi
