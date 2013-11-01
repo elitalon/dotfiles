@@ -48,15 +48,15 @@ function path_contains() {
 
 
 ###
-# Ask confirmation if dependencies are not satisfied
+# Alert if dependencies are not satisfied
 ###
-if ! command_exists brew; then
-  read -p "Homebrew is required but has not been found. Continue? (y/n) " -n 1
-  echo
-  if [[ $REPLY =~ ^[Nn]$ ]]; then
-    exit
+dependencies="brew rbenv"
+for dependency in $dependencies; do
+  if ! command_exists $dependency; then
+    echo "WARNING: $dependency is required but has not been found"
   fi
-fi
+done
+unset dependencies
 
 
 ###
