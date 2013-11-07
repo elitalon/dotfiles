@@ -58,9 +58,14 @@ unset heroku_path
 
 ###
 # Add HomeBrew binaries to $PATH
-#
-# WARNING: This should always be the last $PATH modification
 ###
 if command_exists brew && ! path_contains '/libexec/gnubin'; then
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 fi
+
+###
+# Add HomeBrew binaries to $PATH
+#
+# WARNING: This should always be the last $PATH modification
+###
+export PATH=".bin/:$PATH"
