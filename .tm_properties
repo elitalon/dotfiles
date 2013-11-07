@@ -4,3 +4,7 @@ exclude = "{$exclude,.git,.DS_Store}"
 softTabs = true
 softWrap = true
 tabSize = 2
+
+TM_RUBY = "$HOME/.rbenv/shims/ruby"
+PATH = "$HOME/.rbenv/bin:$PATH"
+RBENV_VERSION=2.0.0-p247
