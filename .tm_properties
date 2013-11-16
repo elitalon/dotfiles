@@ -16,7 +16,7 @@ exclude = "{$exclude,.git,.DS_Store}"
 ###
 # Edition preferences
 ###
-fontName       = "Monaco"
+fontName       = "Menlo"
 fontSize       = 12
 softTabs       = true
 softWrap       = true
