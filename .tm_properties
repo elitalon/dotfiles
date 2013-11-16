@@ -1,10 +1,47 @@
+###
+# Personal information
+###
+TM_FULLNAME     = "Eliezer Talón"
+TM_ORGANIZATION = ""
+TM_EMAIL        = "elitalon@gmail.com"
+
+
+###
+# Browser visibility
+###
 include = "{$include,.*}"
 exclude = "{$exclude,.git,.DS_Store}"
 
-softTabs = true
-softWrap = true
-tabSize = 2
 
-PATH = "$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-TM_RUBY = "$HOME/.rbenv/shims/ruby"
-RBENV_VERSION=2.0.0-p247
+###
+# Edition preferences
+###
+fontName       = "Monaco"
+fontSize       = 12
+softTabs       = true
+softWrap       = true
+tabSize        = 2
+wrapColumn     = "Use Window Frame"
+showInvisibles = false
+windowTitle    = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
+
+# This only works with the "Avian Missing Bundle" installed (https://github.com/elia/avian-missing.tmbundle)
+TM_STRIP_WHITESPACE_ON_SAVE = true
+
+
+###
+# Special per-filetype rules
+###
+[ text.plain ]
+spellChecking  = true
+
+[ text.html.markdown ]
+spellChecking  = true
+
+
+###
+# Paths
+###
+PATH          = "$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+TM_RUBY       = "$HOME/.rbenv/shims/ruby"
+RBENV_VERSION = 2.0.0-p247
