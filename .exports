@@ -47,7 +47,8 @@ if command_exists brew && ! path_contains "$homebrew_binaries"; then
 fi
 unset -f homebrew_binaries
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ###
 # Add HomeBrew binaries to $PATH
