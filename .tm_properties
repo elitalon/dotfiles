@@ -42,6 +42,6 @@ spellChecking  = true
 ###
 # Paths
 ###
-PATH          = "$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-TM_RUBY       = "$HOME/.rbenv/shims/ruby"
-RBENV_VERSION = 2.0.0-p247
+# PATH          = "$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+# TM_RUBY       = "$HOME/.rbenv/shims/ruby"
+# RBENV_VERSION = 2.0.0-p247
