@@ -3,8 +3,6 @@
 #
 # Dependencies:
 #   - mate
-#   - Heroku binaries (optional)
-#   - rbenv
 #   - brew
 ###
 
@@ -39,13 +37,6 @@ export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 ###
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
-
-###
-# Initialize rbenv to enable shims and autocompletion
-###
-if command_exists rbenv && ! path_contains '.rbenv/shims'; then
-  eval "$(rbenv init -)"
-fi
 
 ###
 # Add HomeBrew binaries to $PATH

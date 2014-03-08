@@ -22,7 +22,6 @@ brew install ack
 brew install unrar
 brew install git
 #brew install imagemagick
-brew install rbenv ruby-build
 
 # Remove outdated versions from the cellar
 brew cleanup

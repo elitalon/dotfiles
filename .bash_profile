@@ -5,7 +5,6 @@
 #   - dotfiles
 #   - ssh
 #   - brew
-#   - rbenv
 ###
 
 
@@ -50,7 +49,7 @@ function path_contains() {
 ###
 # Alert if dependencies are not satisfied
 ###
-dependencies="brew rbenv"
+dependencies="brew"
 for dependency in $dependencies; do
   if ! command_exists $dependency; then
     echo "WARNING: $dependency is required but has not been found"
