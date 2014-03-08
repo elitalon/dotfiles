@@ -48,15 +48,6 @@ if command_exists rbenv && ! path_contains '.rbenv/shims'; then
 fi
 
 ###
-# Add Heroku binaries to $PATH
-###
-heroku_path=/usr/local/heroku/bin
-if ! path_contains $heroku_path && [ -d "$heroku_path" ];then
-  export PATH="$heroku_path:$PATH"
-fi
-unset heroku_path
-
-###
 # Add HomeBrew binaries to $PATH
 ###
 if command_exists brew && ! path_contains '/libexec/gnubin'; then
