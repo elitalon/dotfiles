@@ -39,6 +39,12 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 ###
+# Add OCLint binaries to $PATH
+###
+OCLINT_HOME="$HOME/Projects/oclint-0.7"
+[[ -d "$OCLINT_HOME" ]] && export PATH=$OCLINT_HOME/bin:$PATH
+
+###
 # Add HomeBrew binaries to $PATH
 ###
 homebrew_binaries="$(brew --prefix coreutils)/libexec/gnubin"
