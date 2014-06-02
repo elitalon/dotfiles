@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Make sure we’re using the latest Homebrew
-brew update
+brew update && brew doctor
 
 # Upgrade any already-installed formulae
 brew upgrade
@@ -18,9 +18,9 @@ brew install bash
 brew install bash-completion
 
 # Install other useful binaries
-brew install ack
-brew install unrar
 brew install git
+#brew install ack
+#brew install unrar
 #brew install imagemagick
 
 # Remove outdated versions from the cellar
