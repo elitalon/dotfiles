@@ -16,7 +16,7 @@
   remotes = remote -v
   contributors = shortlog -s -n
   lsd = ls-files --deleted
-  prune-remote = git remote | xargs git remote prune
+  prune-remote = "!f() { git remote | xargs git remote prune; }; f"
 
 [apply]
   whitespace = fix
