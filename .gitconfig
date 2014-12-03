@@ -10,7 +10,7 @@
   st = status
   plog = log --oneline --decorate
   sm = submodule
-  br = branch -av
+  br = branch -v
   brd = branch -d
   tags = tag -ln
   remotes = remote -v
