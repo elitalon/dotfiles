@@ -36,55 +36,36 @@ function path_contains() {
 }
 
 
-###
-# Alert if dependencies are not satisfied
-###
-dependencies="brew"
-for dependency in $dependencies; do
-  if ! command_exists $dependency; then
-    echo "WARNING: $dependency is required but has not been found"
-  fi
-done
-unset dependencies
+# Set prompt to 'username@hostname:directory [git_branch] $ '
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\[\1\] /'
+}
+PS1='\[\033[01;37m\]\u@\h:\W \[\033[00;32m\]$(parse_git_branch)\[\033[00m\]$ '
 
-###
 # Load the shell dotfiles
-###
-for file in ~/.{bash_prompt,exports,aliases,functions}; do
+for file in ~/.{exports,aliases,functions}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
 
-###
 # Autocomplete commands issued with sudo
-###
 complete -cf sudo
 
-###
 # Append to the Bash history file, rather than overwriting it
-###
 shopt -s histappend
 
-###
 # Autocorrect typos in path names when using `cd`
-###
 shopt -s cdspell
 
-###
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-###
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
-###
 # Add tab completion for many more commands
-###
 [ -r /etc/bash_completion ] && source /etc/bash_completion
 if command_exists brew && [ -r $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
-###
 # Delete functions defined above
-###
 unset -f command_exists
 unset -f path_contains
