@@ -1,25 +1,26 @@
 #!/usr/bin/env bash
 
-# Make sure we’re using the latest Homebrew
-brew update && brew doctor
+set -o nounset
+set -o errexit
 
-# Upgrade any already-installed formulae
-brew upgrade
+readonly BREW="$(command -v brew)"
+[[ -z "$BREW" ]] && echo 'brew command is not installed' && exit -1
+
+$BREW update && $BREW prune && $BREW doctor
+
+$BREW upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
-brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+$BREW install coreutils
+$BREW install findutils
 
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew install findutils
-
-# Install Bash 4
-brew install bash
-brew install bash-completion
+# Install latest bash
+$BREW install bash
+$BREW install bash-completion
 
 # Install other useful binaries
-brew install git
-brew install unrar
+$BREW install git
+$BREW install unrar
 
 # Remove outdated versions from the cellar
-brew cleanup
+$BREW cleanup
