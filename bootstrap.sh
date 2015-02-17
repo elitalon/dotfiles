@@ -7,8 +7,8 @@ cd "$(dirname "${BASH_SOURCE}")"
 
 function doIt() {
   # Update SSH config
-  local readonly ssh_config='~/.ssh/config'
-  cat '.ssh/config.before' > "${ssh_config}" && cat '~/Dropbox/Software/SSH/config.hosts' >> "${ssh_config}" && cat '.ssh/config.after' >> "${ssh_config}"
+  local ssh_config="${HOME}/.ssh/config"
+  cat '.ssh/config.before' > "${ssh_config}" && cat "${HOME}/Dropbox/Software/SSH/config.hosts" >> "${ssh_config}" && cat '.ssh/config.after' >> "${ssh_config}"
 
   # Download changes
   git pull
@@ -23,7 +23,7 @@ if [[ "${arg1}" = '--force' || "${arg1}" = '-f' ]]; then
 else
   read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
   echo
-  if [[ ${reply:-} =~ ^[Yy]$ ]]; then
+  if [[ ${REPLY} =~ ^[Yy]$ ]]; then
     doIt
   fi
 fi

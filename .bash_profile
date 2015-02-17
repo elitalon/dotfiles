@@ -112,7 +112,7 @@ command_exists mate && alias mate='mate -w'
 #################
 
 # SSH hostnames
-[[ -s '~/.ssh/config' ]] && complete -o 'default' -o 'nospace' -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+[[ -s "${HOME}/.ssh/config" ]] && complete -o 'default' -o 'nospace' -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
 # Bash commands
 [[ -r /etc/bash_completion ]] && source /etc/bash_completion
@@ -126,7 +126,7 @@ command_exists mate && alias mate='mate -w'
 ##########
 
 # RVM binaries
-[[ -s '~/.rvm/scripts/rvm' ]] && source '~/.rvm/scripts/rvm'
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
 
 # HomeBrew binaries
 homebrew_binaries="$(brew --prefix coreutils)/libexec/gnubin"
