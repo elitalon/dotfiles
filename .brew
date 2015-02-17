@@ -3,24 +3,28 @@
 set -o nounset
 set -o errexit
 
-readonly BREW="$(command -v brew)"
-[[ -z "$BREW" ]] && echo 'brew command is not installed' && exit -1
+readonly brew="$(command -v brew)"
+echo ${brew}
+[[ -z "${brew}" ]] && echo 'brew command is not installed' && exit -1
 
-$BREW update && $BREW prune && $BREW doctor
-
-$BREW upgrade
+${brew} update
+${brew} prune
+if ! ${brew} doctor; then
+  echo 'Check doctor messages above'
+fi
+${brew} upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
-$BREW install coreutils
-$BREW install findutils
+${brew} install coreutils
+${brew} install findutils
 
 # Install latest bash
-$BREW install bash
-$BREW install bash-completion
+${brew} install bash
+${brew} install bash-completion
 
 # Install other useful binaries
-$BREW install git
-$BREW install unrar
+${brew} install git
+${brew} install unrar
 
 # Remove outdated versions from the cellar
-$BREW cleanup
+${brew} cleanup
