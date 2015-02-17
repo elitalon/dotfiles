@@ -18,58 +18,15 @@ Thumbs.db
 .ssh/id_[dr]sa*
 .ssh/config
 
-##################################
-## Xcode4 / OS X Source projects
-##
-## For updates, see: http://stackoverflow.com/questions/49478/git-ignore-file-for-xcode-projects
-##################################
-
-######
-## OS X temporary files that should never be committed
+# OS X temporary files that should never be committed
 *.swp
 *.lock
 profile
 
-#####
-## Cocoapods
+# Cocoapods
 /Pods/
 !Podfile.lock
 
-#####
-## Xcode temporary files that should never be committed
-*~.nib
-
-#####
-## Xcode build files
-DerivedData/
-build/
-
-######
-## Xcode private settings
-*.pbxuser
-*.mode1v3
-*.mode2v3
-*.perspective
-*.perspectivev3
-
-# Whitelist the default ones, some projects need to use these
-!default.pbxuser
-!default.mode1v3
-!default.mode2v3
-!default.perspectivev3
-
-#####
-## Xcode 4 - semi-personal settings, often included in workspaces
-xcuserdata
-
-#####
-## XCode 4 workspaces
-!xcshareddata
-
-#####
-## XCode 4 build-schemes
-!xcschemes
-
-#####
-## Xcode 4 - Deprecated classes
-*.moved-aside
+## Xcode
+UserInterfaceState.xcuserstate
+xcuserdata/

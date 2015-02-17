@@ -1,38 +1,6 @@
 ###
-# Create systemwide functions
-#
-# Dependencies:
-#   - git (system default is ok)
-###
-
-###
-# Determine size of a file or total size of a directory
-###
-function fs() {
-	if du -b /dev/null > /dev/null 2>&1; then
-		local arg=-sbh
-	else
-		local arg=-sh
-	fi
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@"
-	else
-		du $arg .[^.]* *
-	fi
-}
-
-###
 # All the dig info
 ###
 function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer
-}
-
-###
-# Create all branches in a Git repository
-###
-function git-clone-all() {
-  for branch in `git branch -r | grep origin | grep -v -e HEAD -e master | sed 's/.*\s*origin//'`; do
-    git branch $branch origin/$branch;
-  done
 }

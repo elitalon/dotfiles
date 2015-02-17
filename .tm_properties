@@ -1,21 +1,13 @@
-###
 # Personal information
-###
 TM_FULLNAME     = "Eliezer Talón"
 TM_ORGANIZATION = ""
 TM_EMAIL        = "elitalon@gmail.com"
 
-
-###
 # Browser visibility
-###
 include = "{$include,.*}"
 exclude = "{$exclude,.git,.DS_Store}"
 
-
-###
 # Edition preferences
-###
 fontName       = "Menlo"
 fontSize       = 12
 softTabs       = true
@@ -28,10 +20,7 @@ windowTitle    = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
 # This only works with the "Avian Missing Bundle" installed (https://github.com/elia/avian-missing.tmbundle)
 TM_STRIP_WHITESPACE_ON_SAVE = true
 
-
-###
 # Special per-filetype rules
-###
 [ text.plain ]
 spellChecking  = true
 

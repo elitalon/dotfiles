@@ -15,7 +15,6 @@
   tags = tag -ln
   remotes = remote -v
   contributors = shortlog -s -n
-  lsd = ls-files --deleted
   prune-remote = "!f() { git remote | xargs git remote prune; }; f"
 
 [apply]

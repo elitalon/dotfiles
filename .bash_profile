@@ -1,14 +1,4 @@
 ###
-# Configure Bash
-#
-# Dependencies:
-#   - dotfiles
-#   - ssh
-#   - brew
-###
-
-
-###
 # Returns true if given command exists
 #
 # WARNING: This function is defined here because it's used throughout the dotfiles
