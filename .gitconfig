@@ -22,7 +22,7 @@
 
 [core]
   excludesfile = ~/.gitignore
-  editor = "mate -w"
+  editor = vim
   whitespace = space-before-tab,trailing-space
 
 [color]
