@@ -29,4 +29,7 @@ else
 fi
 
 unset doIt
+
+set +o nounset
+set +o errexit
 source ~/.bash_profile
