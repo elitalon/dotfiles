@@ -57,7 +57,7 @@ complete -cf sudo
 function parse_git_branch() {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\[\1\] /'
 }
-PS1='\[\e[0;90m\]\W \[\e[0;32m\]$(parse_git_branch)\[\e[0m\]\$ '
+PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(parse_git_branch)\[\e[0m\]\$ '
 
 
 #########
