@@ -94,7 +94,7 @@ alias grep='grep -n'
 alias rgrep='grep -n -r'
 
 # List all files colorized in long format
-alias ls='ls -lhG'
+alias ls='ls -lh --color'
 
 # IP addresses
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
