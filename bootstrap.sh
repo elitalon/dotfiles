@@ -14,7 +14,7 @@ function doIt() {
   git pull
 
   # Update dotfiles
-  rsync --exclude '.brew' --exclude '.osx' --exclude '.git/' --exclude '.gitmodules' --exclude '.DS_Store' --exclude 'bootstrap.sh' --exclude 'README.md' --exclude 'init' --exclude '.ssh/config' -av . ~
+  rsync --exclude elitalon.terminal --exclude '.brew' --exclude '.osx' --exclude '.git/' --exclude '.gitmodules' --exclude '.DS_Store' --exclude 'bootstrap.sh' --exclude 'README.md' --exclude 'init' --exclude '.ssh/config' -av . ~
 }
 
 readonly arg1=${1:-}
