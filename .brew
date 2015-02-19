@@ -4,7 +4,6 @@ set -o nounset
 set -o errexit
 
 readonly brew="$(command -v brew)"
-echo ${brew}
 [[ -z "${brew}" ]] && echo 'brew command is not installed' && exit -1
 
 ${brew} update
