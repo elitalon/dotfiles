@@ -66,7 +66,7 @@ PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(parse_git_branch)\[\e[0m\]\$ '
 
 # Default editor
 export EDITOR=vim
-command_exists mate && export EDITOR="$(type -P mate) -w"
+command_exists mate && export EDITOR="$(type -P mate)"
 
 # Do not clear the screen after quitting a manual page
 export MANPAGER='less -X'
@@ -102,9 +102,6 @@ alias localip='ipconfig getifaddr en1'
 
 # Enhanced WHOIS lookups
 alias whois='whois -h whois-servers.net'
-
-# Makes TextMate wait by default
-command_exists mate && alias mate='mate -w'
 
 
 #################
