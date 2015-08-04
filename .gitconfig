@@ -16,7 +16,7 @@
   remotes = remote -v
   contributors = shortlog -s -n
   prune-remote = "!f() { git remote | xargs git remote prune; }; f"
-  scrub = "!f() { git checkout -- . && git clean -f; }; f"
+  scrub = "!f() { git checkout -- . && git clean -fd; }; f"
 
 [apply]
   whitespace = fix
