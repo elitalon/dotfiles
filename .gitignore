@@ -24,7 +24,6 @@ Thumbs.db
 profile
 
 # Cocoapods
-/Pods/
 !Podfile.lock
 
 ## Xcode
