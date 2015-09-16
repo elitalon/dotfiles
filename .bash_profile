@@ -122,9 +122,6 @@ alias whois='whois -h whois-servers.net'
 # SOURCING
 ##########
 
-# RVM binaries
-[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
-
 # HomeBrew binaries
 homebrew_binaries="$(brew --prefix coreutils)/libexec/gnubin"
 command_exists brew && ! path_contains "$homebrew_binaries" && export PATH="$homebrew_binaries:/usr/local/bin:$PATH"
@@ -133,6 +130,13 @@ unset -f homebrew_binaries
 # Pyenv binaries
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
+# RVM binaries
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+
+
+##########
+# CLEANING
+##########
 
 # Delete helpers functions
 unset -f command_exists
