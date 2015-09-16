@@ -24,6 +24,7 @@ ${brew} install bash-completion
 # Install other useful binaries
 ${brew} install git
 ${brew} install unrar
+${brew} install pyenv
 
 # Remove outdated versions from the cellar
 ${brew} cleanup
