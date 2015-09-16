@@ -60,10 +60,10 @@ function git_dirty() {
 
 function git_branch() {
   local current_branch="$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)"
-  echo "[${current_branch}$(git_dirty)]"
+  [[ -z "${current_branch}" ]] || echo "[${current_branch}$(git_dirty)] "
 }
 
-PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\] ❯ '
+PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\]❯ '
 
 
 #########
