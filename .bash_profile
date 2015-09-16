@@ -54,12 +54,12 @@ complete -cf sudo
 ########
 
 function git_dirty() {
-  test -z "$(command git status --porcelain --ignore-submodules -unormal)"
+  test -z "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)"
   (( $? )) && echo " *"
 }
 
 function git_branch() {
-  local current_branch="$(command git rev-parse --abbrev-ref HEAD)"
+  local current_branch="$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)"
   echo "[${current_branch}$(git_dirty)]"
 }
 
