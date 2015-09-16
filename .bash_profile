@@ -53,11 +53,17 @@ complete -cf sudo
 # PROMPT
 ########
 
-# Set prompt to 'username@hostname:directory [git_branch] $ '
-function parse_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\[\1\] /'
+function git_dirty() {
+  test -z "$(command git status --porcelain --ignore-submodules -unormal)"
+  (( $? )) && echo " *"
 }
-PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(parse_git_branch)\[\e[0m\]\$ '
+
+function git_branch() {
+  local current_branch="$(command git rev-parse --abbrev-ref HEAD)"
+  echo "[${current_branch}$(git_dirty)]"
+}
+
+PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\] ❯ '
 
 
 #########
