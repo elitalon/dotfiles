@@ -136,9 +136,6 @@ unset -f homebrew_binaries
 # Pyenv binaries
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
-# RVM binaries
-[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
-
 
 ##########
 # CLEANING
