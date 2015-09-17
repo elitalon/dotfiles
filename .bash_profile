@@ -133,8 +133,11 @@ homebrew_binaries="$(brew --prefix coreutils)/libexec/gnubin"
 command_exists brew && ! path_contains "$homebrew_binaries" && export PATH="$homebrew_binaries:/usr/local/bin:$PATH"
 unset -f homebrew_binaries
 
-# Pyenv binaries
+# pyenv binaries
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# rbenv binaries
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 
 ##########
