@@ -106,9 +106,6 @@ alias ls='ls -lh --color'
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias localip='ipconfig getifaddr en1'
 
-# Enhanced WHOIS lookups
-alias whois='whois -h whois-servers.net'
-
 
 #################
 # AUTO COMPLETION
