@@ -1,15 +1,9 @@
-###
 # Returns whether a given command exists
-###
 function command_exists() {
-  [[ -z "$1" ]] && return 1
-  return $(command -v $1 >/dev/null 2>&1)
+  [[ -n "$1" ]] && $(hash "$1" 2>/dev/null)
 }
 
-
-###
 # Returns whether a given pattern exists in $PATH
-###
 function path_contains() {
   [[ -z "$1" ]] && return 1
 
@@ -27,9 +21,11 @@ function path_contains() {
 }
 
 
-###
-# All the dig info
-###
+###########
+# FUNCTIONS
+###########
+
+### All the dig info
 function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer
 }
@@ -72,7 +68,7 @@ PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\]❯ '
 
 # Default editor
 export EDITOR=vim
-command_exists mate && export EDITOR="$(type -P mate)"
+if command_exists mate; then export EDITOR="$(type -P mate)"; fi
 
 # Do not clear the screen after quitting a manual page
 export MANPAGER='less -X'
@@ -131,16 +127,15 @@ command_exists brew && ! path_contains "$homebrew_binaries" && export PATH="$hom
 unset -f homebrew_binaries
 
 # pyenv binaries
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+command_exists pyenv && eval "$(pyenv init -)"
 
 # rbenv binaries
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+command_exists rbenv && eval "$(rbenv init -)"
 
 
 ##########
 # CLEANING
 ##########
 
-# Delete helpers functions
 unset -f command_exists
 unset -f path_contains
