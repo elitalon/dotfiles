@@ -2,6 +2,7 @@
 TM_FULLNAME     = "Eliezer Talón"
 TM_ORGANIZATION = ""
 TM_EMAIL        = "elitalon@gmail.com"
+TM_GIT          = "/usr/local/bin/git"
 
 # Browser visibility
 include = "{$include,.*}"
@@ -17,12 +18,15 @@ wrapColumn     = "Use Window Frame"
 showInvisibles = false
 windowTitle    = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
 
-# This only works with the "Avian Missing Bundle" installed (https://github.com/elia/avian-missing.tmbundle)
-TM_STRIP_WHITESPACE_ON_SAVE = true
-
 # Special per-filetype rules
 [ text.plain ]
 spellChecking  = true
 
 [ text.html.markdown ]
 spellChecking  = true
+
+[ Podfile ]
+fileType = "source.ruby"
+
+[ *.podspec ]
+fileType = "source.ruby"
