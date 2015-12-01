@@ -1,96 +1,103 @@
 " Some file types should wrap their text
-function! s:setupWrapping()
-	set wrap
-	set linebreak
-	set textwidth=80
-	set nolist
+function! s:setUpMarkdown()
+  setlocal wrap
+  setlocal linebreak
+  setlocal textwidth=80
+  setlocal nolist
+  setlocal spell
 endfunction
 
 
 ""
 "" Basic setup
 ""
-set nocompatible      " Use vim, no vi defaults
-set number            " Show line numbers
-set ruler             " Show line and column number
-syntax enable         " Turn on syntax highlighting allowing local overrides
-set encoding=utf-8    " Set default encoding to UTF-8
+set nocompatible                  " Use vim, no vi defaults
+set number                        " Show line numbers
+set ruler                         " Show line and column number
+set encoding=utf-8
+set spelllang=en_gb
 set guifont=Monaco:h12
-color obsidian2
-set background=light
-filetype plugin indent on
+set backupdir^=~/.vim/_backup//   " Where to put backup files.
+set directory^=~/.vim/_temp//     " Where to put swap files.
+
 
 ""
-"" Whitespace
+"" Colors
+""
+syntax enable
+filetype plugin indent on
+color obsidian2
+set background=light  " Overrides obsidian2
+
+
+""
+"" Indentation
 ""
 set wrap
-set tabstop=2                     " a tab is two spaces
-set shiftwidth=2                  " an autoindent (with <<) is two spaces
-set expandtab                     " use spaces, not tabs
-set list                          " Show invisible characters
-set backspace=indent,eol,start    " backspace through everything in insert mode
+set expandtab                   " Use spaces, not tabs
+set tabstop=2                   " A tab is two spaces
+set shiftwidth=2                " An autoindent (with <<) is two spaces
+set list                        " Show invisible characters
+set backspace=indent,eol,start  " Backspace through everything in insert mode
 
-""
-"" List chars
-""
-set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.            " show trailing spaces as dots
-set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the left of the screen
 
 ""
 "" Searching
 ""
-set hlsearch    " highlight matches
-set incsearch   " incremental searching
-set ignorecase  " searches are case insensitive...
+set hlsearch    " Highlight matches
+set incsearch   " Incremental searching
+set ignorecase  " Searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
 
+" Toggle hlsearch with <leader>hs
+nmap <leader>hs :set hlsearch! hlsearch?<CR>
+
+
 ""
-"" Ignoring files
+"" listchars
+""
+set listchars=""            " Reset the listchars
+set listchars=tab:\ \       " A tab should display as "  ", trailing whitespace as "."
+set listchars+=trail:.      " Show trailing spaces as dots
+set listchars+=extends:>    " The character to show when wrap is off and the line continues beyond the right
+set listchars+=precedes:<   " The character to show when wrap is off and the line continues beyond the left
+
+
+""
+"" wildignore
 ""
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 set wildignore+=*.swp,*~,._*
 
-""
-"" Backup and swap files
-""
-set backupdir^=~/.vim/_backup//    " where to put backup files.
-set directory^=~/.vim/_temp//      " where to put swap files.
-
 
 ""
 "" autocmd
 ""
 if has("autocmd")
-	" In Makefiles, use real tabs, not tabs expanded to spaces
-	au FileType make setlocal noexpandtab
-	if exists("g:autosave_on_blur")
-		au FocusLost * silent! wall
-	endif
+  " In Makefiles, use real tabs, not tabs expanded to spaces
+  au FileType make setlocal noexpandtab
 
-	" Make sure all mardown files have the correct filetype set and setup wrapping
-	au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
-	au FileType markdown call s:setupWrapping()
+  " Make sure all Markdown files have the correct filetype set and setup wrapping
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
+  au FileType markdown call s:setUpMarkdown()
 
-	" Treat JSON files like JavaScript
-	au BufNewFile,BufRead *.json set filetype=javascript
+  " Spell-check Git messages
+  au FileType gitcommit setlocal spell
 
-	" make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
-	au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+  " Treat JSON files like JavaScript
+  au BufNewFile,BufRead *.json setlocal filetype=javascript
 
-	" Remember last location in file, but not for commit messages.
-	" see :help last-position-jump
-	au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-				\| exe "normal! g`\"" | endif
+  " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
+  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
 
   " Use tabs instead of spaces in PHP
-  au FileType php set tabstop=2 | set noexpandtab
+  au FileType php setlocal tabstop=2 noexpandtab
+
+  " Remember last location in file, but not for commit messages.
+  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+        \| exe "normal! g`\"" | endif
 endif
 
 
@@ -98,16 +105,12 @@ endif
 "" statusline
 ""
 if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
+  set laststatus=2  " Always show the status bar
 
-  " Start the status line
-  set statusline=%f\ %m\ %r
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
+  set statusline=%t
+  set statusline+=\ Line:\ %l/%L
+  set statusline+=\ Column:\ %v
+  set statusline+=%=
+  set statusline+=%y\ [%{''.(&fenc!=''?&fenc:&enc).''}]%(\ %M%R%)\ Buffer\ #%n
 endif
 
-
-" Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
