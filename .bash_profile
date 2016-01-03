@@ -30,6 +30,15 @@ function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer
 }
 
+### Opens Xcode workspace in current directory
+function xcode() {
+  local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
+  if [[ -z "${workspace}" ]]; then
+    echo "Xcode workspace not found"
+  else
+    open "${workspace}"
+  fi
+}
 
 #################
 # GENERAL OPTIONS
