@@ -21,39 +21,6 @@ function path_contains() {
 }
 
 
-###########
-# FUNCTIONS
-###########
-
-### All the dig info
-function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
-}
-
-### Opens Xcode workspace in current directory
-function xcode() {
-  local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
-  if [[ -z "${workspace}" ]]; then
-    echo "Xcode workspace not found"
-  else
-    open "${workspace}"
-  fi
-}
-
-#################
-# GENERAL OPTIONS
-#################
-
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
-# Autocomplete commands issued with sudo
-complete -cf sudo
-
-
 ########
 # PROMPT
 ########
@@ -69,6 +36,20 @@ function git_branch() {
 }
 
 PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\]❯ '
+
+
+#################
+# GENERAL OPTIONS
+#################
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Autocomplete commands issued with sudo
+complete -cf sudo
 
 
 #########
@@ -89,32 +70,6 @@ export HISTCONTROL=ignoredups
 
 # Make some commands not show up in history
 export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
-
-
-#########
-# ALIASES
-#########
-
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-
-# Show line numbers in grep
-alias grep='grep -n'
-
-# Recursive grep with line numbers
-alias rgrep='grep -n -r'
-
-# List all files colorized in long format
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-  alias ls='ls -lh --color'
-else # OS X `ls`
-  alias ls='ls -lhG'
-fi
-
-
-# IP addresses
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias localip='ipconfig getifaddr en1'
 
 
 #################
@@ -145,6 +100,51 @@ command_exists pyenv && eval "$(pyenv init -)"
 
 # rbenv binaries
 command_exists rbenv && eval "$(rbenv init -)"
+
+
+#########
+# ALIASES
+#########
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# Show line numbers in grep
+alias grep='grep -n'
+
+# Recursive grep with line numbers
+alias rgrep='grep -n -r'
+
+# List all files colorized in long format
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+  alias ls='ls -lh --color'
+else # OS X `ls`
+  alias ls='ls -lhG'
+fi
+
+# IP addresses
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias localip='ipconfig getifaddr en1'
+
+
+###########
+# FUNCTIONS
+###########
+
+### All the dig info
+function digga() {
+	dig +nocmd "$1" any +multiline +noall +answer
+}
+
+### Opens Xcode workspace in current directory
+function xcode() {
+  local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
+  if [[ -z "${workspace}" ]]; then
+    echo "Xcode workspace not found"
+  else
+    open "${workspace}"
+  fi
+}
 
 
 ##########
