@@ -105,7 +105,12 @@ alias grep='grep -n'
 alias rgrep='grep -n -r'
 
 # List all files colorized in long format
-alias ls='ls -lhG'
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+  alias ls='ls -lh -color'
+else # OS X `ls`
+  alias ls='ls -lhG'
+fi
+
 
 # IP addresses
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
