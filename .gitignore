@@ -26,6 +26,9 @@ profile
 # Cocoapods
 !Podfile.lock
 
-## Xcode
+# Xcode
 UserInterfaceState.xcuserstate
 xcuserdata/
+
+# Rubygems
+!Gemfile.lock
