@@ -1,7 +1,7 @@
 # elitalon's dotfiles
 
 
-## Installation
+## Installating
 
 ```bash
 git clone https://github.com/elitalon/dotfiles.git && cd dotfiles && ./bootstrap.sh
@@ -16,7 +16,7 @@ To update, `cd` into your local `dotfiles` repository and then:
 ```
 
 ## Feedback
-Suggestions and/or improvements are [welcome](https://github.com/elitalon/dotfiles/issues)
+Suggestions and/or improvements are [welcome](https://github.com/elitalon/dotfiles/issues).
 
 
 ## Acknowledgements
