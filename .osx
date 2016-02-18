@@ -5,7 +5,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Create Projects directory in home directory
-[ ! -d ~/Projects ] && mkdir ~/Projects
+[[ ! -d ~/Projects ]] && mkdir ~/Projects
 
 # Enable transparency of menu bar
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
@@ -23,7 +23,7 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Restart automatically if the computer freezes
-systemsetup -setrestartfreeze on
+sudo systemsetup -setrestartfreeze on
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 0
@@ -31,9 +31,6 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-# Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "$HOME/Desktop"
 
 # Save screenshots in PNG format
 defaults write com.apple.screencapture type -string "png"
@@ -61,9 +58,6 @@ chflags nohidden ~/Library
 
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
-
-# Remove the auto-hiding Dock delay
-defaults write com.apple.Dock autohide-delay -float 0
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
