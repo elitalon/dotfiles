@@ -1,27 +1,24 @@
-elitalon's dotfiles
-===================
+# elitalon's dotfiles
 
 
-Installation
-------------
-You can clone the repository wherever you want. The bootstrapper script will pull in the latest version and copy the files to your home folder.
+## Installation
 
 ```bash
-git clone https://github.com/elitalon/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/elitalon/dotfiles.git && cd dotfiles && ./bootstrap.sh
 ```
+
+### Upgrading
 
 To update, `cd` into your local `dotfiles` repository and then:
 
 ```bash
-source bootstrap.sh
+./bootstrap.sh
 ```
 
-Feedback
---------
+## Feedback
 Suggestions and/or improvements are [welcome](https://github.com/elitalon/dotfiles/issues)
 
 
-Thanks to...
-------------
-* [Mathias Bynens](http://mathiasbynens.be/) and his [dotfiles repository](https://github.com/mathiasbynens/dotfiles)
-* anyone who [contributed a patch](https://github.com/elitalon/dotfiles/contributors) or [made a helpful suggestion](https://github.com/elitalon/dotfiles/issues)
+## Acknowledgements
+
+Thanks to [Mathias Bynens](https://twitter.com/mathias) for the [inspiration](https://github.com/mathiasbynens/dotfiles).
