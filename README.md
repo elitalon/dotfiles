@@ -1,7 +1,7 @@
 # elitalon's dotfiles
 
 
-## Installating
+## Installing
 
 ```bash
 git clone https://github.com/elitalon/dotfiles.git && cd dotfiles && ./bootstrap.sh
