@@ -25,7 +25,7 @@ ${brew} install bash-completion
 ${brew} install git
 ${brew} install unrar
 ${brew} install rbenv ruby-build
-${brew} install pyenv
+# ${brew} install pyenv
 
 # Remove outdated versions and broken links from the cellar
 ${brew} cleanup
