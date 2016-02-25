@@ -18,6 +18,7 @@
   prune-remote = "!f() { git remote | xargs git remote prune; }; f"
   scrub = "!f() { git checkout -- . && git clean -fd; }; f"
   reset-last = reset --soft HEAD~
+  sync = "!f() { git pull && git prune-remote; }; f"
 
 [apply]
   whitespace = fix
