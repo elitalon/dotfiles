@@ -4,6 +4,9 @@ TM_ORGANIZATION = ""
 TM_EMAIL        = "elitalon@gmail.com"
 TM_GIT          = "/usr/local/bin/git"
 
+# Environment variables
+PATH = "/Users/elitalon/.rbenv/shims:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
+
 # Browser visibility
 include = "{$include,.*}"
 exclude = "{$exclude,.git,.DS_Store}"
