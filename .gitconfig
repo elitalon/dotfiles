@@ -28,6 +28,7 @@
   excludesfile = ~/.gitignore
   editor = vim
   whitespace = space-before-tab,trailing-space
+  autocrlf = input
 
 [color]
   branch = auto
