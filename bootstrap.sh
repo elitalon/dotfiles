@@ -41,6 +41,14 @@ function update_dotfiles() {
     "${source_directory}" "${destination_directory}"
 }
 
+function tune_xcode() {
+  # Show how long it takes to build a project
+  defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
+
+  # Faster build times by leveraging multi-core CPU
+  defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
+}
+
 function main() {
   read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
   echo
@@ -52,6 +60,8 @@ function main() {
   download_changes
   update_ssh_config
   update_dotfiles
+
+  tune_xcode
 }
 
 main
