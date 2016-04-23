@@ -36,6 +36,7 @@ function update_dotfiles() {
     --exclude "bootstrap.sh" \
     --exclude "README.md" \
     --exclude ".ssh/config*" \
+    --exclude "Breakpoints_v2.xcbkptlist" \
     --archive \
     --verbose \
     "${source_directory}" "${destination_directory}"
@@ -47,6 +48,14 @@ function tune_xcode() {
 
   # Faster build times by leveraging multi-core CPU
   defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
+
+  # Add default breakpoints
+  local xcode_user_data_path="$HOME/Library/Developer/Xcode/UserData/xcdebugger"
+  local custom_breakpoints_filename="Breakpoints_v2.xcbkptlist"
+  if [[ ! -f "${xcode_user_data_path}/${custom_breakpoints_filename}" ]]; then
+    [[ ! -d "${xcode_user_data_path}" ]] && mkdir -p "${xcode_user_data_path}"
+    cp "$(dirname $BASH_SOURCE)/${custom_breakpoints_filename}" "${xcode_user_data_path}"
+  fi
 }
 
 function main() {
