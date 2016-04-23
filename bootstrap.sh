@@ -59,12 +59,6 @@ function tune_xcode() {
 }
 
 function main() {
-  read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
-  echo
-  if [[ ${REPLY} =~ ^[Nn]$ ]]; then
-    exit
-  fi
-
   cd "$(dirname "${BASH_SOURCE}")"
   download_changes
   update_ssh_config
