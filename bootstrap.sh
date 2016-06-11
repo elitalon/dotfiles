@@ -17,7 +17,7 @@ function update_ssh_config() {
 
   local ssh_config="${HOME}/.ssh/config"
   cat '.ssh/config.before' > "${ssh_config}" \
-    && cat "${HOME}/Dropbox/Software/SSH/config.hosts" >> "${ssh_config}" \
+    && cat "${HOME}/Sync/Software/SSH/config.hosts" >> "${ssh_config}" \
     && cat '.ssh/config.after' >> "${ssh_config}"
 }
 
