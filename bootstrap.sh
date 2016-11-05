@@ -12,13 +12,31 @@ function download_changes() {
   git pull
 }
 
-function update_ssh_config() {
-  echo "Updating SSH config"
+function append_newline() {
+  [[ -z ${1+} ]] && [[ -f $1 ]] && [[ -w $1 ]] && echo >> $1
+}
 
-  local ssh_config="${HOME}/.ssh/config"
-  cat '.ssh/config.before' > "${ssh_config}" \
-    && cat "${HOME}/Dropbox/Software/SSH/config.hosts" >> "${ssh_config}" \
-    && cat '.ssh/config.after' >> "${ssh_config}"
+function update_ssh_config() {
+  local ssh_home="${HOME}/.ssh"
+  echo "Updating SSH config at ${ssh_home}"
+
+  local ssh_config="${ssh_home}/config"
+  truncate -s 0 "${ssh_config}"
+
+  local identity_files=`find "${ssh_home}" -name 'id_*' -type f -exec basename {} \; | sed -e 's/.pub//' | uniq`
+  for file in ${identity_files}; do
+    echo "IdentityFile ${ssh_home}/${file}" >> "${ssh_config}"
+  done
+  append_newline "${ssh_config}"
+
+  cat '.ssh/config.before' >> "${ssh_config}"
+  append_newline "${ssh_config}"
+
+  cat "${HOME}/Dropbox/Software/SSH/config.hosts" >> "${ssh_config}"
+  append_newline "${ssh_config}"
+
+  cat '.ssh/config.after' >> "${ssh_config}"
+  append_newline "${ssh_config}"
 }
 
 function update_dotfiles() {
@@ -63,7 +81,6 @@ function main() {
   download_changes
   update_ssh_config
   update_dotfiles
-
   tune_xcode
 }
 
