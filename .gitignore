@@ -32,3 +32,5 @@ profile
 # Xcode
 UserInterfaceState.xcuserstate
 xcuserdata/
+*.xccheckout
+*.xcscmblueprint
