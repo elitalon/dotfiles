@@ -30,4 +30,4 @@ ${brew} install rbenv ruby-build
 
 # Remove outdated versions and broken links from the cellar
 ${brew} cleanup
-${brew} purge
+${brew} prune
