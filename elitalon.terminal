@@ -144,24 +144,16 @@
 	dmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhOW2KMjpCVoKmxtL3P0tcAAAAAAAABAQAAAAAA
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
-	<key>BackgroundBlur</key>
-	<real>0.0</real>
 	<key>BackgroundColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKMHCA9VJG51bGzTCQoLDA0OVU5TUkdCXE5TQ29sb3JTcGFjZVYkY2xhc3NPECcw
-	LjEwMTk2MDc4NDMgMC4xMDE5NjA3ODQzIDAuMTAxOTYwNzg0MwAQAYAC0hAREhNaJGNs
-	YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohIUWE5TT2JqZWN0XxAPTlNLZXllZEFyY2hp
-	dmVy0RcYVHJvb3SAAQgRGiMtMjc7QUhOW2KMjpCVoKmxtL3P0tcAAAAAAAABAQAAAAAA
-	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OVU5TUkdCXE5TQ29sb3JTcGFjZVYkY2xhc3NPECsw
+	LjEwMTk2MDc4NDMgMC4xMDE5NjA3ODQzIDAuMTAxOTYwNzg0MyAwLjkAEAGAAtIQERIT
+	WiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqISFFhOU09iamVjdF8QD05TS2V5ZWRB
+	cmNoaXZlctEXGFRyb290gAEIERojLTI3O0FITltikJKUmaSttbjB09bbAAAAAAAAAQEA
+	AAAAAAAAGQAAAAAAAAAAAAAAAAAAAN0=
 	</data>
 	<key>Bell</key>
-	<true/>
-	<key>BellBounceCritical</key>
-	<true/>
-	<key>BookmarkRestorations</key>
-	<true/>
-	<key>ConvertNewlinesOnPaste</key>
 	<true/>
 	<key>CursorBlink</key>
 	<true/>
@@ -206,22 +198,12 @@
 	</data>
 	<key>ShouldLimitScrollback</key>
 	<integer>0</integer>
-	<key>ShowActiveProcessArgumentsInTabTitle</key>
-	<false/>
-	<key>ShowActiveProcessArgumentsInTitle</key>
-	<false/>
 	<key>ShowActiveProcessInTitle</key>
 	<true/>
 	<key>ShowCommandKeyInTitle</key>
 	<false/>
 	<key>ShowDimensionsInTitle</key>
 	<false/>
-	<key>ShowRepresentedURLInTabTitle</key>
-	<true/>
-	<key>ShowRepresentedURLInTitle</key>
-	<true/>
-	<key>ShowRepresentedURLPathInTitle</key>
-	<true/>
 	<key>ShowShellCommandInTitle</key>
 	<false/>
 	<key>ShowTTYNameInTitle</key>
@@ -248,7 +230,7 @@
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
 	<key>UseBoldFonts</key>
-	<true/>
+	<false/>
 	<key>UseBrightBold</key>
 	<false/>
 	<key>WindowTitle</key>
@@ -421,21 +403,6 @@
 	</data>
 	<key>name</key>
 	<string>elitalon</string>
-	<key>noWarnProcesses</key>
-	<array>
-		<dict>
-			<key>ProcessName</key>
-			<string>screen</string>
-		</dict>
-		<dict>
-			<key>ProcessName</key>
-			<string>tmux</string>
-		</dict>
-		<dict>
-			<key>ProcessName</key>
-			<string>bash</string>
-		</dict>
-	</array>
 	<key>redColour</key>
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
