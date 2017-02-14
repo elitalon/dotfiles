@@ -30,7 +30,9 @@ function main() {
   sudo systemsetup -setrestartfreeze on
 
   echo "Set a blazingly fast keyboard repeat rate"
-  defaults write NSGlobalDomain KeyRepeat -int 0
+  defaults write NSGlobalDomain KeyRepeat -int 1
+  defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
 
   echo "Enable requiring a password immediately after sleep or screen saver begins"
   defaults write com.apple.screensaver askForPassword -int 1
