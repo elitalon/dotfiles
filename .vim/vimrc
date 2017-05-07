@@ -16,7 +16,7 @@ set number                        " Show line numbers
 set ruler                         " Show line and column number
 set encoding=utf-8
 set spelllang=en_gb
-set guifont=Monaco:h12
+set guifont=Menlo:h13
 set backupdir^=~/.vim/_backup//   " Where to put backup files.
 set directory^=~/.vim/_temp//     " Where to put swap files.
 
@@ -26,8 +26,7 @@ set directory^=~/.vim/_temp//     " Where to put swap files.
 ""
 syntax enable
 filetype plugin indent on
-color obsidian2
-set background=light  " Overrides obsidian2
+color Tomorrow-Night
 
 
 ""

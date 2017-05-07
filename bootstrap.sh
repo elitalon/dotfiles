@@ -55,6 +55,7 @@ function update_dotfiles() {
     --exclude "README.md" \
     --exclude ".ssh/config*" \
     --exclude "Breakpoints_v2.xcbkptlist" \
+    --exclude "editor_themes" \
     --archive \
     --verbose \
     "${source_directory}" "${destination_directory}"
@@ -67,11 +68,18 @@ function tune_xcode() {
   # Faster build times by leveraging multi-core CPU
   defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
 
+  local user_data_directory="$HOME/Library/Developer/Xcode/UserData/"
+
   # Add default breakpoints
-  local xcode_user_data_path="$HOME/Library/Developer/Xcode/UserData/xcdebugger"
+  local user_data_debugger_directory="${user_data_directory}xcdebugger"
+  [[ ! -d "${user_data_debugger_directory}" ]] && mkdir -p "${user_data_debugger_directory}"
   local custom_breakpoints_filename="Breakpoints_v2.xcbkptlist"
-  [[ ! -d "${xcode_user_data_path}" ]] && mkdir -p "${xcode_user_data_path}"
-  cp "$(dirname $BASH_SOURCE)/${custom_breakpoints_filename}" "${xcode_user_data_path}"
+  cp "$(dirname $BASH_SOURCE)/${custom_breakpoints_filename}" "${user_data_debugger_directory}"
+
+  # Add custom themes
+  local user_data_themes_directory="${user_data_directory}FontAndColorThemes"
+  [[ ! -d "${user_data_themes_directory}" ]] && mkdir -p "${user_data_themes_directory}"
+  cp "$(dirname $BASH_SOURCE)/editor_themes/*.xccolortheme" "${user_data_themes_directory}"
 }
 
 function main() {
