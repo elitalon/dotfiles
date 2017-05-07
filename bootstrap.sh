@@ -70,10 +70,8 @@ function tune_xcode() {
   # Add default breakpoints
   local xcode_user_data_path="$HOME/Library/Developer/Xcode/UserData/xcdebugger"
   local custom_breakpoints_filename="Breakpoints_v2.xcbkptlist"
-  if [[ ! -f "${xcode_user_data_path}/${custom_breakpoints_filename}" ]]; then
-    [[ ! -d "${xcode_user_data_path}" ]] && mkdir -p "${xcode_user_data_path}"
-    cp "$(dirname $BASH_SOURCE)/${custom_breakpoints_filename}" "${xcode_user_data_path}"
-  fi
+  [[ ! -d "${xcode_user_data_path}" ]] && mkdir -p "${xcode_user_data_path}"
+  cp "$(dirname $BASH_SOURCE)/${custom_breakpoints_filename}" "${xcode_user_data_path}"
 }
 
 function main() {
