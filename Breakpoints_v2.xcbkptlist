@@ -8,7 +8,7 @@
     <BreakpointProxy
       BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
       <BreakpointContent
-        shouldBeEnabled = "Yes"
+        shouldBeEnabled = "No"
         ignoreCount = "0"
         continueAfterRunningActions = "No"
         scope = "0"
@@ -20,10 +20,22 @@
     <BreakpointProxy
       BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
       <BreakpointContent
-        shouldBeEnabled = "No"
+        shouldBeEnabled = "Yes"
         ignoreCount = "0"
         continueAfterRunningActions = "No"
         scope = "1"
+        stopOnStyle = "0">
+      </BreakpointContent>
+    </BreakpointProxy>
+
+    <!-- All C++ Exceptions -->
+    <BreakpointProxy
+      BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+      <BreakpointContent
+        shouldBeEnabled = "No"
+        ignoreCount = "0"
+        continueAfterRunningActions = "No"
+        scope = "2"
         stopOnStyle = "0">
       </BreakpointContent>
     </BreakpointProxy>
@@ -32,7 +44,7 @@
     <BreakpointProxy
       BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
       <BreakpointContent
-        shouldBeEnabled = "Yes"
+        shouldBeEnabled = "No"
         ignoreCount = "0"
         continueAfterRunningActions = "No">
       </BreakpointContent>
@@ -84,6 +96,34 @@
             </ActionContent>
           </BreakpointActionProxy>
         </Actions>
+        <Locations>
+        </Locations>
+      </BreakpointContent>
+    </BreakpointProxy>
+
+    <!-- KVO Deallocate -->
+    <BreakpointProxy
+      BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+      <BreakpointContent
+        shouldBeEnabled = "Yes"
+        ignoreCount = "0"
+        continueAfterRunningActions = "No"
+        symbolName = "NSKVODeallocateBreak"
+        moduleName = "">
+        <Locations>
+        </Locations>
+      </BreakpointContent>
+    </BreakpointProxy>
+
+    <!-- NSData Reinitialization -->
+    <BreakpointProxy
+      BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+      <BreakpointContent
+        shouldBeEnabled = "No"
+        ignoreCount = "0"
+        continueAfterRunningActions = "No"
+        symbolName = "_NSDataReinitializationBreak"
+        moduleName = "">
         <Locations>
         </Locations>
       </BreakpointContent>
