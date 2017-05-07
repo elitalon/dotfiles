@@ -33,3 +33,6 @@ fileType = "source.ruby"
 
 [ *.podspec ]
 fileType = "source.ruby"
+
+[ text.git-commit ]
+wrapColumn = 72
