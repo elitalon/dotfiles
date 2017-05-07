@@ -15,9 +15,9 @@ exclude = "{$exclude,.git,.DS_Store}"
 fontName       = "Menlo"
 fontSize       = 12
 softTabs       = true
-softWrap       = true
+softWrap       = false
 tabSize        = 2
-wrapColumn     = "Use Window Frame"
+wrapColumn     = 130
 showInvisibles = false
 windowTitle    = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
 
