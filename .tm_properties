@@ -37,3 +37,6 @@ fileType = "source.ruby"
 
 [ text.git-commit ]
 wrapColumn = 72
+
+[ source.rust ]
+tabSize = 4
