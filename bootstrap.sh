@@ -55,7 +55,7 @@ function update_dotfiles() {
     --exclude "README.md" \
     --exclude ".ssh/config*" \
     --exclude "Breakpoints_v2.xcbkptlist" \
-    --exclude "editor_themes" \
+    --exclude "editor_themes/" \
     --archive \
     --verbose \
     "${source_directory}" "${destination_directory}"
