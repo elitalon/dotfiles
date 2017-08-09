@@ -40,3 +40,6 @@ wrapColumn = 72
 
 [ source.rust ]
 tabSize = 4
+
+[ source.python ]
+tabSize = 4
