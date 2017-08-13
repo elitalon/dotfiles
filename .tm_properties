@@ -1,45 +1,51 @@
-# Personal information
-TM_FULLNAME     = "Eliezer Talón"
+# Variables
+TM_FULLNAME = "Eliezer Talón"
 TM_ORGANIZATION = ""
-TM_EMAIL        = "elitalon@gmail.com"
-TM_GIT          = "/usr/local/bin/git"
-
-# Environment variables
-PATH = "/Users/elitalon/.rbenv/shims:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
+TM_EMAIL = "elitalon@gmail.com"
+TM_GIT = "/usr/local/bin/git"
 
 # Browser visibility
 include = "{$include,.*}"
-exclude = "{$exclude,.git,.DS_Store}"
+exclude = "{$exclude,.git,.DS_Store,.sass-cache}"
 
-# Edition preferences
-fontName       = "Menlo"
-fontSize       = 13
-theme          = "F96223EB-1A60-4617-92F3-D24D4F13DB09"
-softTabs       = true
-softWrap       = false
-tabSize        = 2
-wrapColumn     = 130
+# Appearance
+fontName = "Menlo"
+fontSize = 13
+theme = "F96223EB-1A60-4617-92F3-D24D4F13DB09"
+windowTitle = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
+
+# Default editing preferences
+spellChecking = false
+tabSize = 2
+softTabs = true
+softWrap = true
+wrapColumn = 120
 showInvisibles = false
-windowTitle    = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
 
-# Special per-filetype rules
-[ text.plain ]
-spellChecking  = true
+# File type specific configuration
+[ text ]
+spellChecking = true
+showInvisibles = true
+wrapColumn = "Use Window Frame"
 
-[ text.html.markdown ]
-spellChecking  = true
+[ *.{txt,md,mdown,markdown} ]
+spellChecking = true
+tabSize = 4
+
+[ source.python ]
+tabSize = 4
+
+[ source.rust ]
+tabSize = 4
+
+[ text.git-commit ]
+spellChecking = true
+spellingLanguage = 'en'
+softWrap = false
+wrapColumn = 72
 
 [ Podfile ]
 fileType = "source.ruby"
 
 [ *.podspec ]
 fileType = "source.ruby"
-
-[ text.git-commit ]
-wrapColumn = 72
-
-[ source.rust ]
-tabSize = 4
-
-[ source.python ]
-tabSize = 4
