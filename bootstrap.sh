@@ -79,7 +79,7 @@ function tune_xcode() {
   # Add custom themes
   local user_data_themes_directory="${user_data_directory}FontAndColorThemes"
   [[ ! -d "${user_data_themes_directory}" ]] && mkdir -p "${user_data_themes_directory}"
-  cp "$(dirname $BASH_SOURCE)/editor_themes/*.xccolortheme" "${user_data_themes_directory}"
+  find "$(dirname ${BASH_SOURCE})" -iname *.xccolortheme -exec cp {} "${user_data_themes_directory}" \;
 }
 
 function main() {
