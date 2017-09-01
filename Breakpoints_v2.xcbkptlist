@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Bucket
-  type = "2"
-  version = "2.0">
+<Bucket type = "2" version = "2.0">
   <Breakpoints>
 
     <!-- All Exceptions -->
     <BreakpointProxy
       BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
       <BreakpointContent
-        shouldBeEnabled = "No"
+        shouldBeEnabled = "Yes"
         ignoreCount = "0"
         continueAfterRunningActions = "No"
         scope = "0"
@@ -48,6 +46,17 @@
         ignoreCount = "0"
         continueAfterRunningActions = "No">
       </BreakpointContent>
+    </BreakpointProxy>
+
+    <!-- Test Failure -->
+    <BreakpointProxy
+       BreakpointExtensionID = "Xcode.Breakpoint.IDETestFailureBreakpoint">
+       <BreakpointContent
+          shouldBeEnabled = "Yes"
+          ignoreCount = "0"
+          continueAfterRunningActions = "No"
+          breakpointStackSelectionBehavior = "1">
+       </BreakpointContent>
     </BreakpointProxy>
 
     <!-- Import UIKit -->
@@ -119,7 +128,7 @@
     <BreakpointProxy
       BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
       <BreakpointContent
-        shouldBeEnabled = "No"
+        shouldBeEnabled = "Yes"
         ignoreCount = "0"
         continueAfterRunningActions = "No"
         symbolName = "_NSDataReinitializationBreak"
@@ -127,6 +136,36 @@
         <Locations>
         </Locations>
       </BreakpointContent>
+    </BreakpointProxy>
+
+    <!-- UIViewController Deallocation -->
+    <BreakpointProxy
+       BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+       <BreakpointContent
+          shouldBeEnabled = "Yes"
+          ignoreCount = "0"
+          condition = "!(BOOL)([[$arg1 description] containsString:@&quot;Input&quot;])"
+          continueAfterRunningActions = "No"
+          symbolName = "-[UIViewController dealloc]"
+          moduleName = "UIKit">
+          <Actions>
+             <BreakpointActionProxy
+                ActionExtensionID = "Xcode.BreakpointAction.Log">
+                <ActionContent
+                   message = "--- dealloc @(id)[$arg1 description]@ @(id)[$arg1 title]@"
+                   conveyanceType = "0">
+                </ActionContent>
+             </BreakpointActionProxy>
+             <BreakpointActionProxy
+                ActionExtensionID = "Xcode.BreakpointAction.Sound">
+                <ActionContent
+                   soundName = "Pop">
+                </ActionContent>
+             </BreakpointActionProxy>
+          </Actions>
+          <Locations>
+          </Locations>
+       </BreakpointContent>
     </BreakpointProxy>
 
   </Breakpoints>
