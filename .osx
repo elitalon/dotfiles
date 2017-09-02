@@ -26,13 +26,15 @@ function main() {
   echo "Quit printer app automatically once the print jobs complete"
   defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
+  echo "Disable hot plug with Image Capture"
+  defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
   echo "Enable automatic restart if the computer freezes"
   sudo systemsetup -setrestartfreeze on
 
   echo "Set a blazingly fast keyboard repeat rate"
   defaults write NSGlobalDomain KeyRepeat -int 1
   defaults write NSGlobalDomain InitialKeyRepeat -int 10
-
 
   echo "Enable requiring a password immediately after sleep or screen saver begins"
   defaults write com.apple.screensaver askForPassword -int 1
