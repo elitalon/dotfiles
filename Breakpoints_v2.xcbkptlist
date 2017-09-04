@@ -145,7 +145,7 @@
           shouldBeEnabled = "Yes"
           ignoreCount = "0"
           condition = "!(BOOL)([[$arg1 description] containsString:@&quot;Input&quot;])"
-          continueAfterRunningActions = "No"
+          continueAfterRunningActions = "Yes"
           symbolName = "-[UIViewController dealloc]"
           moduleName = "UIKit">
           <Actions>
