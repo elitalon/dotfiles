@@ -1,44 +1,64 @@
-" Some file types should wrap their text
-function! s:setUpMarkdown()
-  setlocal wrap
-  setlocal linebreak
-  setlocal textwidth=80
-  setlocal nolist
-  setlocal spell
-endfunction
-
+""
+"" General
+""
+set nocompatible  " Use vim, no vi defaults
+set history=500   " Sets how many lines of history VIM has to remember
+set autoread      " Set to auto read when a file is changed from the outside
+set hid           " A buffer becomes hidden when it is abandoned
+set lazyredraw    " Don't redraw while executing macros
 
 ""
-"" Basic setup
+"" Enable filetype plugins
 ""
-set nocompatible                  " Use vim, no vi defaults
-set number                        " Show line numbers
-set ruler                         " Show line and column number
-set encoding=utf-8
+filetype indent on
+filetype plugin on
+
+""
+"" User interface
+""
+set so=5          " Sets 5 lines to the cursor
+set cmdheight=1   " Height of the command ba
+set number        " Show line numbers
+set ruler         " Show line and column number
+set langmenu=en
+set showmatch     " Show matching brackets when text indicator is over them
+set mat=2         " How many tenths of a second to blink when matching brackets
+
+""
+"" Language
+""
 set spelllang=en_gb
-set guifont=Menlo:h13
-set backupdir^=~/.vim/_backup//   " Where to put backup files.
-set directory^=~/.vim/_temp//     " Where to put swap files.
-
 
 ""
-"" Colors
+"" Backups
+""
+set nobackup
+set nowb
+set noswapfile
+
+""
+"" Fonts and colors
 ""
 syntax enable
-filetype plugin indent on
-color Tomorrow-Night
-
+set encoding=utf8
+set guifont=Menlo:h13
+try
+  colorscheme Tomorrow-Night
+catch
+endtry
 
 ""
 "" Indentation
 ""
-set wrap
 set expandtab                   " Use spaces, not tabs
-set tabstop=2                   " A tab is two spaces
-set shiftwidth=2                " An autoindent (with <<) is two spaces
-set list                        " Show invisible characters
-set backspace=indent,eol,start  " Backspace through everything in insert mode
-
+set smarttab                    " Be smart when using tabs
+set tabstop=4                   " A tab is four spaces
+set shiftwidth=4                " An autoindent (with <<) is two spaces
+set ai                          " Auto indent
+set si                          " Smart indent
+set wrap                        "Wrap lines
+set backspace=eol,start,indent  " Backspace through everything in insert mode
+set whichwrap+=<,>,h,l
 
 ""
 "" Searching
@@ -51,7 +71,6 @@ set smartcase   " ... unless they contain at least one capital letter
 " Toggle hlsearch with <leader>hs
 nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
-
 ""
 "" listchars
 ""
@@ -61,44 +80,14 @@ set listchars+=trail:.      " Show trailing spaces as dots
 set listchars+=extends:>    " The character to show when wrap is off and the line continues beyond the right
 set listchars+=precedes:<   " The character to show when wrap is off and the line continues beyond the left
 
-
 ""
-"" wildignore
+"" Ignoring files
 ""
+set wildmenu
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 set wildignore+=*.swp,*~,._*
-
-
-""
-"" autocmd
-""
-if has("autocmd")
-  " In Makefiles, use real tabs, not tabs expanded to spaces
-  au FileType make setlocal noexpandtab
-
-  " Make sure all Markdown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
-  au FileType markdown call s:setUpMarkdown()
-
-  " Spell-check Git messages
-  au FileType gitcommit setlocal spell
-
-  " Treat JSON files like JavaScript
-  au BufNewFile,BufRead *.json setlocal filetype=javascript
-
-  " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
-  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-
-  " Use tabs instead of spaces in PHP
-  au FileType php setlocal tabstop=2 noexpandtab
-
-  " Remember last location in file, but not for commit messages.
-  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-        \| exe "normal! g`\"" | endif
-endif
-
 
 ""
 "" statusline
@@ -111,5 +100,62 @@ if has("statusline") && !&cp
   set statusline+=\ Column:\ %v
   set statusline+=%=
   set statusline+=%y\ [%{''.(&fenc!=''?&fenc:&enc).''}]%(\ %M%R%)\ Buffer\ #%n
+endif
+
+""
+"" autocmd
+""
+if has("autocmd")
+  " In Makefiles, use real tabs, not tabs expanded to spaces
+  au FileType make setlocal noexpandtab
+
+  " Spell-check Git messages
+  au FileType gitcommit setlocal spell
+
+  " Treat JSON files like JavaScript
+  au BufNewFile,BufRead *.json setlocal filetype=javascript
+
+  " Make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
+  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+
+  " Use tabs instead of spaces in PHP
+  au FileType php setlocal tabstop=2 noexpandtab
+
+  " Remember last location in file, but not for commit messages.
+  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+        \| exe "normal! g`\"" | endif
+endif
+
+""
+"" Configure Markdown
+""
+fun! s:prepareForMarkdown()
+  setlocal wrap
+  setlocal linebreak
+  setlocal textwidth=120
+  setlocal nolist
+  setlocal spell
+endfunction
+
+if has("autocmd")
+  " Make sure all Markdown files have the correct filetype set and setup wrapping
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
+
+  au FileType markdown call s:prepareForMarkdown()
+endif
+
+""
+" Delete trailing white space on save
+""
+fun! s:cleanExtraSpaces()
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  silent! %s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+  au BufWritePre * :call s:cleanExtraSpaces()
 endif
 
