@@ -39,8 +39,6 @@ tabSize = 4
 tabSize = 4
 
 [ text.git-commit ]
-spellChecking = true
-spellingLanguage = 'en'
 softWrap = false
 wrapColumn = 72
 
