@@ -47,3 +47,6 @@ fileType = "source.ruby"
 
 [ *.podspec ]
 fileType = "source.ruby"
+
+[ source.plist ]
+wrapColumn = "Use Window Frame"
