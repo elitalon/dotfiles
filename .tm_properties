@@ -1,7 +1,6 @@
 # Variables
 TM_FULLNAME = "Eliezer Talón"
 TM_ORGANIZATION = ""
-TM_EMAIL = "elitalon@gmail.com"
 TM_GIT = "/usr/local/bin/git"
 
 # Browser visibility
