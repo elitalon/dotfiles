@@ -58,7 +58,6 @@ complete -cf sudo
 
 # Default editor
 export EDITOR=vim
-if command_exists mate; then export EDITOR="$(type -P mate)"; fi
 
 # Do not clear the screen after quitting a manual page
 export MANPAGER='less -X'
