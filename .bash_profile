@@ -48,6 +48,9 @@ shopt -s histappend
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
+# Auto-expand directory in variables
+shopt -s direxpand
+
 # Autocomplete commands issued with sudo
 complete -cf sudo
 
