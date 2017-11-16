@@ -19,7 +19,6 @@ filetype plugin on
 set so=5          " Sets 5 lines to the cursor
 set cmdheight=1   " Height of the command bar
 set number        " Show line numbers
-set relativenumber" Show relative line numbers
 set ruler         " Show line and column number
 set langmenu=en
 set showmatch     " Show matching brackets when text indicator is over them
