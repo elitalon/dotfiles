@@ -143,6 +143,9 @@ if has("autocmd")
   " Use tabs instead of spaces in PHP
   au FileType php setlocal tabstop=2 noexpandtab
 
+  " Use two spaces in Ruby
+  au FileType ruby setlocal softtabstop=2 tabstop=2 shiftwidth=2
+
   " Treat Fastlane files like Ruby
   au BufNewFile,BufRead Fastfile setlocal filetype=ruby
 
