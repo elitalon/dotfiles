@@ -186,3 +186,10 @@ if has("autocmd")
   au BufWritePre * :call s:cleanExtraSpaces()
 endif
 
+
+""
+" vim-plug
+""
+call plug#begin('~/.vim/my-plugins')
+
+call plug#end()
