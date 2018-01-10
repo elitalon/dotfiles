@@ -191,5 +191,5 @@ endif
 " vim-plug
 ""
 call plug#begin('~/.vim/my-plugins')
-
+Plug 'scrooloose/nerdtree'
 call plug#end()
