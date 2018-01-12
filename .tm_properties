@@ -2,6 +2,7 @@
 TM_FULLNAME = "Eliezer Talón"
 TM_ORGANIZATION = ""
 TM_GIT = "/usr/local/bin/git"
+TM_RUBY = "$HOME/.rbenv/shims/ruby"
 
 # Browser visibility
 include = "{$include,.*}"
