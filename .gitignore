@@ -29,6 +29,9 @@ profile
 # Rubygems
 !Gemfile.lock
 
+# Rust
+!Cargo.lock
+
 # Xcode
 UserInterfaceState.xcuserstate
 xcuserdata/
