@@ -6,6 +6,8 @@ set -o errexit
 readonly brew="$(command -v brew)"
 [[ -z "${brew}" ]] && echo 'brew command is not installed' && exit -1
 
+${brew} analytics off
+
 ${brew} update
 if ! ${brew} doctor; then
   echo 'Check doctor messages above'
