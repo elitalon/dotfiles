@@ -18,15 +18,13 @@ windowTitle = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
 spellChecking = false
 tabSize = 2
 softTabs = true
-softWrap = true
+softWrap = false
 wrapColumn = 120
 showInvisibles = false
 
-# File type specific configuration
 [ text ]
 spellChecking = true
 showInvisibles = true
-wrapColumn = "Use Window Frame"
 
 [ *.{txt,md,mdown,markdown} ]
 spellChecking = true
