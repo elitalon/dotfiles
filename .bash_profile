@@ -136,7 +136,6 @@ fi
 # IP addresses
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias localip='ipconfig getifaddr en1'
-alias xcode-install-dependencies='gem cleanup && bundle install && pod install && xcode'
 
 # Launch Tower automatically from the current directory
 alias tower='gittower .'
