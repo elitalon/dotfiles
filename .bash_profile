@@ -151,16 +151,17 @@ function digga() {
 
 ### Opens Xcode workspace in current directory
 function xcode() {
+  local XED='xed -x'
   local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
   if [[ -z "${workspace}" ]]; then
     local project=`find . -type d -maxdepth 1 -name *.xcodeproj -print -quit`
     if [[ -z "${workspace}" ]]; then
-      open "${project}"
+      $XED "${project}"
     else
       echo "Xcode workspace or project not found"
     fi
   else
-    open "${workspace}"
+    $XED "${workspace}"
   fi
 }
 
