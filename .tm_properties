@@ -43,6 +43,9 @@ tabSize = 4
 softWrap = false
 wrapColumn = 72
 
+[ source.shell ]
+tabSize = 4
+
 [ Podfile ]
 fileType = "source.ruby"
 

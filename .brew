@@ -10,7 +10,7 @@ ${brew} analytics off
 
 ${brew} update
 if ! ${brew} doctor; then
-  echo 'Check doctor messages above'
+    echo 'Check doctor messages above'
 fi
 
 ${brew} upgrade
