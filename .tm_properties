@@ -12,7 +12,7 @@ exclude = "{$exclude,.git,.DS_Store,.sass-cache}"
 fontName = "Menlo"
 fontSize = 13
 theme = "F96223EB-1A60-4617-92F3-D24D4F13DB09"
-windowTitle = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
+windowTitle = "$TM_DISPLAYNAME — ~/${CWD/^.*\///}${TM_DIRECTORY/${CWD}//}${TM_SCM_BRANCH:+ [$TM_SCM_BRANCH]}"
 
 # Default editing preferences
 spellChecking = false
