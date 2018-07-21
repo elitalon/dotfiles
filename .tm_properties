@@ -22,6 +22,9 @@ softWrap = false
 wrapColumn = 120
 showInvisibles = false
 
+[ attr.untitled ]
+fileType = "text.plain"
+
 [ text ]
 spellChecking = true
 showInvisibles = true
