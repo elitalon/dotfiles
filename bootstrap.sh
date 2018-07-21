@@ -3,7 +3,7 @@
 set -o nounset
 set -o errexit
 
-function download_changes() {
+function download_dotfiles() {
   [[ -n "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)" ]] \
     && echo "Error: Git repository is dirty. Commit or discard your changes to continue." \
     && exit -2
@@ -39,7 +39,7 @@ function update_ssh_config() {
   append_newline "${ssh_config}"
 }
 
-function update_dotfiles() {
+function install_dotfiles() {
   echo "Updating dotfiles in ${HOME}"
 
   local source_directory=$(dirname "${BASH_SOURCE}")
@@ -84,9 +84,9 @@ function tune_xcode() {
 
 function main() {
   cd "$(dirname "${BASH_SOURCE}")"
-  download_changes
+  download_dotfiles
   update_ssh_config
-  update_dotfiles
+  install_dotfiles
   tune_xcode
 }
 
