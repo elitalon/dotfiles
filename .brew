@@ -33,8 +33,8 @@ ${brew} install rbenv ruby-build
 ${brew} install carthage
 ${brew} install cloc
 ${brew} install swiftlint
-# ${brew} install unrar
-# ${brew} install pyenv pyenv-virtualenv
+${brew} install unrar
+${brew} install pyenv pyenv-virtualenv
 
 # Remove outdated versions and broken links
 ${brew} cleanup
