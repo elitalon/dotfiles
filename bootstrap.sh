@@ -32,8 +32,11 @@ function update_ssh_config() {
     cat '.ssh/config.before' >> "${ssh_config}"
     append_newline "${ssh_config}"
 
-    cat "${HOME}/Dropbox/Software/SSH/config.hosts" >> "${ssh_config}"
-    append_newline "${ssh_config}"
+    local ssh_hosts="${ssh_home}/config.hosts"
+    if [[ -r "${ssh_hosts}" ]]; then
+        cat "${ssh_hosts}" >> "${ssh_config}"
+        append_newline "${ssh_config}"
+    fi
 
     cat '.ssh/config.after' >> "${ssh_config}"
     append_newline "${ssh_config}"
