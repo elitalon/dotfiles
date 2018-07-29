@@ -26,12 +26,15 @@ showInvisibles = false
 fileType = "text.plain"
 
 [ text ]
-spellChecking = true
-showInvisibles = true
-
-[ *.{txt,md,mdown,markdown} ]
-spellChecking = true
 tabSize = 4
+spellChecking = true
+
+[ text.plain ]
+softWrap = true
+
+[ text.html.markdown ]
+softWrap = false
+wrapColumn = 120
 
 [ source.python ]
 tabSize = 4
