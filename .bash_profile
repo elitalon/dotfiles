@@ -106,7 +106,7 @@ unset -f homebrew_binaries
 
 # pyenv binaries
 command_exists pyenv && eval "$(pyenv init -)"
-command_exists pyenv && eval "$(pyenv virtualenv-init -)"
+command_exists pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 
 # rbenv binaries
 command_exists rbenv && eval "$(rbenv init -)"
