@@ -4,6 +4,7 @@ TM_ORGANIZATION = ""
 TM_GIT = "/usr/local/bin/git"
 TM_RUBY = "$HOME/.rbenv/shims/ruby"
 TM_PYTHON = "$HOME/.pyenv/shims/python"
+TM_RUST = "/usr/local/bin/rustc"
 
 # Browser visibility
 include = "{$include,.*}"
