@@ -85,12 +85,21 @@ function tune_xcode() {
     find "$(dirname ${BASH_SOURCE})" -iname *.xccolortheme -exec cp {} "${user_data_themes_directory}" \;
 }
 
+function add_homebrewed_bash() {
+    local bash_path=/usr/local/bin/bash
+    if ! fgrep -q "${bash_path}" /etc/shells; then
+        echo "${bash_path}" | sudo tee -a /etc/shells
+        chsh -s ${bash_path}
+    fi
+}
+
 function main() {
     cd "$(dirname "${BASH_SOURCE}")"
     download_dotfiles
     update_ssh_config
     install_dotfiles
     tune_xcode
+    add_homebrewed_bash
 }
 
 main

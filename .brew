@@ -25,7 +25,7 @@ ${brew} install findutils
 
 # Install latest Bash
 ${brew} install bash
-${brew} install bash-completion
+${brew} install bash-completion2
 
 # Install other useful binaries
 ${brew} install git
