@@ -1,48 +1,57 @@
 [user]
-  name = Eliezer Talón
+    name = Eliezer Talón
 
 [alias]
-  plog = log --pretty="%C(auto)%h%d %s (%C(green)%ci%C(reset))" --date="format:yyyy-MM-dd HH:mm"
-  last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
-  co = checkout
-  go = checkout -b
-  ci = commit
-  st = status
-  sm = submodule
-  br = branch -v
-  brd = branch -d
-  tags = tag -ln
-  remotes = remote -v
-  contributors = shortlog -s -n
-  prune-remote = "!f() { git remote | xargs git remote prune; }; f"
-  scrub = "!f() { git checkout -- . && git clean -fd; }; f"
-  reset-last = reset --soft HEAD~
-  sync = "!f() { git pull && git prune-remote; }; f"
-  rename = branch -M
+    plog = log --pretty="%C(auto)%h%d %s (%C(green)%ci%C(reset))" --date="format:yyyy-MM-dd HH:mm"
+    last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
+    co = checkout
+    go = checkout -b
+    ci = commit
+    st = status
+    sm = submodule
+    br = branch -v
+    brd = branch -d
+    tags = tag -ln
+    remotes = remote -v
+    contributors = shortlog -s -n
+    prune-remote = "!f() { git remote | xargs git remote prune; }; f"
+    scrub = "!f() { git checkout -- . && git clean -fd; }; f"
+    reset-last = reset --soft HEAD~
+    sync = "!f() { git pull && git prune-remote; }; f"
+    rename = branch -M
 
 [apply]
-  whitespace = fix
+    whitespace = fix
 
 [core]
-  excludesfile = ~/.gitignore
-  editor = vim
-  whitespace = space-before-tab,trailing-space
-  autocrlf = input
+    excludesfile = ~/.gitignore
+    editor = vim
+    whitespace = space-before-tab,trailing-space
+    autocrlf = input
+
+  # Make `git rebase` safer on macOS (http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/)
+    trustctime = false
 
 [color]
-  branch = auto
-  interactive = auto
-  diff = auto
-  status = auto
+    branch = auto
+    interactive = auto
+    diff = auto
+    status = auto
+
+[diff]
+    renames = copies
 
 [merge]
-  log = true
+    log = true
 
 [credential]
-  helper = osxkeychain
+    helper = osxkeychain
 
 [github]
-  user = elitalon
+    user = elitalon
 
 [push]
-  default = upstream
+    default = simple
+
+[help]
+    autocorrect = 1
