@@ -4,7 +4,10 @@ set -o nounset
 set -o errexit
 
 function main() {
-    # Ask for the admin password and keep it alive until finishing"
+    # Close any open System Preferences panes, to prevent them from overriding settings we're about to change
+    osascript -e 'tell application "System Preferences" to quit'
+
+    # Ask for the admin password and keep it alive until finishing
     sudo -v
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
@@ -19,9 +22,11 @@ function main() {
 
     echo "Expand save panel by default"
     defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
     echo "Expand print panel by default"
     defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+    defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
     echo "Quit printer app automatically once the print jobs complete"
     defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
@@ -47,7 +52,7 @@ function main() {
     defaults write com.apple.screencapture disable-shadow -bool true
 
     echo "Enable subpixel font rendering on non-Apple LCDs"
-    defaults write NSGlobalDomain AppleFontSmoothing -int 2
+    defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
     echo "Show status bar in Finder"
     defaults write com.apple.finder ShowStatusBar -bool true
@@ -55,8 +60,9 @@ function main() {
     echo "Show path bar in Finder"
     defaults write com.apple.finder ShowPathbar -bool true
 
-    echo "Avoid creating .DS_Store files on network volumes"
+    echo "Avoid creating .DS_Store files on network and USB volumes"
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
     echo "Do not empty Trash securely by default"
     defaults write com.apple.finder EmptyTrashSecurely -bool false
