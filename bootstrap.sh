@@ -49,8 +49,8 @@ function install_dotfiles() {
     local destination_directory="${HOME}"
     rsync \
         --exclude "elitalon.terminal" \
-        --exclude ".brew" \
-        --exclude ".osx" \
+        --exclude "brew.sh" \
+        --exclude "macos.sh" \
         --exclude ".git/" \
         --exclude ".gitmodules" \
         --exclude ".DS_Store" \
