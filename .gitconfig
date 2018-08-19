@@ -2,12 +2,12 @@
   name = Eliezer Talón
 
 [alias]
+  plog = log --pretty="%C(auto)%h%d %s (%C(green)%ci%C(reset))" --date="format:yyyy-MM-dd HH:mm"
   last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
   co = checkout
   go = checkout -b
   ci = commit
   st = status
-  plog = log --oneline --decorate
   sm = submodule
   br = branch -v
   brd = branch -d
