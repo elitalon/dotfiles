@@ -63,9 +63,8 @@ set tabstop=4                   " A tab is four spaces
 set shiftwidth=4                " An autoindent (with <<) is two spaces
 set ai                          " Auto indent
 set si                          " Smart indent
-set wrap                        "Wrap lines
+set wrap                        " Wrap lines
 set backspace=eol,start,indent  " Backspace through everything in insert mode
-set whichwrap+=<,>,h,l
 
 
 ""
