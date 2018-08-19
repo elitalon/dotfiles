@@ -18,14 +18,28 @@ filetype plugin on
 ""
 "" User interface
 ""
-set so=3          " Sets 3 lines to the cursor
+set scrolloff=3   " Starts scrolling three lines before the cursor reaches the window border
 set cmdheight=1   " Height of the command bar
-set number        " Show line numbers
 set ruler         " Show line and column number
 set langmenu=en
 set showmatch     " Show matching brackets when text indicator is over them
 set mat=2         " How many tenths of a second to blink when matching brackets
 set colorcolumn=120
+
+
+""
+"" Line numbers
+""
+set number " Show line numbers
+
+if has("relativenumber")
+    set relativenumber " Show relative line numbers (produces hybrid together with `number`)
+    augroup numbertoggle
+        autocmd!
+        autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+        autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    augroup END
+endif
 
 
 ""
