@@ -6,36 +6,57 @@ set -o errexit
 readonly brew="$(command -v brew)"
 [[ -z "${brew}" ]] && echo 'brew command is not installed' && exit -1
 
-${brew} analytics off
 
-${brew} update
-if ! ${brew} doctor; then
-    echo 'Check doctor messages above'
-fi
+# Removes outdated versions and broken links
+function clean_up() {
+    ${brew} cleanup
+    ${brew} prune
+}
 
-${brew} upgrade
+# Updates Homebrew
+function update() {
+    ${brew} update
+    ${brew} upgrade
+}
 
-# Remove outdated versions and broken links
-${brew} cleanup
-${brew} prune
+# Installs a list of formulae
+function install() {
+    for formula; do
+        ${brew} install "${formula}"
+    done
+}
 
-# Install GNU core utilities
-${brew} install coreutils
-${brew} install findutils
+function main() {
+    ${brew} analytics off
 
-# Install latest Bash
-${brew} install bash
-${brew} install bash-completion2
+    clean_up
+    update
 
-# Install other useful binaries
-${brew} install git
-${brew} install rbenv ruby-build
-${brew} install carthage
-${brew} install cloc
-${brew} install swiftlint
-${brew} install unrar
-${brew} install pyenv pyenv-virtualenv
+    # GNU core utilities
+    install coreutils findutils
 
-# Remove outdated versions and broken links
-${brew} cleanup
-${brew} prune
+    # Latest Bash
+    install bash bash-completion2
+
+    # Git
+    install git # git-lfs
+
+    # Ruby environment
+    install rbenv ruby-build
+
+    # Python environment
+    install pyenv pyenv-virtualenv
+
+    # Package managers
+    install carthage
+
+    # Code quality
+    install cloc swiftlint
+
+    # Other useful binaries
+    install unrar p7zip
+
+    clean_up
+}
+
+main
