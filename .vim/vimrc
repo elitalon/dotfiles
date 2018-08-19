@@ -18,7 +18,7 @@ filetype plugin on
 ""
 "" User interface
 ""
-set so=5          " Sets 5 lines to the cursor
+set so=3          " Sets 3 lines to the cursor
 set cmdheight=1   " Height of the command bar
 set number        " Show line numbers
 set ruler         " Show line and column number
