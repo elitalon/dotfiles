@@ -59,7 +59,12 @@ function install_dotfiles() {
         --exclude ".ssh/config*" \
         --exclude "Breakpoints_v2.xcbkptlist" \
         --exclude "editor_themes/" \
-        --archive \
+        --recursive \
+        --links \
+        --perms \
+        --times \
+        --human-readable \
+        --progress \
         --verbose \
         "${source_directory}" "${destination_directory}"
 }
