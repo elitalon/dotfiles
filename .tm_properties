@@ -39,6 +39,9 @@ softWrap = true
 softWrap = false
 wrapColumn = 120
 
+[ source.swift ]
+tabSize = 4
+
 [ source.python ]
 tabSize = 4
 
