@@ -73,9 +73,6 @@ function tune_xcode() {
     # Show how long it takes to build a project
     defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
 
-    # Faster build times by leveraging multi-core CPU
-    defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks $((`sysctl -n hw.ncpu` * 2/3))
-
     local user_data_directory="$HOME/Library/Developer/Xcode/UserData/"
 
     # Add default breakpoints
