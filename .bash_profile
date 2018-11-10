@@ -113,15 +113,6 @@ command_exists pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 # rbenv binaries
 command_exists rbenv && eval "$(rbenv init -)"
 
-# flutter binaries
-flutter_binaries="${HOME}/Projects/flutter/bin"
-[[ -d "${flutter_binaries}" ]] && ! path_contains "${flutter_binaries}" && export PATH="${flutter_binaries}:$PATH"
-unset -f flutter_binaries
-
-# Go binaries
-GOPATH=${HOME}
-command_exists go && export PATH=$PATH:$(go env GOPATH)/bin
-
 
 #########
 # ALIASES
