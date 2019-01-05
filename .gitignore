@@ -35,3 +35,9 @@ UserInterfaceState.xcuserstate
 xcuserdata/
 *.xccheckout
 *.xcscmblueprint
+
+# pyenv
+.python-version
+
+# Python virtual environments
+venv/
