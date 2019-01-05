@@ -20,7 +20,6 @@ Thumbs.db
 
 # OS X temporary files that should never be committed
 *.swp
-profile
 
 # Cocoapods
 !Podfile.lock
