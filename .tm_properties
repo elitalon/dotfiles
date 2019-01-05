@@ -36,14 +36,13 @@ spellChecking = true
 softWrap = true
 
 [ text.html.markdown ]
-softWrap = false
-wrapColumn = 120
 
 [ source.swift ]
 tabSize = 4
 
 [ source.python ]
 tabSize = 4
+wrapColumn = 80
 
 [ source.rust ]
 tabSize = 4
