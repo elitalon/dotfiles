@@ -39,13 +39,13 @@ function main() {
     install bash bash-completion2
 
     # Git
-    install git # git-lfs
+    install git
 
     # Ruby environment
     install rbenv ruby-build
 
     # Python environment
-    install pyenv pyenv-virtualenv
+    install pyenv
 
     # Package managers
     install carthage
