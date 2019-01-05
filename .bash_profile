@@ -1,6 +1,6 @@
 # Returns whether a given command exists
 function command_exists() {
-  [[ -n "$1" ]] && $(hash "$1" 2>/dev/null)
+  [[ -n "$1" ]] && $(hash "$1" 1>/dev/null 2>&1)
 }
 
 # Returns whether a given pattern exists in $PATH
