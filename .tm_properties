@@ -10,6 +10,8 @@ TM_CXX_FLAGS = "-std=c++17"
 # Browser visibility
 include = "{$include,.*}"
 exclude = "{$exclude,.git,.DS_Store,.sass-cache}"
+excludeDirectoriesInFileChooser  = "{$excludeDirectoriesInFileChooser,caches,logs,vendor,venv}"
+excludeDirectoriesInFolderSearch = "{$excludeDirectoriesInFolderSearch,caches,logs,vendor,venv}"
 
 # Appearance
 fontName = "Menlo"
