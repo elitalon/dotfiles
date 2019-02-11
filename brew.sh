@@ -10,7 +10,6 @@ readonly brew="$(command -v brew)"
 # Removes outdated versions and broken links
 function clean_up() {
     ${brew} cleanup
-    ${brew} prune
 }
 
 # Updates Homebrew
