@@ -47,10 +47,11 @@ function main() {
     install pyenv
 
     # Package managers
-    install carthage
+    # install carthage
 
     # Code quality
-    install cloc swiftlint
+    install cloc
+    # install swiftlint
 
     # Other useful binaries
     install unrar p7zip
