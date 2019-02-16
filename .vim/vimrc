@@ -1,51 +1,38 @@
 ""
 "" General
 ""
-set nocompatible  " Use vim, no vi defaults
+set nocompatible  " Uses vim, no vi defaults
 set history=500   " Sets how many lines of history VIM has to remember
-set autoread      " Set to auto read when a file is changed from the outside
+set autoread      " Sets to auto read when a file is changed from the outside
 set hid           " A buffer becomes hidden when it is abandoned
 set lazyredraw    " Don't redraw while executing macros
-
-
-""
-"" Enable filetype plugins
-""
-filetype indent on
-filetype plugin on
+set encoding=utf8 " Sets the default encoding of files
 
 
 ""
 "" User interface
 ""
-set scrolloff=3   " Starts scrolling three lines before the cursor reaches the window border
-set cmdheight=1   " Height of the command bar
-set ruler         " Show line and column number
-set langmenu=en
-set showmatch     " Show matching brackets when text indicator is over them
-set mat=2         " How many tenths of a second to blink when matching brackets
-set colorcolumn=120
+set scrolloff=3     " Starts scrolling three lines before reaching the end
+set cmdheight=1     " Height of the command bar
+set ruler           " Shows line and column number
+set showmatch       " Shows matching brackets when text indicator is over them
+set mat=2           " Tenths of a second to blink when matching brackets
+set colorcolumn=80  " Shows a vertical guide at give column
+set cursorline      " Highlights the current line
+set number          " Shows line numbers
+set spelllang=en_gb " Sets the language of the spell checker
+filetype plugin on  " Loads plugins for file type
+filetype indent on  " Loads indentation rules for file type
+syntax enable       " Enables syntax highlighting
 
 
 ""
-"" Line numbers
+"" Fonts and colors
 ""
-set number " Show line numbers
-
-if has("relativenumber")
-    set relativenumber " Show relative line numbers (produces hybrid together with `number`)
-    augroup numbertoggle
-        autocmd!
-        autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-        autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-    augroup END
-endif
-
-
-""
-"" Language
-""
-set spelllang=en_gb
+try
+    colorscheme Tomorrow-Night
+catch
+endtry
 
 
 ""
@@ -57,50 +44,38 @@ set noswapfile
 
 
 ""
-"" Fonts and colors
-""
-syntax enable
-set encoding=utf8
-set guifont=Menlo:h13
-try
-  colorscheme Tomorrow-Night
-catch
-endtry
-
-
-""
 "" Indentation
 ""
-set expandtab                   " Use spaces, not tabs
-set smarttab                    " Be smart when using tabs
-set tabstop=4                   " A tab is four spaces
-set shiftwidth=4                " An autoindent (with <<) is two spaces
-set ai                          " Auto indent
-set si                          " Smart indent
-set wrap                        " Wrap lines
-set backspace=eol,start,indent  " Backspace through everything in insert mode
+set ai           " Enables auto-indent
+set si           " Enables smart-indent
+set expandtab    " Prefers spaces over tabs
+set smarttab     " Be smart when using tabs
+set tabstop=4    " Tab length
+set shiftwidth=4 " Auto-indent length
+set backspace=2  " Backspace through everything in insert mode
+set wrap         " Wrap lines
 
 
 ""
 "" Searching
 ""
-set hlsearch    " Highlight matches
-set incsearch   " Incremental searching
-set ignorecase  " Searches are case insensitive...
-set smartcase   " ... unless they contain at least one capital letter
+set hlsearch   " Highlights matches
+set incsearch  " Enables incremental search
+set ignorecase " Enables case insensitive search...
+set smartcase  " ...unless they contain at least one capital letter
 
 " Toggle hlsearch with <leader>hs
 nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
 
 ""
-"" listchars
+"" listchars (reveals invisible characters)
 ""
-set listchars=""            " Reset the listchars
-set listchars=tab:\ \       " A tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.      " Show trailing spaces as dots
-set listchars+=extends:>    " The character to show when wrap is off and the line continues beyond the right
-set listchars+=precedes:<   " The character to show when wrap is off and the line continues beyond the left
+set listchars=""          " Resets the listchars
+set listchars=tab:\ \     " Reveals tabs
+set listchars+=trail:.    " Reveals trailing spaces
+set listchars+=extends:>  " Reveals where a line starts wrapping
+set listchars+=precedes:< " Reveals where a wrapped line continues
 
 
 ""
@@ -117,13 +92,13 @@ set wildignore+=*.swp,*~,._*
 "" statusline
 ""
 if has("statusline") && !&cp
-  set laststatus=2  " Always show the status bar
+    set laststatus=2  " Always show the status bar
 
-  set statusline=%t
-  set statusline+=\ Line:\ %l/%L
-  set statusline+=\ Column:\ %v
-  set statusline+=%=
-  set statusline+=%y\ [%{''.(&fenc!=''?&fenc:&enc).''}]%(\ %M%R%)\ Buffer\ #%n
+    set statusline=%t
+    set statusline+=\ Line:\ %l/%L
+    set statusline+=\ Column:\ %v
+    set statusline+=%=
+    set statusline+=%y\ [%{''.(&fenc!=''?&fenc:&enc).''}]%(\ %M%R%)\ Buffer\ #%n
 endif
 
 
@@ -140,67 +115,57 @@ let g:netrw_winsize = 25
 ""
 "" autocmd
 ""
-if has("autocmd")
-  " In Makefiles, use real tabs, not tabs expanded to spaces
-  au FileType make setlocal noexpandtab
-
-  " Spell-check Git messages
-  au FileType gitcommit setlocal spell
-
-  " Treat JSON files like JavaScript
-  au BufNewFile,BufRead *.json setlocal filetype=javascript
-
-  " Make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
-  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-
-  " Use tabs instead of spaces in PHP
-  au FileType php setlocal tabstop=2 noexpandtab
-
-  " Use two spaces in Ruby
-  au FileType ruby setlocal softtabstop=2 tabstop=2 shiftwidth=2
-
-  " Treat Fastlane files like Ruby
-  au BufNewFile,BufRead Fastfile setlocal filetype=ruby
-
-  " Treat CocoaPods files like Ruby
-  au BufNewFile,BufRead *.podspec setlocal filetype=ruby
-
-  " Remember last location in file, but not for commit messages.
-  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-        \| exe "normal! g`\"" | endif
-endif
-
-
-""
-"" Configure Markdown
-""
 fun! s:prepareForMarkdown()
-  setlocal wrap
-  setlocal linebreak
-  setlocal textwidth=120
-  setlocal nolist
-  setlocal spell
+    setlocal wrap
+    setlocal linebreak
+    setlocal textwidth=80
+    setlocal nolist
+    setlocal spell
 endfunction
 
-if has("autocmd")
-  " Make sure all Markdown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
-
-  au FileType markdown call s:prepareForMarkdown()
-endif
-
-
-""
-" Delete trailing white space on save
-""
-fun! s:cleanExtraSpaces()
-  let save_cursor = getpos(".")
-  let old_query = getreg('/')
-  silent! %s/\s\+$//e
-  call setpos('.', save_cursor)
-  call setreg('/', old_query)
+fun! s:removeTrailingSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
 endfun
 
 if has("autocmd")
-  au BufWritePre * :call s:cleanExtraSpaces()
+    " Uses tabs in Makefiles
+    au FileType make setlocal noexpandtab
+
+    " Checks spelling in Git messages
+    au FileType gitcommit setlocal spell
+
+    " Treats JSON files like JavaScript
+    au BufNewFile,BufRead *.json setlocal filetype=javascript
+
+    " Makes Python follow PEP8 for whitespace
+    au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+
+    " Uses tabs in PHP
+    au FileType php setlocal tabstop=2 noexpandtab
+
+    " Uses two spaces in Ruby
+    au FileType ruby setlocal softtabstop=2 tabstop=2 shiftwidth=2
+
+    " Treats Fastlane files like Ruby
+    au BufNewFile,BufRead Fastfile setlocal filetype=ruby
+
+    " Treats CocoaPods files like Ruby
+    au BufNewFile,BufRead *.podspec setlocal filetype=ruby
+
+    " Enables more extensions for Markdown
+    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
+
+    " Customizes editing for Markdown
+    au FileType markdown call s:prepareForMarkdown()
+
+    " Delete trailing white space on save
+    au BufWritePre * :call s:removeTrailingSpaces()
+
+    " Remembers last location in file, except for commit messages
+    au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+                \| exe "normal! g`\"" | endif
 endif
