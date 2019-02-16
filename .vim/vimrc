@@ -168,4 +168,27 @@ if has("autocmd")
     " Remembers last location in file, except for commit messages
     au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
                 \| exe "normal! g`\"" | endif
+
+    try
+        " Shows NerdTree automatically when opening Vim with a directory
+        au StdinReadPre * let s:std_in=1
+        au VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+        " Close vim if the only window left open is a NerdTree
+        au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    catch
+    endtry
 endif
+
+
+""
+"" NerdTree
+""
+try
+    let g:NERDTreeShowHidden=1 " Shows hidden files in NerdTree
+    let g:NERDTreeNodeDelimiter="\u00a0" " Fixes node delimiter on Mac
+
+    " Uses Ctrl+O to toggle NerdTree
+    map <C-O> :NERDTreeToggle<CR>
+catch
+endtry
