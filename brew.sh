@@ -50,11 +50,12 @@ function main() {
     # install carthage
 
     # Code quality
-    install cloc
+    # install cloc
     # install swiftlint
 
     # Other useful binaries
-    install unrar p7zip
+    install unrar
+    # install p7zip
 
     clean_up
 }
