@@ -100,7 +100,7 @@ function main() {
     download_dotfiles
     update_ssh_config
     install_dotfiles
-    tune_xcode
+    # tune_xcode
     add_homebrewed_bash
 }
 
