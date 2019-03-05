@@ -112,6 +112,14 @@ command_exists pyenv && eval "$(pyenv init -)"
 # rbenv binaries
 command_exists rbenv && eval "$(rbenv init -)"
 
+# Go environment
+if command_exists go; then
+    export GOPATH="${HOME}/.go"
+    export GOROOT="$(brew --prefix golang)/libexec"
+    export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+    test -d "${GOPATH}" || mkdir "${GOPATH}"
+fi
+
 
 #########
 # ALIASES
