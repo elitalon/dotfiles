@@ -3,6 +3,17 @@
 set -o nounset
 set -o errexit
 
+function command_exists() {
+  [[ -n "$1" ]] && $(command -v "$1" 1>/dev/null 2>&1)
+}
+
+function satisfy_requirements() {
+    command_exists brew \
+        || { echo "Error: missing Homebrew installation"; return -2; }
+    command_exists truncate \
+        || { echo "Error: missing truncate (install coreutils)"; return -2; }
+}
+
 function download_dotfiles() {
     [[ -n "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)" ]] \
         && echo "Error: Git repository is dirty. Commit or discard your changes to continue." \
@@ -96,6 +107,8 @@ function add_homebrewed_bash() {
 }
 
 function main() {
+    satisfy_requirements || exit -2
+
     cd "$(dirname "${BASH_SOURCE}")"
     download_dotfiles
     update_ssh_config
