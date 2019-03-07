@@ -92,9 +92,7 @@ export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 [[ -r /etc/bash_completion ]] && source /etc/bash_completion
 
 # Homebrew-based bash commands
-for folder in share/bash-completion etc; do
-    [[ -r "$(brew --prefix)/${folder}/bash_completion" ]] && source "$(brew --prefix)/${folder}/bash_completion"
-done
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 
 ##########
