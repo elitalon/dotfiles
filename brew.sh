@@ -53,6 +53,13 @@ function main() {
     # install cloc
     # install swiftlint
 
+    # Programming languages
+    install go
+    install node npm
+
+    # Networking utilities
+    install masscan nmap
+
     # Other useful binaries
     install unrar
     # install p7zip
