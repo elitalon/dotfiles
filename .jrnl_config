@@ -1,6 +1,6 @@
 {
   "journals": {
-    "default": "~/Projects/journal/journal.txt"
+    "default": "~/Dropbox/Software/jrnl/journal.txt"
   },
   "editor": "vim",
   "encrypt": false,
