@@ -95,7 +95,9 @@ export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 # Kubernetes
-command_exists kubectl && source <(kubectl completion bash)
+for k8s_tool in kubectl minikube; do
+    command_exists ${k8s_tool} && source <(${k8s_tool} completion bash)
+done
 
 
 ##########
