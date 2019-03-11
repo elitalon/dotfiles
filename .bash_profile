@@ -94,6 +94,9 @@ export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 # Homebrew-based bash commands
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
+# Kubernetes
+command_exists kubectl && source <(kubectl completion bash)
+
 
 ##########
 # SOURCING
