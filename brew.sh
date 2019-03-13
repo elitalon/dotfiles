@@ -59,6 +59,9 @@ function main() {
     # Networking utilities
     install masscan nmap
 
+    # Data processing
+    # install kafkacat
+
     # Other useful binaries
     install unrar
     # install p7zip
