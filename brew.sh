@@ -31,10 +31,8 @@ function main() {
     clean_up
     update
 
-    # GNU core utilities
-    install coreutils findutils
-
-    # Latest Bash
+    # Improved shell experience
+    install coreutils findutils tree
     install bash bash-completion2
 
     # Git
@@ -46,14 +44,15 @@ function main() {
     # Python environment
     install pyenv
 
-    # Package managers
+    # iOS dependency managers
     # install carthage
 
     # Code quality
     # install cloc
+    # install tokei
     # install swiftlint
 
-    # Programming languages
+    # Programming languages and runtimes
     install go
     install node npm
 
