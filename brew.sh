@@ -60,6 +60,7 @@ function main() {
     install masscan nmap
 
     # Data processing
+    install jq
     # install kafkacat
 
     # Other useful binaries
