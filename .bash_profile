@@ -92,7 +92,8 @@ export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 [[ -r /etc/bash_completion ]] && source /etc/bash_completion
 
 # Homebrew-based bash commands
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # Kubernetes
 for k8s_tool in kubectl minikube; do
