@@ -81,6 +81,31 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 
 
+##########
+# SOURCING
+##########
+
+# HomeBrew binaries (always first, so that commands below become available)
+homebrew_binaries="$(brew --prefix coreutils)/libexec/gnubin"
+command_exists brew && ! path_contains "$homebrew_binaries" && export PATH="$homebrew_binaries:/usr/local/bin:$PATH"
+unset -f homebrew_binaries
+
+# pyenv binaries
+command_exists pyenv && eval "$(pyenv init -)"
+
+# rbenv binaries
+command_exists rbenv && eval "$(rbenv init -)"
+
+# Go environment
+if command_exists go; then
+    export GOPATH="${HOME}/Projects/golang"
+    export GOROOT="$(brew --prefix golang)/libexec"
+    export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+    test -d "${GOPATH}" || mkdir -p "${GOPATH}"
+fi
+
+
+
 #################
 # AUTO COMPLETION
 #################
@@ -100,29 +125,6 @@ for k8s_tool in kubectl minikube; do
     command_exists ${k8s_tool} && source <(${k8s_tool} completion bash)
 done
 
-
-##########
-# SOURCING
-##########
-
-# HomeBrew binaries
-homebrew_binaries="$(brew --prefix coreutils)/libexec/gnubin"
-command_exists brew && ! path_contains "$homebrew_binaries" && export PATH="$homebrew_binaries:/usr/local/bin:$PATH"
-unset -f homebrew_binaries
-
-# pyenv binaries
-command_exists pyenv && eval "$(pyenv init -)"
-
-# rbenv binaries
-command_exists rbenv && eval "$(rbenv init -)"
-
-# Go environment
-if command_exists go; then
-    export GOPATH="${HOME}/Projects/golang"
-    export GOROOT="$(brew --prefix golang)/libexec"
-    export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-    test -d "${GOPATH}" || mkdir -p "${GOPATH}"
-fi
 
 
 #########
