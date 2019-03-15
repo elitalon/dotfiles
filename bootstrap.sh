@@ -69,6 +69,7 @@ function install_dotfiles() {
         --exclude "README.md" \
         --exclude ".ssh/config*" \
         --exclude "Breakpoints_v2.xcbkptlist" \
+        --exclude "KeyBindings.dict" \
         --exclude "editor_themes/" \
         --recursive \
         --links \
@@ -98,6 +99,13 @@ function tune_xcode() {
     find "$(dirname ${BASH_SOURCE})" -iname *.xccolortheme -exec cp {} "${user_data_themes_directory}" \;
 }
 
+function tune_textmate() {
+    local user_directory="$HOME/Library/Application Support/TextMate/"
+    mkdir -p "${user_directory}"
+
+    cp "$(dirname $BASH_SOURCE)/KeyBindings.dict" "${user_directory}"
+}
+
 function add_homebrewed_bash() {
     local bash_path=/usr/local/bin/bash
     if ! fgrep -q "${bash_path}" /etc/shells; then
@@ -114,6 +122,7 @@ function main() {
     update_ssh_config
     install_dotfiles
     # tune_xcode
+    tune_textmate
     add_homebrewed_bash
 }
 

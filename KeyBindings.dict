@@ -1,0 +1,4 @@
+{
+  /* Indentation like in Xcode: Ctrl+I */
+	"^i" = "indent:";
+}
