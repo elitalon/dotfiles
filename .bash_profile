@@ -1,23 +1,23 @@
 # Returns whether a given command exists
 function command_exists() {
-  [[ -n "$1" ]] && $(hash "$1" 1>/dev/null 2>&1)
+    [[ -n "$1" ]] && $(hash "$1" 1>/dev/null 2>&1)
 }
 
 # Returns whether a given pattern exists in $PATH
 function path_contains() {
-  [[ -z "$1" ]] && return 1
+    [[ -z "$1" ]] && return 1
 
-  local IFS_BACKUP=$IFS
-  IFS=:
-  for DIRECTORY in $PATH; do
-    if [[ "$DIRECTORY" == *"$1"* ]]; then
-      IFS=$IFS_BACKUP
-      return 0
-    fi
-  done
+    local IFS_BACKUP=$IFS
+    IFS=:
+    for DIRECTORY in $PATH; do
+        if [[ "$DIRECTORY" == *"$1"* ]]; then
+            IFS=$IFS_BACKUP
+            return 0
+        fi
+    done
 
-  IFS=$IFS_BACKUP
-  return 1
+    IFS=$IFS_BACKUP
+    return 1
 }
 
 
@@ -33,13 +33,13 @@ export LANG=en_GB.UTF-8
 ########
 
 function git_dirty() {
-  test -z "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)"
-  (( $? )) && echo " *"
+    test -z "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)"
+    (( $? )) && echo " *"
 }
 
 function git_branch() {
-  local current_branch="$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)"
-  [[ -z "${current_branch}" ]] || echo "[${current_branch}$(git_dirty)] "
+    local current_branch="$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+    [[ -z "${current_branch}" ]] || echo "[${current_branch}$(git_dirty)] "
 }
 
 PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\]❯ '
@@ -158,23 +158,23 @@ alias tower='gittower .'
 
 ### All the dig info
 function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
+    dig +nocmd "$1" any +multiline +noall +answer
 }
 
 ### Opens Xcode workspace in current directory
 function xcode() {
-  local XED='xed -x'
-  local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
-  if [[ -z "${workspace}" ]]; then
-    local project=`find . -type d -maxdepth 1 -name *.xcodeproj -print -quit`
+    local XED='xed -x'
+    local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
     if [[ -z "${workspace}" ]]; then
-      $XED "${project}"
+        local project=`find . -type d -maxdepth 1 -name *.xcodeproj -print -quit`
+        if [[ -z "${workspace}" ]]; then
+            $XED "${project}"
+        else
+            echo "Xcode workspace or project not found"
+        fi
     else
-      echo "Xcode workspace or project not found"
+        $XED "${workspace}"
     fi
-  else
-    $XED "${workspace}"
-  fi
 }
 
 

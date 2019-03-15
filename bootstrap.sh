@@ -4,7 +4,7 @@ set -o nounset
 set -o errexit
 
 function command_exists() {
-  [[ -n "$1" ]] && $(command -v "$1" 1>/dev/null 2>&1)
+    [[ -n "$1" ]] && $(command -v "$1" 1>/dev/null 2>&1)
 }
 
 function satisfy_requirements() {
