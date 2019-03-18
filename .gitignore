@@ -42,3 +42,6 @@ venv/
 
 # Visual Studio Code
 .vscode/
+
+# JetBrains
+.idea/
