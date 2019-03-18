@@ -104,6 +104,11 @@ if command_exists go; then
     test -d "${GOPATH}" || mkdir -p "${GOPATH}"
 fi
 
+# Add Visual Studio Code
+vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+[[ -e "${vscode_path}" ]] && ! path_contains "${vscode_path}" && export PATH="$PATH:${vscode_path}"
+unset -f vscode_path
+
 
 
 #################
