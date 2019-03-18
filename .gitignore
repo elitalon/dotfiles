@@ -36,8 +36,9 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 
-# pyenv
+# Python
 .python-version
-
-# Python virtual environments
 venv/
+
+# Visual Studio Code
+.vscode/
