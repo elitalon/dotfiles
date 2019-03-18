@@ -49,6 +49,7 @@ function update_ssh_config() {
         append_newline "${ssh_config}"
     fi
 
+    append_newline "${ssh_config}"
     cat '.ssh/config.after' >> "${ssh_config}"
     append_newline "${ssh_config}"
 }
