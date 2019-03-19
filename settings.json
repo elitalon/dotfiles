@@ -1,0 +1,39 @@
+{
+    "editor.fontSize": 13,
+    "editor.fontFamily": "Menlo, Monaco, monospace",
+    "editor.minimap.enabled": false,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 120,
+    "editor.parameterHints.cycle": true,
+    "editor.scrollBeyondLastLine": false,
+    "editor.rulers": [80],
+    "editor.formatOnType": true,
+
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.associations": {
+        "Podfile": "ruby",
+        "Gemfile": "ruby"
+    },
+
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "Tomorrow Night",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.editor.labelFormat": "medium",
+    "workbench.editor.tabCloseButton": "left",
+
+    "window.closeWhenEmpty": true,
+
+    "search.usePCRE2": true,
+
+    "extensions.closeExtensionDetailsOnViewChange": true,
+
+    "terminal.explorerKind": "external",
+
+    "markdown.preview.fontSize": 13,
+
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true
+}

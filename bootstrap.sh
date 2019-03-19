@@ -107,6 +107,13 @@ function tune_textmate() {
     cp "$(dirname $BASH_SOURCE)/KeyBindings.dict" "${user_directory}"
 }
 
+function tune_vscode() {
+    local user_directory="$HOME/Library/Application Support/Code/User/"
+    mkdir -p "${user_directory}"
+
+    cp "$(dirname $BASH_SOURCE)/settings.json" "${user_directory}"
+}
+
 function add_homebrewed_bash() {
     local bash_path=/usr/local/bin/bash
     if ! fgrep -q "${bash_path}" /etc/shells; then
@@ -124,6 +131,7 @@ function main() {
     install_dotfiles
     # tune_xcode
     tune_textmate
+    tune_vscode
     add_homebrewed_bash
 }
 
