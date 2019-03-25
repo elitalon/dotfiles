@@ -69,7 +69,7 @@ function install_dotfiles() {
         --exclude "bootstrap.sh" \
         --exclude "README.md" \
         --exclude ".ssh/config*" \
-        --exclude "Breakpoints_v2.xcbkptlist" \
+        --exclude "xcode/Breakpoints_v2.xcbkptlist" \
         --exclude "KeyBindings.dict" \
         --exclude "editor_themes/" \
         --recursive \
@@ -91,7 +91,7 @@ function tune_xcode() {
     # Add default breakpoints
     local user_data_debugger_directory="${user_data_directory}xcdebugger"
     [[ ! -d "${user_data_debugger_directory}" ]] && mkdir -p "${user_data_debugger_directory}"
-    local custom_breakpoints_filename="Breakpoints_v2.xcbkptlist"
+    local custom_breakpoints_filename="xcode/Breakpoints_v2.xcbkptlist"
     cp "$(dirname $BASH_SOURCE)/${custom_breakpoints_filename}" "${user_data_debugger_directory}"
 
     # Add custom themes
@@ -129,7 +129,7 @@ function main() {
     download_dotfiles
     update_ssh_config
     install_dotfiles
-    # tune_xcode
+    tune_xcode
     tune_textmate
     tune_vscode
     add_homebrewed_bash
