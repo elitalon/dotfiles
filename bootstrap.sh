@@ -70,7 +70,7 @@ function install_dotfiles() {
         --exclude "README.md" \
         --exclude ".ssh/config*" \
         --exclude "xcode/Breakpoints_v2.xcbkptlist" \
-        --exclude "KeyBindings.dict" \
+        --exclude "textmate/KeyBindings.dict" \
         --exclude "editor_themes/" \
         --recursive \
         --links \
@@ -104,7 +104,7 @@ function tune_textmate() {
     local user_directory="$HOME/Library/Application Support/TextMate/"
     mkdir -p "${user_directory}"
 
-    cp "$(dirname $BASH_SOURCE)/KeyBindings.dict" "${user_directory}"
+    cp "$(dirname $BASH_SOURCE)/textmate/KeyBindings.dict" "${user_directory}"
 }
 
 function tune_vscode() {
