@@ -69,8 +69,9 @@ function install_dotfiles() {
         --exclude "bootstrap.sh" \
         --exclude "README.md" \
         --exclude ".ssh/config*" \
-        --exclude "xcode/Breakpoints_v2.xcbkptlist" \
-        --exclude "textmate/KeyBindings.dict" \
+        --exclude "xcode/" \
+        --exclude "textmate/" \
+        --exclude "vscode/" \
         --exclude "editor_themes/" \
         --recursive \
         --links \
@@ -111,7 +112,9 @@ function tune_vscode() {
     local user_directory="$HOME/Library/Application Support/Code/User/"
     mkdir -p "${user_directory}"
 
-    cp "$(dirname $BASH_SOURCE)/settings.json" "${user_directory}"
+    for file in settings.json keybindings.json; do
+        cp "$(dirname $BASH_SOURCE)/vscode/${file}" "${user_directory}"
+    done
 }
 
 function add_homebrewed_bash() {
