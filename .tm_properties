@@ -61,6 +61,9 @@ wrapColumn = 80
 [ Podfile ]
 fileType = "source.ruby"
 
+[ Vagrantfile ]
+fileType = "source.ruby"
+
 [ *.podspec ]
 fileType = "source.ruby"
 

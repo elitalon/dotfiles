@@ -14,7 +14,8 @@
     "files.trimTrailingWhitespace": true,
     "files.associations": {
         "Podfile": "ruby",
-        "Gemfile": "ruby"
+        "Gemfile": "ruby",
+        "Vagrantfile": "ruby"
     },
 
     "workbench.startupEditor": "none",
