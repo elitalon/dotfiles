@@ -16,7 +16,14 @@
     "files.associations": {
         "Podfile": "ruby",
         "Gemfile": "ruby",
-        "Vagrantfile": "ruby"
+        "Vagrantfile": "ruby",
+        "*.podspec": "ruby"
+    },
+    "files.exclude": {
+        "**/venv": true,
+        "**/.vscode": true,
+        "**/.pytest_cache": true,
+        "**/.sass-cache": true
     },
 
     "workbench.startupEditor": "none",
