@@ -8,6 +8,7 @@
     "editor.scrollBeyondLastLine": false,
     "editor.rulers": [80],
     "editor.formatOnType": true,
+    "editor.renderIndentGuides": false,
 
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -23,8 +24,13 @@
     "workbench.statusBar.feedback.visible": false,
     "workbench.editor.labelFormat": "medium",
     "workbench.editor.tabCloseButton": "left",
+    "workbench.editor.closeOnFileDelete": true,
+    "workbench.editor.openPositioning": "last",
+    "workbench.editor.revealIfOpen": true,
 
     "window.closeWhenEmpty": true,
+
+    "explorer.decorations.colors": false,
 
     "search.usePCRE2": true,
 
@@ -37,6 +43,15 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
+
     "window.openFoldersInNewWindow": "on",
-    "window.openFilesInNewWindow": "default"
+    "window.openFilesInNewWindow": "default",
+
+    "git.countBadge": "tracked",
+    "git.ignoreLegacyWarning": true,
+    "git.ignoreLimitWarning": true,
+    "git.ignoreMissingGitWarning": true,
+
+    "scm.diffDecorationsGutterWidth": 1,
+    "scm.diffDecorations": "gutter"
 }
