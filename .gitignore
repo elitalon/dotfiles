@@ -6,9 +6,6 @@ Desktop.ini
 ._*
 Thumbs.db
 
-# Cache folder for SASS
-.sass-cache
-
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
@@ -20,6 +17,9 @@ Thumbs.db
 
 # OS X temporary files that should never be committed
 *.swp
+
+# Cache folder for SASS
+.sass-cache
 
 # Cocoapods
 !Podfile.lock
@@ -37,6 +37,7 @@ xcuserdata/
 *.xcscmblueprint
 
 # Python
+*.pyc
 .python-version
 venv/
 
