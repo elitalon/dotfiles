@@ -26,11 +26,15 @@
 [core]
     excludesfile = ~/.gitignore
     editor = vim
-    whitespace = space-before-tab,trailing-space
-    autocrlf = input
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
-  # Make `git rebase` safer on macOS (http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/)
+    # Make `git rebase` safer on macOS
+    # http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
     trustctime = false
+
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
 
 [color]
     branch = auto
