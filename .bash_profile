@@ -22,13 +22,6 @@ function path_contains() {
 
 
 ########
-# LOCALE
-########
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-
-########
 # PROMPT
 ########
 
@@ -43,6 +36,29 @@ function git_branch() {
 }
 
 PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\]❯ '
+
+
+#########
+# EXPORTS
+#########
+
+# Default editor
+export EDITOR=vim
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONIOENCODING='UTF-8';
+
+# Do not clear the screen after quitting a manual page
+export MANPAGER='less -X'
+
+# Larger bash history
+export HISTSIZE=32768
+export HISTFILESIZE=${HISTSIZE}
+export HISTCONTROL=ignoreboth
+
+# Prefer US English and UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 
 #################
@@ -61,24 +77,6 @@ shopt -s direxpand
 # Autocomplete commands issued with sudo
 complete -cf sudo
 
-
-#########
-# EXPORTS
-#########
-
-# Default editor
-export EDITOR=vim
-
-# Do not clear the screen after quitting a manual page
-export MANPAGER='less -X'
-
-# Larger bash history
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL=ignoredups
-
-# Make some commands not show up in history
-export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 
 
 ##########
