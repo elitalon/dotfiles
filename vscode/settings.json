@@ -34,12 +34,14 @@
     "workbench.editor.closeOnFileDelete": true,
     "workbench.editor.openPositioning": "last",
     "workbench.editor.revealIfOpen": true,
+    "workbench.settings.enableNaturalLanguageSearch": false,
 
     "window.closeWhenEmpty": true,
 
     "explorer.decorations.colors": false,
 
     "search.usePCRE2": true,
+    "search.useGlobalIgnoreFiles": true,
 
     "extensions.closeExtensionDetailsOnViewChange": true,
 
