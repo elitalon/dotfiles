@@ -163,11 +163,6 @@ alias tower='gittower .'
 # FUNCTIONS
 ###########
 
-### All the dig info
-function digga() {
-    dig +nocmd "$1" any +multiline +noall +answer
-}
-
 ### Opens Xcode workspace in current directory
 function xcode() {
     local XED='xed -x'
