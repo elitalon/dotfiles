@@ -21,6 +21,7 @@ function path_contains() {
 }
 
 
+
 ########
 # PROMPT
 ########
@@ -36,6 +37,7 @@ function git_branch() {
 }
 
 PS1='\[\e[0;90m\]\w \[\e[0;32m\]$(git_branch)\[\e[0m\]❯ '
+
 
 
 #########
@@ -59,6 +61,45 @@ export HISTCONTROL=ignoreboth
 # Prefer US English and UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+
+
+#########
+# ALIASES
+#########
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# Show line numbers in grep
+alias grep='grep -n'
+
+# Recursive grep with line numbers
+alias rgrep='grep -n -r'
+
+# List all files colorized in long format
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+  alias ls='ls -lh --color'
+else # OS X `ls`
+  alias ls='ls -lhG'
+fi
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Get week number
+alias week='date +%V'
+
+# IP addresses
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias localip='ipconfig getifaddr en0'
+
+# Flush Directory Service cache
+alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# Launch Tower automatically from the current directory
+alias tower='gittower .'
+
 
 
 #################
@@ -130,33 +171,6 @@ done
 
 
 
-#########
-# ALIASES
-#########
-
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-
-# Show line numbers in grep
-alias grep='grep -n'
-
-# Recursive grep with line numbers
-alias rgrep='grep -n -r'
-
-# List all files colorized in long format
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-  alias ls='ls -lh --color'
-else # OS X `ls`
-  alias ls='ls -lhG'
-fi
-
-# IP addresses
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias localip='ipconfig getifaddr en1'
-
-# Launch Tower automatically from the current directory
-alias tower='gittower .'
-
 ###########
 # FUNCTIONS
 ###########
@@ -176,6 +190,7 @@ function xcode() {
         $XED "${workspace}"
     fi
 }
+
 
 
 ##########
