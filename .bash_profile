@@ -1,3 +1,10 @@
+##########
+# HELPERS
+#
+# These functions are only used inside .bash_profile and will be unset at the
+# very end.
+##########
+
 # Returns whether a given command exists
 function command_exists() {
     [[ -n "$1" ]] && $(hash "$1" 1>/dev/null 2>&1)
@@ -19,6 +26,43 @@ function path_contains() {
     IFS=$IFS_BACKUP
     return 1
 }
+
+
+
+##########
+# SOURCING
+#
+# Needs to happen before anything else, so that further customisations can use
+# the paths defined here.
+##########
+
+# HomeBrew binaries (always first)
+brew_programs="$(brew --prefix coreutils)/libexec/gnubin"
+command_exists brew \
+    && ! path_contains "${brew_programs}" \
+    && export PATH="${brew_programs}:/usr/local/bin:${PATH}"
+unset -f brew_programs
+
+# pyenv binaries
+command_exists pyenv && eval "$(pyenv init -)"
+
+# rbenv binaries
+command_exists rbenv && eval "$(rbenv init -)"
+
+# Go environment
+if command_exists go; then
+    export GOPATH="${HOME}/Projects/golang"
+    export GOROOT="$(brew --prefix golang)/libexec"
+    export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+    test -d "${GOPATH}" || mkdir -p "${GOPATH}"
+fi
+
+# Visual Studio Code
+vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+[[ -e "${vscode_path}" ]] \
+    && ! path_contains "${vscode_path}" \
+    && export PATH="$PATH:${vscode_path}"
+unset -f vscode_path
 
 
 
@@ -64,6 +108,46 @@ export LANG=en_US.UTF-8
 
 
 
+###########
+# FUNCTIONS
+###########
+
+# Opens Xcode workspace in current directory
+function xcode() {
+    local XED='xed -x'
+    local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
+    if [[ -z "${workspace}" ]]; then
+        local project=`find . -type d -maxdepth 1 -name *.xcodeproj -print -quit`
+        if [[ -z "${workspace}" ]]; then
+            $XED "${project}"
+        else
+            echo "Xcode workspace or project not found"
+        fi
+    else
+        $XED "${workspace}"
+    fi
+}
+
+
+
+#################
+# GENERAL OPTIONS
+#################
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Auto-expand directory in variables
+shopt -s direxpand
+
+# Autocomplete commands issued with sudo
+complete -cf sudo
+
+
+
 #########
 # ALIASES
 #########
@@ -102,89 +186,22 @@ alias tower='gittower .'
 
 
 
-###########
-# FUNCTIONS
-###########
-
-### Opens Xcode workspace in current directory
-function xcode() {
-    local XED='xed -x'
-    local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
-    if [[ -z "${workspace}" ]]; then
-        local project=`find . -type d -maxdepth 1 -name *.xcodeproj -print -quit`
-        if [[ -z "${workspace}" ]]; then
-            $XED "${project}"
-        else
-            echo "Xcode workspace or project not found"
-        fi
-    else
-        $XED "${workspace}"
-    fi
-}
-
-
-
-#################
-# GENERAL OPTIONS
-#################
-
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
-# Auto-expand directory in variables
-shopt -s direxpand
-
-# Autocomplete commands issued with sudo
-complete -cf sudo
-
-
-
-##########
-# SOURCING
-##########
-
-# HomeBrew binaries (always first, so that commands below become available)
-homebrew_binaries="$(brew --prefix coreutils)/libexec/gnubin"
-command_exists brew && ! path_contains "$homebrew_binaries" && export PATH="$homebrew_binaries:/usr/local/bin:$PATH"
-unset -f homebrew_binaries
-
-# pyenv binaries
-command_exists pyenv && eval "$(pyenv init -)"
-
-# rbenv binaries
-command_exists rbenv && eval "$(rbenv init -)"
-
-# Go environment
-if command_exists go; then
-    export GOPATH="${HOME}/Projects/golang"
-    export GOROOT="$(brew --prefix golang)/libexec"
-    export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-    test -d "${GOPATH}" || mkdir -p "${GOPATH}"
-fi
-
-# Add Visual Studio Code
-vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-[[ -e "${vscode_path}" ]] && ! path_contains "${vscode_path}" && export PATH="$PATH:${vscode_path}"
-unset -f vscode_path
-
-
-
 #################
 # AUTO COMPLETION
 #################
 
 # SSH hostnames
-[[ -s "${HOME}/.ssh/config" ]] && complete -o 'default' -o 'nospace' -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+[[ -s "${HOME}/.ssh/config" ]] \
+    && complete -o 'default' -o 'nospace' -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
 # Bash commands
 [[ -r /etc/bash_completion ]] && source /etc/bash_completion
 
 # Homebrew-based bash commands
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+bash_autocompletion="/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "${bash_autocompletion}" ]] && . "${bash_autocompletion}"
+unset -f bash_autocompletion
 
 # Kubernetes
 for k8s_tool in kubectl minikube; do
@@ -194,7 +211,7 @@ done
 
 
 ##########
-# CLEANING
+# CLEANING UP
 ##########
 
 unset -f command_exists
