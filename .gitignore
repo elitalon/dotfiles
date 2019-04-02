@@ -46,3 +46,6 @@ venv/
 
 # JetBrains
 .idea/
+
+# Vagrant
+.vagrant/
