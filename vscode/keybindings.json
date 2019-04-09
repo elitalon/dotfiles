@@ -171,5 +171,15 @@
     {
         "key": "alt+cmd+left",
         "command": "-workbench.action.previousEditor"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "editor.action.transformToLowercase",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "editor.action.transformToUppercase",
+        "when": "editorTextFocus && !editorReadonly"
     }
 ]
