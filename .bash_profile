@@ -174,13 +174,6 @@ alias path='echo -e ${PATH//:/\\n}'
 # Get week number
 alias week='date +%V'
 
-# IP addresses
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias localip='ipconfig getifaddr en0'
-
-# Flush Directory Service cache
-alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
-
 # Launch Tower automatically from the current directory
 alias tower='gittower .'
 
