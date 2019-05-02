@@ -34,6 +34,7 @@ function main() {
     # Improved shell experience
     install coreutils findutils tree
     install bash bash-completion2
+    install tmux
 
     # Git
     install git
