@@ -34,7 +34,7 @@ function main() {
     # Improved shell experience
     install coreutils findutils tree
     install bash bash-completion2
-    install tmux
+    # install tmux
 
     # Git
     install git
@@ -46,26 +46,25 @@ function main() {
     install pyenv
 
     # iOS dependency managers
-    # install carthage
+    install carthage
 
     # Code quality
+    install tokei
+    install swiftlint
     # install cloc
-    # install tokei
-    # install swiftlint
 
     # Programming languages and runtimes
-    install go
-    install node npm
+    # install go
+    # install node npm
 
     # Networking utilities
-    install masscan nmap
+    # install masscan nmap
 
     # Data processing
     install jq
-    # install kafkacat
 
     # Other useful binaries
-    install unrar
+    # install unrar
     # install p7zip
 
     clean_up
