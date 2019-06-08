@@ -2,23 +2,32 @@
     name = Eliezer Talón
 
 [alias]
-    plog = log --pretty=\"%C(auto)%h%d %s (%C(green)%ci%C(reset))\" --date=\"format:yyyy-MM-dd HH:mm\"
-    last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
+    # Shortcuts
     co = checkout
     go = checkout -b
     ci = commit
     st = status
     sm = submodule
     br = branch -v
+
+    # Custom logs
+    last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
+    plog = log --pretty=\"%C(auto)%h%d %s (%C(green)%ci%C(reset))\" --date=\"format:yyyy-MM-dd HH:mm\"
+
+    # Editing workspace
+    rename = branch -M
     brd = branch -d
+    scrub = "!f() { git checkout -- . && git clean -fd; }; f"
+    reset-last = reset --soft HEAD~
+
+    # Maintenance
+    prune-remote = "!f() { git remote | xargs git remote prune; }; f"
+    sync = "!f() { git pull && git prune-remote; }; f"
+
+    # Stats
     tags = tag -ln
     remotes = remote -v
     contributors = shortlog -s -n
-    prune-remote = "!f() { git remote | xargs git remote prune; }; f"
-    scrub = "!f() { git checkout -- . && git clean -fd; }; f"
-    reset-last = reset --soft HEAD~
-    sync = "!f() { git pull && git prune-remote; }; f"
-    rename = branch -M
 
 [apply]
     whitespace = fix
@@ -37,10 +46,7 @@
     untrackedCache = true
 
 [color]
-    branch = auto
-    interactive = auto
-    diff = auto
-    status = auto
+    ui = auto
 
 [diff]
     renames = copies
