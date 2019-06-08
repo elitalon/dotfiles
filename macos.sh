@@ -102,13 +102,13 @@ function setup_desktop() {
     defaults write com.apple.dock wvous-tl-corner -int 5
     defaults write com.apple.dock wvous-tl-modifier -int 0
 
-    echo "Setup top right screen corner to show Mission Control"
-    defaults write com.apple.dock wvous-tr-corner -int 5
-    defaults write com.apple.dock wvous-tr-modifier -int 0
-
-    echo "Setup bottom right screen corner to show Desktop"
-    defaults write com.apple.dock wvous-br-corner -int 4
+    echo "Setup bottom right screen corner to show Mission Control"
+    defaults write com.apple.dock wvous-br-corner -int 2
     defaults write com.apple.dock wvous-br-modifier -int 0
+
+    echo "Setup top right screen corner to show Desktop"
+    defaults write com.apple.dock wvous-tr-corner -int 4
+    defaults write com.apple.dock wvous-tr-modifier -int 0
 
     echo "Show icons for hard drives, servers, and removable media on the desktop"
     defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
