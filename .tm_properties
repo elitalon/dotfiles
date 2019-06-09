@@ -58,12 +58,5 @@ wrapColumn = 72
 tabSize = 4
 wrapColumn = 80
 
-[ Podfile ]
+[ "{Podfile,Vagrantfile,*.podspec}" ]
 fileType = "source.ruby"
-
-[ Vagrantfile ]
-fileType = "source.ruby"
-
-[ *.podspec ]
-fileType = "source.ruby"
-
