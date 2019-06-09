@@ -24,8 +24,8 @@ windowTitle = "$TM_DISPLAYNAME — ~/${CWD/^.*\///}${TM_DIRECTORY/${CWD}//}${TM_
 spellChecking = false
 tabSize = 2
 softTabs = true
-softWrap = false
-wrapColumn = 120
+softWrap = true
+wrapColumn = 110
 showInvisibles = false
 
 [ attr.untitled ]
@@ -67,5 +67,3 @@ fileType = "source.ruby"
 [ *.podspec ]
 fileType = "source.ruby"
 
-[ source.plist ]
-wrapColumn = "Use Window Frame"
