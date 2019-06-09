@@ -68,6 +68,7 @@ function install_dotfiles() {
         --exclude ".DS_Store" \
         --exclude "bootstrap.sh" \
         --exclude "README.md" \
+        --exclude "LICENSE" \
         --exclude ".ssh/config*" \
         --exclude "xcode/" \
         --exclude "textmate/" \
