@@ -8,7 +8,7 @@
     ci = commit
     st = status
     sm = submodule
-    br = branch -v
+    br = branch -vv
 
     # Custom logs
     last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
