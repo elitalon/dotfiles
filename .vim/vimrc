@@ -155,6 +155,7 @@ if has("autocmd")
 
     " Treats CocoaPods files like Ruby
     au BufNewFile,BufRead *.podspec setlocal filetype=ruby
+    au BufNewFile,BufRead Podfile setlocal filetype=ruby
 
     " Enables more extensions for Markdown
     au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
