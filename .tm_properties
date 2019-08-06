@@ -60,3 +60,6 @@ wrapColumn = 80
 
 [ "{Podfile,Vagrantfile,*.podspec}" ]
 fileType = "source.ruby"
+
+[ "*.gpx" ]
+fileType = "text.xml"
