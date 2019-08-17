@@ -67,6 +67,9 @@ function main() {
     # install unrar
     # install p7zip
 
+    # Containers and orchestration
+    # install docker-completion
+
     clean_up
 }
 
