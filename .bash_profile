@@ -106,6 +106,8 @@ export HISTCONTROL=ignoreboth
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Private environment variables
+[[ -s "${HOME}/.private_exports" ]] && source "${HOME}/.private_exports"
 
 
 ###########
