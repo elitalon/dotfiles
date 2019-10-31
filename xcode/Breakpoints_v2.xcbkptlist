@@ -31,7 +31,7 @@
         <BreakpointProxy
             BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
             <BreakpointContent
-                shouldBeEnabled = "Yes"
+                shouldBeEnabled = "No"
                 ignoreCount = "0"
                 continueAfterRunningActions = "No">
             </BreakpointContent>
