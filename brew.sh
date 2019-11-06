@@ -43,15 +43,16 @@ function main() {
     install rbenv ruby-build
 
     # Python environment
-    install pyenv
+    # install pyenv
 
     # iOS dependency managers
-    install carthage
+    # install carthage
 
     # Code quality
-    install tokei
     install swiftlint
+    # install tokei
     # install cloc
+    # install danger/tap/danger-js
 
     # Programming languages and runtimes
     # install go
