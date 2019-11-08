@@ -25,7 +25,7 @@ spellChecking = false
 tabSize = 2
 softTabs = true
 softWrap = true
-wrapColumn = 110
+wrapColumn = 80
 showInvisibles = false
 
 [ attr.untitled ]
@@ -40,7 +40,7 @@ softWrap = true
 
 [ source.swift ]
 tabSize = 4
-wrapColumn = 80
+wrapColumn = 100
 
 [ source.python ]
 tabSize = 4
@@ -58,7 +58,7 @@ wrapColumn = 72
 tabSize = 4
 wrapColumn = 80
 
-[ "{Podfile,Vagrantfile,*.podspec}" ]
+[ "{Podfile,Vagrantfile,*.podspec,Dangerfile}" ]
 fileType = "source.ruby"
 
 [ "*.gpx" ]

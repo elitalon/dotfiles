@@ -157,6 +157,12 @@ if has("autocmd")
     au BufNewFile,BufRead *.podspec setlocal filetype=ruby
     au BufNewFile,BufRead Podfile setlocal filetype=ruby
 
+    " Treats Danger files like Ruby
+    au BufNewFile,BufRead Dangerfile setlocal filetype=ruby
+
+    " Treats Vagrant files like Ruby
+    au BufNewFile,BufRead Vagrantfile setlocal filetype=ruby
+
     " Enables more extensions for Markdown
     au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
 
