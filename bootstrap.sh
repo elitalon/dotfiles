@@ -100,6 +100,11 @@ function tune_xcode() {
     local user_data_themes_directory="${user_data_directory}FontAndColorThemes"
     [[ ! -d "${user_data_themes_directory}" ]] && mkdir -p "${user_data_themes_directory}"
     find "$(dirname ${BASH_SOURCE})" -iname *.xccolortheme -exec cp {} "${user_data_themes_directory}" \;
+
+    # Enable additional counterpart extensions
+    defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes \
+        -array-add "ViewModel" "View"
+    # To disable: defaults delete com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes
 }
 
 function tune_textmate() {
