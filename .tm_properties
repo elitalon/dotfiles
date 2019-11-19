@@ -24,7 +24,7 @@ windowTitle = "$TM_DISPLAYNAME — ~/${CWD/^.*\///}${TM_DIRECTORY/${CWD}//}${TM_
 spellChecking = false
 tabSize = 2
 softTabs = true
-softWrap = true
+softWrap = false
 wrapColumn = 80
 showInvisibles = false
 
@@ -34,8 +34,6 @@ fileType = "text.plain"
 [ text ]
 tabSize = 4
 spellChecking = true
-
-[ text.plain ]
 softWrap = true
 
 [ source.swift ]
