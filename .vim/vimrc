@@ -141,6 +141,9 @@ if has("autocmd")
     " Treats JSON files like JavaScript
     au BufNewFile,BufRead *.json setlocal filetype=javascript
 
+    " Treats apple-app-site-association files like JSON
+    au BufNewFile,BufRead apple-app-site-association setlocal filetype=javascript
+
     " Makes Python follow PEP8 for whitespace
     au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
 
