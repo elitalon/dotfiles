@@ -65,3 +65,6 @@
 
 [help]
     autocorrect = 1
+
+[advice]
+    addIgnoredFile = false
