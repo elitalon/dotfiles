@@ -57,6 +57,12 @@ if command_exists go; then
     test -d "${GOPATH}" || mkdir -p "${GOPATH}"
 fi
 
+# Java environment
+if command_exists jenv; then
+    export PATH="$PATH:${HOME}/.jenv/bin"
+    eval "$(jenv init -)"
+fi
+
 # Visual Studio Code
 vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 [[ -e "${vscode_path}" ]] \
