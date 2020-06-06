@@ -58,6 +58,7 @@ function main() {
     # Programming languages and runtimes
     # install go
     # install node npm
+    # install jenv
 
     # Networking utilities
     # install masscan nmap
