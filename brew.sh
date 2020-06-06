@@ -64,7 +64,7 @@ function main() {
     # install masscan nmap
 
     # Data processing
-    install jq
+    # install jq
 
     # Other useful binaries
     # install unrar
