@@ -32,9 +32,10 @@ function main() {
     update
 
     # Improved shell experience
-    install coreutils findutils tree
+    install coreutils findutils
     install bash bash-completion2
     install the_silver_searcher
+    # install tree
     # install tmux
 
     # Git
