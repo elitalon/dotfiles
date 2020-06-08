@@ -60,6 +60,9 @@
 [github]
     user = elitalon
 
+[pull]
+    rebase = false
+
 [push]
     default = simple
 
