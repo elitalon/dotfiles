@@ -136,6 +136,17 @@ function xcode() {
     fi
 }
 
+# Migrate Git branch from master to main
+function rename_master_branch() {
+    local old_name="master"
+    local new_name="main"
+
+    git checkout ${old_name}
+    git branch -m ${old_name} ${new_name}
+    git push origin --delete ${old_name}
+    git push origin -u ${new_name}
+}
+
 
 
 #################
