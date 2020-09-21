@@ -216,9 +216,9 @@ bash_autocompletion="/usr/local/etc/profile.d/bash_completion.sh"
 unset -f bash_autocompletion
 
 # Kubernetes
-for k8s_tool in kubectl minikube; do
-    command_exists ${k8s_tool} && source <(${k8s_tool} completion bash)
-done
+# for k8s_tool in kubectl minikube; do
+#     command_exists ${k8s_tool} && source <(${k8s_tool} completion bash)
+# done
 
 
 
