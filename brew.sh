@@ -39,7 +39,7 @@ function main() {
     # install tmux
 
     # Git
-    install git hub
+    install git gh
 
     # Ruby environment
     install rbenv ruby-build
