@@ -36,12 +36,13 @@ function path_contains() {
 # the paths defined here.
 ##########
 
-# HomeBrew binaries (always first)
-brew_programs="$(brew --prefix coreutils)/libexec/gnubin"
+# HomeBrew binaries (always first). $(brew --prefix coreutils) replaced with
+# hardcoded path because it speeds up Bash startup.
+brew_gnu_programs="/usr/local/opt/coreutils/libexec/gnubin"
 command_exists brew \
-    && ! path_contains "${brew_programs}" \
-    && export PATH="${brew_programs}:/usr/local/bin:${PATH}"
-unset -f brew_programs
+    && ! path_contains "${brew_gnu_programs}" \
+    && export PATH="${brew_gnu_programs}:/usr/local/bin:${PATH}"
+unset -f brew_gnu_programs
 
 # pyenv binaries
 command_exists pyenv && eval "$(pyenv init -)"
@@ -116,6 +117,7 @@ export LANG=en_US.UTF-8
 [[ -s "${HOME}/.private_exports" ]] && source "${HOME}/.private_exports"
 
 
+
 ###########
 # FUNCTIONS
 ###########
@@ -134,17 +136,6 @@ function xcode() {
     else
         $XED "${workspace}"
     fi
-}
-
-# Migrate Git branch from master to main
-function rename_master_branch() {
-    local old_name="master"
-    local new_name="main"
-
-    git checkout ${old_name}
-    git branch -m ${old_name} ${new_name}
-    git push origin --delete ${old_name}
-    git push origin -u ${new_name}
 }
 
 
@@ -182,9 +173,9 @@ alias rgrep='grep -n -r'
 
 # List all files colorized in long format
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-  alias ls='ls -lh --color'
+    alias ls='ls -lh --color'
 else # OS X `ls`
-  alias ls='ls -lhG'
+    alias ls='ls -lhG'
 fi
 
 # Print each PATH entry on a separate line
