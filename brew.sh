@@ -26,7 +26,7 @@ function install() {
 }
 
 function main() {
-    ${brew} analytics off
+    ${brew} analytics on
 
     clean_up
     update
