@@ -103,7 +103,7 @@ function tune_xcode() {
 
     # Enable additional counterpart extensions
     defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes \
-        -array-add "ViewModel" "View"
+        -array-add "ViewModel" "View" "DataSource" "ViewData"
     # To disable: defaults delete com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes
 }
 
