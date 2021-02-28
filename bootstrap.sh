@@ -140,7 +140,7 @@ function main() {
     install_dotfiles
     tune_xcode
     tune_textmate
-    tune_vscode
+    # tune_vscode
     add_homebrewed_bash
 }
 
