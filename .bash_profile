@@ -7,23 +7,23 @@
 
 # Returns whether a given command exists
 function command_exists() {
-    [[ -n "$1" ]] && $(hash "$1" 1>/dev/null 2>&1)
+    [[ -n "$1" ]] && hash "$1" 1>/dev/null 2>&1
 }
 
 # Returns whether a given pattern exists in $PATH
 function path_contains() {
     [[ -z "$1" ]] && return 1
 
-    local IFS_BACKUP=$IFS
+    local IFS_BACKUP=${IFS}
     IFS=:
-    for DIRECTORY in $PATH; do
-        if [[ "$DIRECTORY" == *"$1"* ]]; then
-            IFS=$IFS_BACKUP
+    for DIRECTORY in ${PATH}; do
+        if [[ "${DIRECTORY}" == *"$1"* ]]; then
+            IFS=${IFS_BACKUP}
             return 0
         fi
     done
 
-    IFS=$IFS_BACKUP
+    IFS=${IFS_BACKUP}
     return 1
 }
 
@@ -45,7 +45,13 @@ command_exists brew \
 unset -f brew_gnu_programs
 
 # pyenv binaries
-command_exists pyenv && eval "$(pyenv init -)"
+if command_exists pyenv; then
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+fi
+# command_exists pyenv && eval "$(pyenv init -)"
 
 # rbenv binaries
 command_exists rbenv && eval "$(rbenv init -)"
@@ -54,13 +60,13 @@ command_exists rbenv && eval "$(rbenv init -)"
 if command_exists go; then
     export GOPATH="${HOME}/Projects/golang"
     export GOROOT="$(brew --prefix golang)/libexec"
-    export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+    export PATH="${PATH}:${GOPATH}/bin:${GOROOT}/bin"
     test -d "${GOPATH}" || mkdir -p "${GOPATH}"
 fi
 
 # Java environment
 if command_exists jenv; then
-    export PATH="$PATH:${HOME}/.jenv/bin"
+    export PATH="${PATH}:${HOME}/.jenv/bin"
     eval "$(jenv init -)"
 fi
 
@@ -68,7 +74,7 @@ fi
 vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 [[ -e "${vscode_path}" ]] \
     && ! path_contains "${vscode_path}" \
-    && export PATH="$PATH:${vscode_path}"
+    && export PATH="${PATH}:${vscode_path}"
 unset -f vscode_path
 
 
@@ -125,16 +131,16 @@ export LANG=en_US.UTF-8
 # Opens Xcode workspace in current directory
 function xcode() {
     local XED='xed -x'
-    local workspace=`find . -type d -maxdepth 1 -name *.xcworkspace -print -quit`
+    local workspace=$(find . -type d -maxdepth 1 -name *.xcworkspace -print -quit)
     if [[ -z "${workspace}" ]]; then
-        local project=`find . -type d -maxdepth 1 -name *.xcodeproj -print -quit`
+        local project=$(find . -type d -maxdepth 1 -name *.xcodeproj -print -quit)
         if [[ -z "${workspace}" ]]; then
-            $XED "${project}"
+            ${XED} "${project}"
         else
             echo "Xcode workspace or project not found"
         fi
     else
-        $XED "${workspace}"
+        ${XED} "${workspace}"
     fi
 }
 
