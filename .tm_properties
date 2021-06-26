@@ -56,11 +56,17 @@ wrapColumn = 72
 tabSize = 4
 wrapColumn = 80
 
+[ text.xml ]
+softWrap = false
+
 [ "{Podfile,Vagrantfile,*.podspec,Dangerfile}" ]
 fileType = "source.ruby"
+
+[ "*.pbxproj" ]
+softWrap = false
 
 [ "*.gpx" ]
 fileType = "text.xml"
 
-[ "{apple-app-site-association,*.apns}" ]
+[ "{apple-app-site-association,*.apns,Package.resolved}" ]
 fileType = "source.json"
