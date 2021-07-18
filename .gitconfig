@@ -10,6 +10,7 @@
     st = status
     sm = submodule
     br = branch -vv
+    pushf = push --force-with-lease
 
     # Custom logs
     last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
