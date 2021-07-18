@@ -30,6 +30,9 @@ function setup_system() {
 
     echo "Enable subpixel font rendering on non-Apple LCDs"
     defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+    echo "Enable drag on windows gesture"
+    defaults write -g NSWindowShouldDragOnGesture -bool true
 }
 
 
