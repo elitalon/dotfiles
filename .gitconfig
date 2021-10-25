@@ -11,14 +11,18 @@
     sm = submodule
     br = branch -vv
     pushf = push --force-with-lease
+    amend = commit --amend
 
     # Custom logs
     last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
     plog = log --pretty=\"%C(auto)%h%d %s (%C(green)%ci%C(reset))\" --date=\"format:yyyy-MM-dd HH:mm\"
+    smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
 
     # Editing workspace
     rename = branch -M
     brd = branch -d
+    discard = checkout --
+    unstage = reset HEAD --
     scrub = "!f() { git checkout -- . && git clean -fd; }; f"
     reset-last = reset --soft HEAD~
 
