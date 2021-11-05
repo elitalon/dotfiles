@@ -77,6 +77,11 @@ vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
     && export PATH="${PATH}:${vscode_path}"
 unset -f vscode_path
 
+# NVM environment
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 
 
 ########
