@@ -4,7 +4,7 @@ set -o nounset
 set -o errexit
 
 
-function setup_system() {
+function set_up_system() {
     echo "Create Projects directory in $HOME"
     [[ ! -d ~/Projects ]] && mkdir ~/Projects
 
@@ -36,7 +36,7 @@ function setup_system() {
 }
 
 
-function setup_finder() {
+function set_up_finder() {
     echo "Enable transparency in menu bar"
     defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
 
@@ -78,7 +78,7 @@ function setup_finder() {
 }
 
 
-function setup_dock() {
+function set_up_dock() {
     echo "Show indicator lights for open applications in the Dock"
     defaults write com.apple.dock show-process-indicators -bool true
 
@@ -90,7 +90,7 @@ function setup_dock() {
 }
 
 
-function setup_desktop() {
+function set_up_desktop() {
     echo "Speed up Mission Control animations"
     defaults write com.apple.dock expose-animation-duration -float 0.1
 
@@ -121,7 +121,7 @@ function setup_desktop() {
 }
 
 
-function setup_terminal() {
+function set_up_terminal() {
     echo "Only use UTF-8 in Terminal"
     defaults write com.apple.terminal StringEncodings -array 4
 
@@ -130,7 +130,7 @@ function setup_terminal() {
 }
 
 
-function setup_activity_monitor() {
+function set_up_activity_monitor() {
     echo "Show the main window when launching Activity Monitor"
     defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
@@ -146,7 +146,7 @@ function setup_activity_monitor() {
 }
 
 
-function setup_photos() {
+function set_up_photos() {
     echo "Disable hot plug with Image Capture and Photos"
     defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 }
@@ -161,13 +161,13 @@ function main() {
     sudo -v
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-    setup_system
-    setup_finder
-    setup_dock
-    setup_desktop
-    setup_terminal
-    setup_activity_monitor
-    setup_photos
+    set_up_system
+    set_up_finder
+    set_up_dock
+    set_up_desktop
+    set_up_terminal
+    set_up_activity_monitor
+    set_up_photos
 
     echo
     echo "Done. Note that some of these changes require a logout/restart to take effect."

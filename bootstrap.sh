@@ -86,7 +86,7 @@ function install_dotfiles() {
 
 function tune_xcode() {
     # Show how long it takes to build a project
-    defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
+    defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
     local user_data_directory="$HOME/Library/Developer/Xcode/UserData/"
 
