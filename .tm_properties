@@ -25,7 +25,6 @@ spellChecking = false
 tabSize = 2
 softTabs = true
 softWrap = false
-wrapColumn = 80
 showInvisibles = false
 
 [ attr.untitled ]
