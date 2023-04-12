@@ -135,7 +135,7 @@ export LANG=en_US.UTF-8
 
 # Opens Xcode workspace in current directory
 function xcode() {
-    local XED='xed -x'
+    local XED=xed
     local workspace=$(find . -type d -maxdepth 1 -name *.xcworkspace -print -quit)
     if [[ -z "${workspace}" ]]; then
         local project=$(find . -type d -maxdepth 1 -name *.xcodeproj -print -quit)
