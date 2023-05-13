@@ -33,8 +33,10 @@ function set_up_system() {
 
     echo "Enable drag on windows gesture"
     defaults write -g NSWindowShouldDragOnGesture -bool true
-}
 
+    echo "Increase sound quality for Bluetooth headphones/headsets"
+    defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+}
 
 function set_up_finder() {
     echo "Enable transparency in menu bar"
@@ -42,6 +44,9 @@ function set_up_finder() {
 
     echo "Set sidebar icon size to small"
     defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+
+    echo "Disable the over-the-top focus ring animation"
+    defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
     echo "Increase window resize speed for Cocoa applications"
     defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -54,11 +59,14 @@ function set_up_finder() {
     defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
     defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
+    echo "Save to disk (not to iCloud) by default"
+    defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
     echo "Quit printer app automatically once the print jobs complete"
     defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-    echo "Hide all filename extensions"
-    defaults write NSGlobalDomain AppleShowAllExtensions -bool false
+    echo "Show all filename extensions"
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
     echo "Show status bar in Finder"
     defaults write com.apple.finder ShowStatusBar -bool true
@@ -74,9 +82,8 @@ function set_up_finder() {
     defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
     echo "Show the ~/Library folder"
-    chflags nohidden ~/Library
+    chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 }
-
 
 function set_up_dock() {
     echo "Show indicator lights for open applications in the Dock"
@@ -88,7 +95,6 @@ function set_up_dock() {
     echo "Make Dock icons of hidden applications translucent"
     defaults write com.apple.dock showhidden -bool true
 }
-
 
 function set_up_desktop() {
     echo "Speed up Mission Control animations"
@@ -120,15 +126,17 @@ function set_up_desktop() {
     defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 }
 
-
 function set_up_terminal() {
     echo "Only use UTF-8 in Terminal"
     defaults write com.apple.terminal StringEncodings -array 4
 
+    echo "Enable Secure Keyboard Entry in Terminal.app"
+    # See: https://security.stackexchange.com/a/47786/8918
+    defaults write com.apple.terminal SecureKeyboardEntry -bool true
+
     echo "Disable the annoying line marks in Terminal"
     defaults write com.apple.Terminal ShowLineMarks -int 0
 }
-
 
 function set_up_activity_monitor() {
     echo "Show the main window when launching Activity Monitor"
@@ -145,10 +153,30 @@ function set_up_activity_monitor() {
     defaults write com.apple.ActivityMonitor SortDirection -int 0
 }
 
+function set_up_text_edit() {
+    echo "Use plain text mode for new TextEdit documents"
+    defaults write com.apple.TextEdit RichText -int 0
+
+    echo "Open and save files as UTF-8 in TextEdit"
+    defaults write com.apple.TextEdit PlainTextEncoding -int 4
+    defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+}
 
 function set_up_photos() {
     echo "Disable hot plug with Image Capture and Photos"
     defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+}
+
+function kill_affected_applications() {
+    for app in "Activity Monitor" \
+        "cfprefsd" \
+        "Dock" \
+        "Finder" \
+        "Photos" \
+        "SystemUIServer" \
+        "Terminal"; do
+        killall "${app}" &> /dev/null
+    done
 }
 
 
@@ -167,7 +195,9 @@ function main() {
     set_up_desktop
     set_up_terminal
     set_up_activity_monitor
+    set_up_text_edit
     set_up_photos
+    kill_affected_applications
 
     echo
     echo "Done. Note that some of these changes require a logout/restart to take effect."
