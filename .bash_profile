@@ -180,7 +180,7 @@ function encrypt() {
     fi
 
     openssl enc -e -aes-256-cbc -pbkdf2 -salt -in "${input_file}" -out "${output_file}" || return 1
-	echo "${input_file} encrypted successfully into ${output_file}";
+    echo "${input_file} encrypted successfully into ${output_file}";
 }
 
 function decrypt() {
@@ -208,7 +208,7 @@ function decrypt() {
     fi
 
     openssl enc -d -aes-256-cbc -pbkdf2 -in "${input_file}" -out "${output_file}" || return 1
-	echo "${input_file} decrypted successfully into ${output_file}";
+    echo "${input_file} decrypted successfully into ${output_file}";
 }
 
 
