@@ -183,10 +183,10 @@ complete -cf sudo
 alias sudo='sudo '
 
 # Show line numbers in grep
-alias grep='grep -n'
+alias grep='grep -n --color=auto'
 
 # Recursive grep with line numbers
-alias rgrep='grep -n -r'
+alias rgrep='grep -n -r --color=auto'
 
 # List all files colorized in long format
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -203,6 +203,12 @@ alias week='date +%V'
 
 # Launch Tower automatically from the current directory
 alias tower='gittower .'
+
+# Flush Directory Service cache
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# Clean up LaunchServices to remove duplicates in the “Open With” menu
+alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
 
 
