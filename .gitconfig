@@ -1,6 +1,5 @@
 [user]
     name = Eliezer Talón
-    email = elitalon@fastmail.com
 
 [alias]
     # Shortcuts
@@ -25,8 +24,10 @@
     unstage = reset HEAD --
     scrub = "!f() { git checkout -- . && git clean -fd; }; f"
     reset-last = reset --soft HEAD~
+    retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
     # Maintenance
+    prune-local = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
     prune-remote = "!f() { git remote | xargs git remote prune; }; f"
     sync = "!f() { git pull && git prune-remote; }; f"
 
@@ -34,9 +35,13 @@
     tags = tag -ln
     remotes = remote -v
     contributors = shortlog -s -n
+    whoami = config user.email
 
 [apply]
     whitespace = fix
+
+[branch]
+    sort = -committerdate
 
 [core]
     excludesfile = ~/.gitignore
@@ -50,9 +55,6 @@
     # Speed up commands involving untracked files such as `git status`.
     # https://git-scm.com/docs/git-update-index#_untracked_cache
     untrackedCache = true
-
-[init]
-    defaultBranch = main
 
 [color]
     ui = auto
@@ -74,9 +76,13 @@
 
 [push]
     default = simple
+    followTags = true
 
 [help]
     autocorrect = 1
 
 [advice]
     addIgnoredFile = false
+
+[init]
+    defaultBranch = main
