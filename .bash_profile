@@ -159,24 +159,56 @@ function encrypt() {
     local input_file="${1:-}"
 
     if [[ -z "${input_file}" ]]; then
-        echo "Missing input file"
+        echo "Error: Missing input file"
         return 1
     fi
 
     if [[ ! -e "${input_file}" ]]; then
-        echo "${input_file} does not exist"
+        echo "Error: ${input_file} does not exist"
         return 1
     fi
 
     if [[ ! -f "${input_file}" ]]; then
-        echo "${input_file} is not a valid file"
+        echo "Error: ${input_file} is not a valid file"
         return 1
     fi
 
     local output_file="${input_file}.enc"
+    if [[ -e "${output_file}" ]]; then
+        echo "Error: ${output_file} already exists"
+        return 1
+    fi
 
     openssl enc -e -aes-256-cbc -pbkdf2 -salt -in "${input_file}" -out "${output_file}" || return 1
 	echo "${input_file} encrypted successfully into ${output_file}";
+}
+
+function decrypt() {
+    local input_file="${1:-}"
+
+    if [[ -z "${input_file}" ]]; then
+        echo "Error: Missing input file"
+        return 1
+    fi
+
+    if [[ ! -e "${input_file}" ]]; then
+        echo "Error: ${input_file} does not exist"
+        return 1
+    fi
+
+    if [[ ! -f "${input_file}" ]]; then
+        echo "Error: ${input_file} is not a valid file"
+        return 1
+    fi
+
+    local output_file="${input_file%.enc}"
+    if [[ -e "${output_file}" ]]; then
+        echo "Error: ${output_file} already exists"
+        return 1
+    fi
+
+    openssl enc -d -aes-256-cbc -pbkdf2 -in "${input_file}" -out "${output_file}" || return 1
+	echo "${input_file} decrypted successfully into ${output_file}";
 }
 
 
