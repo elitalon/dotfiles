@@ -65,8 +65,8 @@ function set_up_finder() {
     echo "Quit printer app automatically once the print jobs complete"
     defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-    echo "Show all filename extensions"
-    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+    echo "Do not show all filename extensions"
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool false
 
     echo "Show status bar in Finder"
     defaults write com.apple.finder ShowStatusBar -bool true
