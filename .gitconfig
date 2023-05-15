@@ -12,6 +12,9 @@
     pushf = push --force-with-lease
     amend = commit --amend
 
+    # Credit an author on the latest commit.
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
     # Custom logs
     last = "!f() { git log -`if [ -z $1 ]; then echo 1; else echo $1; fi` HEAD;  }; f"
     plog = log --pretty=\"%C(auto)%h%d %s (%C(green)%ci%C(reset))\" --date=\"format:yyyy-MM-dd HH:mm\"
