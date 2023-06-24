@@ -35,7 +35,7 @@ function main() {
     install coreutils findutils
     install bash bash-completion2
     install the_silver_searcher
-    # install tree
+    install tree
     # install tmux
 
     # Git
