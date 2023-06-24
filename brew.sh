@@ -49,30 +49,39 @@ function main() {
 
     # iOS dependency managers
     # install carthage
+    # install cocoapods
+    # install swift-outdated
 
     # Code quality
     install swiftlint
+    # install swiftformat
     # install tokei
     # install cloc
     # install danger/tap/danger-js
+    # install shellcheck
 
     # Programming languages and runtimes
     # install go
     # install node npm
     # install jenv
 
+    # Database utilities
+    # install mongosh
+    # install jq
+
     # Networking utilities
     # install masscan nmap
-
-    # Data processing
-    # install jq
 
     # Other useful binaries
     # install unrar
     # install p7zip
 
+    # CI/CD
+    # install circleci
+
     # Containers and orchestration
-    # install docker-completion
+    # install docker docker-completion docker-compose
+    # install colima
 
     clean_up
 }
