@@ -53,7 +53,7 @@ function main() {
     # install swift-outdated
 
     # Code quality
-    install swiftlint
+    # install swiftlint
     # install swiftformat
     # install tokei
     # install cloc
