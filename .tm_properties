@@ -35,6 +35,11 @@ tabSize = 4
 spellChecking = true
 softWrap = true
 
+[ text.html.markdown ]
+spellChecking = true
+wrapColumn = 80
+softWrap = true
+
 [ source.swift ]
 tabSize = 4
 wrapColumn = 100
