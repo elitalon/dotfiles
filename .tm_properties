@@ -26,6 +26,7 @@ spellingLanguage = "en"
 tabSize = 2
 softTabs = true
 softWrap = false
+wrapColumn = "Use Window Frame"
 showInvisibles = false
 
 [ attr.untitled ]
