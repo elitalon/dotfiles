@@ -22,7 +22,7 @@ windowTitle = "$TM_DISPLAYNAME — ~/${CWD/^.*\///}${TM_DIRECTORY/${CWD}//}${TM_
 
 # Default editing preferences
 spellChecking = false
-spellingLanguage = "en"
+spellingLanguage = "en_GB"
 tabSize = 2
 softTabs = true
 softWrap = false
