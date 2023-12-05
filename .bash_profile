@@ -36,13 +36,17 @@ function path_contains() {
 # the paths defined here.
 ##########
 
-# HomeBrew binaries (always first). $(brew --prefix coreutils) replaced with
-# hardcoded path because it speeds up Bash startup.
-brew_gnu_programs="/usr/local/opt/coreutils/libexec/gnubin"
-command_exists brew \
-    && ! path_contains "${brew_gnu_programs}" \
-    && export PATH="${brew_gnu_programs}:/usr/local/bin:${PATH}"
-unset -f brew_gnu_programs
+# HomeBrew binaries (always first)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+for package in coreutils findutils
+do
+    package_path="/opt/homebrew/opt/${package}/libexec/gnubin"
+    command_exists brew \
+        && ! path_contains "${package_path}" \
+        && export PATH="${package_path}:${PATH}"
+unset -f package_path
+done
 
 # pyenv binaries
 if command_exists pyenv; then
@@ -51,7 +55,6 @@ if command_exists pyenv; then
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
 fi
-# command_exists pyenv && eval "$(pyenv init -)"
 
 # rbenv binaries
 command_exists rbenv && eval "$(rbenv init -)"
@@ -287,8 +290,8 @@ alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/La
 [[ -r /etc/bash_completion ]] && source /etc/bash_completion
 
 # Homebrew-based bash commands
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-bash_autocompletion="/usr/local/etc/profile.d/bash_completion.sh"
+export BASH_COMPLETION_COMPAT_DIR="/opt/homebrew/etc/bash_completion.d"
+bash_autocompletion="/opt/homebrew/etc/profile.d/bash_completion.sh"
 [[ -r "${bash_autocompletion}" ]] && . "${bash_autocompletion}"
 unset -f bash_autocompletion
 
