@@ -124,7 +124,8 @@ function tune_vscode() {
 }
 
 function add_homebrewed_bash() {
-    local bash_path=/usr/local/bin/bash
+    local bash_path=/opt/homebrew/bin/bash
+
     if ! fgrep -q "${bash_path}" /etc/shells; then
         echo "${bash_path}" | sudo tee -a /etc/shells
         chsh -s ${bash_path}
