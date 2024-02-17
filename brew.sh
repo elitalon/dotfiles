@@ -37,15 +37,16 @@ function main() {
     install the_silver_searcher
     install tree
     # install tmux
+    install difftastic
 
     # Git
-    install git gh
+    install git gh git-delta
 
     # Ruby environment
     install rbenv ruby-build
 
     # Python environment
-    # install pyenv
+    install pyenv
 
     # iOS dependency managers
     # install carthage
@@ -58,7 +59,7 @@ function main() {
     # install tokei
     # install cloc
     # install danger/tap/danger-js
-    # install shellcheck
+    install shellcheck
 
     # Programming languages and runtimes
     # install go
