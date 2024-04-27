@@ -1,67 +1,109 @@
 {
-    "editor.fontFamily": "Menlo, Monaco, monospace",
-    "editor.fontSize": 13,
-    "editor.formatOnType": true,
-    "editor.minimap.enabled": false,
-    "editor.parameterHints.cycle": true,
-    "editor.renderControlCharacters": false,
-    "editor.renderIndentGuides": false,
-    "editor.renderWhitespace": "none",
-    "editor.rulers": [80, 100],
-    "editor.scrollBeyondLastLine": false,
-    "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 120,
+  "editor.foldingImportsByDefault": true,
+  "editor.fontFamily": "Menlo, Monaco, monospace",
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.guides.indentation": false,
+  "editor.minimap.enabled": false,
+  "editor.minimap.maxColumn": 110,
+  "editor.parameterHints.cycle": true,
+  "editor.renderControlCharacters": false,
+  "editor.renderIndentGuides": false,
+  "editor.renderWhitespace": "none",
+  "editor.rulers": [80, 110],
+  "editor.scrollBeyondLastLine": true,
+  "editor.showFoldingControls": "always",
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 110,
 
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "files.associations": {
-        "Podfile": "ruby",
-        "Gemfile": "ruby",
-        "Vagrantfile": "ruby",
-        "*.podspec": "ruby"
-    },
-    "files.exclude": {
-        "**/venv": true,
-        "**/.vscode": true,
-        "**/.pytest_cache": true,
-        "**/.sass-cache": true
-    },
+  "files.autoSave": "onWindowChange",
+  "files.autoSaveWorkspaceFilesOnly": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.apns": "json",
+    "*.gpx": "xml",
+    "*.podspec": "ruby",
+    "apple-app-site-association": "json",
+    "Dangerfile": "ruby",
+    "Fastfile": "ruby",
+    "Gemfile": "ruby",
+    "Package.resolved": "json",
+    "Podfile": "ruby",
+    "Vagrantfile": "ruby"
+  },
+  "files.exclude": {
+    "**/venv": true,
+    "**/.vscode": true,
+    "**/.pytest_cache": true,
+    "**/.sass-cache": true
+  },
 
-    "workbench.startupEditor": "none",
-    "workbench.colorTheme": "Base16 Tomorrow Night",
-    "workbench.statusBar.feedback.visible": false,
-    "workbench.editor.labelFormat": "medium",
-    "workbench.editor.tabCloseButton": "left",
-    "workbench.editor.closeOnFileDelete": true,
-    "workbench.editor.openPositioning": "last",
-    "workbench.editor.revealIfOpen": true,
-    "workbench.settings.enableNaturalLanguageSearch": false,
+  "workbench.colorTheme": "Base16 Tomorrow Night",
+  "workbench.editor.closeOnFileDelete": true,
+  "workbench.editor.labelFormat": "medium",
+  "workbench.editor.openPositioning": "last",
+  "workbench.editor.revealIfOpen": true,
+  "workbench.editor.tabActionLocation": "left",
+  "workbench.editor.tabCloseButton": "left",
+  "workbench.enableExperiments": false,
+  "workbench.fontAliasing": "auto",
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "workbench.startupEditor": "none",
+  "workbench.statusBar.feedback.visible": false,
+  "workbench.tips.enabled": false,
 
-    "window.closeWhenEmpty": true,
+  "window.closeWhenEmpty": true,
+  "window.openFilesInNewWindow": "default",
+  "window.openFoldersInNewWindow": "on",
+  "window.systemColorTheme": "auto",
 
-    "explorer.decorations.colors": false,
+  "task.allowAutomaticTasks": "off",
 
-    "search.useGlobalIgnoreFiles": true,
+  "explorer.decorations.colors": false,
 
-    "extensions.closeExtensionDetailsOnViewChange": true,
+  "search.useGlobalIgnoreFiles": true,
 
-    "terminal.explorerKind": "external",
+  "extensions.closeExtensionDetailsOnViewChange": true,
 
-    "markdown.preview.fontSize": 13,
+  "terminal.explorerKind": "external",
 
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
+  "telemetry.telemetryLevel": "off",
 
-    "window.openFoldersInNewWindow": "on",
-    "window.openFilesInNewWindow": "default",
+  "git.countBadge": "tracked",
+  "git.ignoreLegacyWarning": true,
+  "git.ignoreLimitWarning": true,
+  "git.ignoreMissingGitWarning": true,
+  "git.inputValidationLength": 72,
 
-    "git.countBadge": "tracked",
-    "git.ignoreLegacyWarning": true,
-    "git.ignoreLimitWarning": true,
-    "git.ignoreMissingGitWarning": true,
+  "scm.diffDecorationsGutterWidth": 1,
+  "scm.diffDecorations": "gutter",
 
-    "scm.diffDecorationsGutterWidth": 1,
-    "scm.diffDecorations": "gutter"
+  "markdown.preview.fontSize": 13,
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[python]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "linting.enabled": true,
+    "linting.pylintEnabled": false,
+    "linting.flake8Enabled": true
+  },
+
+  "rubyLsp.formatter": "auto",
+
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "circleci.notifications.areActive": "no",
+  "circleci.filters.myPipelinesOnly": true
 }
