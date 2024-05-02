@@ -49,7 +49,6 @@
     excludesfile = ~/.gitignore
     editor = vim
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-    pager = delta
 
     # Make `git rebase` safer on macOS
     # http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
@@ -71,9 +70,6 @@
 [merge]
     log = true
     conflictStyle = zdiff3
-
-[interactive]
-    diffFilter = delta --color-only
 
 [credential]
     helper = osxkeychain
