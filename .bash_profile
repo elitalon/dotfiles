@@ -72,6 +72,7 @@ if command_exists jenv; then
     export PATH="${PATH}:${HOME}/.jenv/bin"
     eval "$(jenv init -)"
 fi
+export PATH="$PATH:/opt/apache-maven/bin"
 
 # Visual Studio Code
 vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
