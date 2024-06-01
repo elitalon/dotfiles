@@ -14,7 +14,7 @@
   "editor.rulers": [80, 110],
   "editor.scrollBeyondLastLine": true,
   "editor.showFoldingControls": "always",
-  "editor.wordWrap": "bounded",
+  "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 110,
 
   "files.autoSave": "onWindowChange",
@@ -82,6 +82,10 @@
   "scm.diffDecorations": "gutter",
 
   "markdown.preview.fontSize": 13,
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 80
+  },
 
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
