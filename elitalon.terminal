@@ -198,6 +198,8 @@
 	</data>
 	<key>ShouldLimitScrollback</key>
 	<integer>1</integer>
+	<key>ShouldRestoreContent</key>
+	<false/>
 	<key>ShowActiveProcessInTitle</key>
 	<true/>
 	<key>ShowCommandKeyInTitle</key>

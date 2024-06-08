@@ -1,7 +1,9 @@
 {
   "editor.foldingImportsByDefault": true,
-  "editor.fontFamily": "Menlo, Monaco, monospace",
+  "editor.fontFamily": "'CaskaydiaMonoNFM-SemiLight', Menlo, Monaco, monospace",
+  "editor.fontLigatures": false,
   "editor.fontSize": 13,
+  "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.guides.indentation": false,

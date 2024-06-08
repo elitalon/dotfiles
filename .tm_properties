@@ -15,7 +15,7 @@ excludeDirectoriesInFolderSearch = "{$excludeDirectoriesInFolderSearch,caches,lo
 excludeSCMDeleted = true
 
 # Appearance
-fontName = "Menlo"
+fontName = "CaskaydiaMonoNFM-SemiLight"
 fontSize = 13
 theme = "F96223EB-1A60-4617-92F3-D24D4F13DB09"
 windowTitle = "$TM_DISPLAYNAME — ~/${CWD/^.*\///}${TM_DIRECTORY/${CWD}//}${TM_SCM_BRANCH:+ [$TM_SCM_BRANCH]}"
