@@ -136,9 +136,9 @@ function tune_xcode() {
     find "${script_directory}" -iname '*.xccolortheme' -exec cp {} "${user_data_themes_directory}" \;
 
     # Enable additional counterpart extensions
-    defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes \
-        -array-add "ViewModel" "View" "DataSource" "ViewData"
     # To disable: defaults delete com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes
+    defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes \
+        -array-add "ViewModel" "View" "DataSource" "ViewData" "Tests"
 }
 
 function tune_textmate() {
