@@ -115,7 +115,7 @@ function install_dotfiles() {
         --human-readable \
         --progress \
         --verbose \
-        "${source_directory}" "${destination_directory}"
+        "${source_directory}/" "${destination_directory}"
 }
 
 function tune_xcode() {
