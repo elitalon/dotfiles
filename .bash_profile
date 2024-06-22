@@ -218,6 +218,9 @@ function decrypt() {
     echo "${input_file} decrypted successfully into ${output_file}";
 }
 
+# Private functions
+[[ -s "${HOME}/.private_functions" ]] && source "${HOME}/.private_functions"
+
 
 
 #################
