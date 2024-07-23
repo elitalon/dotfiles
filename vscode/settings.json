@@ -111,5 +111,8 @@
   },
 
   "circleci.notifications.areActive": "no",
-  "circleci.filters.myPipelinesOnly": true
+  "circleci.filters.myPipelinesOnly": true,
+
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "lldb.launch.expressions": "native"
 }
