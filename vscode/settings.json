@@ -119,6 +119,9 @@
     "blanks-around-headings": {
       "lines_above": 1,
       "lines_below": 0
+    },
+    "no-duplicate-heading": {
+      "siblings_only": true
     }
   }
 }
