@@ -19,6 +19,7 @@ set showmatch       " Shows matching brackets when text indicator is over them
 set mat=2           " Tenths of a second to blink when matching brackets
 set colorcolumn=80  " Shows a vertical guide at give column
 set cursorline      " Highlights the current line
+set guicursor=      " Disable cursor customization, use terminal settings
 set number          " Shows line numbers
 set spelllang=en_gb " Sets the language of the spell checker
 filetype plugin on  " Loads plugins for file type
