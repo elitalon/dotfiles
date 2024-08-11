@@ -67,15 +67,13 @@ function install_fonts() {
         mkdir "${font_dir}"
     fi
 
-    for font_name in CascadiaMono FiraMono; do
+    # shellcheck disable=SC2043
+    for font_name in FiraMono; do
         echo "Install ${font_name} font"
-        curl -fLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"${font_name}".zip
+        curl -fsSLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"${font_name}".zip
         unzip "${font_name}.zip" -d "${font_name}"
 
         case "${font_name}" in
-            CascadiaMono)
-                cp -fv "${font_name}"/CaskaydiaMonoNerdFontMono*.ttf "$font_dir"
-                ;;
             FiraMono)
                 cp -fv "${font_name}"/FiraMonoNerdFontMono*.otf "$font_dir"
                 ;;
@@ -123,17 +121,17 @@ function tune_xcode() {
     defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
     local user_data_directory="$HOME/Library/Developer/Xcode/UserData/"
+    local xcode_dotfiles="${script_directory}/xcode"
 
-    # Add default breakpoints
+    # Add custom breakpoints
     local user_data_debugger_directory="${user_data_directory}xcdebugger"
     [[ ! -d "${user_data_debugger_directory}" ]] && mkdir -p "${user_data_debugger_directory}"
-    local custom_breakpoints_filename="xcode/Breakpoints_v2.xcbkptlist"
-    cp "${script_directory}/${custom_breakpoints_filename}" "${user_data_debugger_directory}"
+    cp "${xcode_dotfiles}/Breakpoints_v2.xcbkptlist" "${user_data_debugger_directory}"
 
     # Add custom themes
     local user_data_themes_directory="${user_data_directory}FontAndColorThemes"
     [[ ! -d "${user_data_themes_directory}" ]] && mkdir -p "${user_data_themes_directory}"
-    find "${script_directory}" -iname '*.xccolortheme' -exec cp {} "${user_data_themes_directory}" \;
+    find "${xcode_dotfiles}/themes" -iname '*.xccolortheme' -exec cp {} "${user_data_themes_directory}" \;
 
     # Enable additional counterpart extensions
     # To disable: defaults delete com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes
@@ -157,6 +155,44 @@ function tune_vscode() {
     done
 }
 
+function tune_intellij() {
+    local jetbrains_directory="$HOME/Library/Application Support/JetBrains/"
+    if [[ ! -d "${jetbrains_directory}" ]]; then
+        echo "IntelliJ IDEA doesn't seem to be installed."
+        return 2
+    fi
+
+    local current_jetbrains_directory
+    current_jetbrains_directory=$(find "$jetbrains_directory" -maxdepth 1 -type d -name "IdeaIC*" | sort -n | tail -n 1 | sed "s|^\./||")
+    if [[ -z "${current_jetbrains_directory}" ]]; then
+        echo "IntelliJ IDEA doesn't seem to be installed."
+        return 2
+    fi
+
+    local intellij_dotfiles="${script_directory}/intellij"
+
+    # Add custom keymaps
+    local jetbrains_keymaps_directory="${current_jetbrains_directory}/keymaps"
+    [[ ! -d "${jetbrains_keymaps_directory}" ]] && mkdir -p "${jetbrains_keymaps_directory}"
+    cp "${intellij_dotfiles}/keymaps/"*.xml "${jetbrains_keymaps_directory}"
+
+    # Install custom themes
+    open -na "IntelliJ IDEA.app" --args installPlugins com.github.menwhorust.tomorrownighttheme
+
+    # Add custom options
+    local jetbrains_options_directory="${current_jetbrains_directory}/options"
+    [[ ! -d "${jetbrains_options_directory}" ]] && mkdir -p "${jetbrains_options_directory}"
+    cp "${intellij_dotfiles}/options/"*.xml "${jetbrains_options_directory}"
+    cp "${intellij_dotfiles}/options/mac/"*.xml "${jetbrains_options_directory}"
+
+    # Install idea.sh CLI tool
+    local custom_binaries="/opt/bin"
+    [[ ! -d "${custom_binaries}" ]] && mkdir -p "${custom_binaries}"
+    echo "Installing idea CLI tool"
+    sudo cp "${script_directory}/idea.sh" "${custom_binaries}/idea"
+    sudo chown root:wheel "${custom_binaries}/idea"
+}
+
 function add_homebrewed_bash() {
     local bash_path=/opt/homebrew/bin/bash
 
@@ -178,6 +214,7 @@ function main() {
     tune_xcode
     tune_textmate
     tune_vscode
+    tune_intellij
     add_homebrewed_bash
 }
 
@@ -186,4 +223,6 @@ main
 # Disabling safe-mode is needed for sourcing bash_profile
 set +o nounset
 set +o errexit
+
+# shellcheck source=/dev/null
 source ~/.bash_profile

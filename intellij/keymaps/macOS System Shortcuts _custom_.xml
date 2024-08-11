@@ -1,0 +1,10 @@
+<keymap version="1" name="macOS System Shortcuts (custom)" parent="macOS System Shortcuts">
+  <action id="Diff.ApplyLeftSide" />
+  <action id="Diff.ApplyRightSide" />
+  <action id="NextTab">
+    <keyboard-shortcut first-keystroke="ctrl meta right" />
+  </action>
+  <action id="PreviousTab">
+    <keyboard-shortcut first-keystroke="ctrl meta left" />
+  </action>
+</keymap>
