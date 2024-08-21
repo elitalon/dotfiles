@@ -172,7 +172,7 @@
 		<key>xcode.syntax.comment.doc</key>
 		<string>Monaco - 13.0</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>FiraMonoNFM-Regular - 13.0</string>
+		<string>Monaco - 13.0</string>
 		<key>xcode.syntax.declaration.other</key>
 		<string>FiraMonoNFM-Medium - 13.0</string>
 		<key>xcode.syntax.declaration.type</key>
@@ -206,7 +206,7 @@
 		<key>xcode.syntax.mark</key>
 		<string>FiraMonoNFM-Bold - 13.0</string>
 		<key>xcode.syntax.markup.code</key>
-		<string>SFMono-Medium - 13.0</string>
+		<string>FiraMonoNFM-Medium - 13.0</string>
 		<key>xcode.syntax.number</key>
 		<string>FiraMonoNFM-Regular - 13.0</string>
 		<key>xcode.syntax.plain</key>
