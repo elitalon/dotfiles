@@ -105,7 +105,8 @@ function install_dotfiles() {
         --exclude "xcode/" \
         --exclude "textmate/" \
         --exclude "vscode/" \
-        --exclude "editor_themes/" \
+        --exclude "intellij/" \
+        --exclude "idea.sh" \
         --recursive \
         --links \
         --perms \
