@@ -195,6 +195,10 @@ if has("autocmd")
 
         " Open the existing NERDTree on each new tab.
         au BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+        " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+        au BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+            \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
     catch
     endtry
 endif
@@ -206,8 +210,19 @@ endif
 try
     let g:NERDTreeShowHidden=1 " Shows hidden files in NerdTree
     let g:NERDTreeNodeDelimiter="\u00a0" " Fixes node delimiter on Mac
+    let g:NERDTreeMouseMode=2
+    let g:NERDTreeIgnore = ['\.DS_Store']
 
     " Uses Ctrl+O to toggle NerdTree
     map <C-O> :NERDTreeToggle<CR>
+
+    if has("autocmd")
+        augroup MouseInNERDTreeOnly
+            autocmd!
+            au BufEnter NERD_tree_* set mouse=a
+            au BufLeave NERD_tree_* set mouse=
+        augroup END
+        set mouse=
+    endif
 catch
 endtry
