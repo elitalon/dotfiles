@@ -42,9 +42,6 @@
 [apply]
     whitespace = fix
 
-[branch]
-    sort = -committerdate
-
 [core]
     excludesfile = ~/.gitignore
     editor = vim
@@ -65,11 +62,17 @@
     renames = copies
     algorithm = histogram
     colorMoved = default
+    colorMovedWS = allow-indentation-change
     tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 
 [merge]
     log = true
-    conflictStyle = zdiff3
 
 [credential]
     helper = osxkeychain
@@ -84,12 +87,18 @@
     default = simple
     followTags = true
 
+[rebase]
+    updateRefs = true
+
+[rerere]
+    enabled = true
+
 [fetch]
     prune = true
     prunetags = true
 
 [help]
-    autocorrect = 1
+    autocorrect = 10
 
 [advice]
     addIgnoredFile = false
