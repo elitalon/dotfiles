@@ -40,7 +40,7 @@ function main() {
     install difftastic
 
     # Git
-    install git gh git-delta
+    install git gh
 
     # Ruby environment
     install rbenv ruby-build
