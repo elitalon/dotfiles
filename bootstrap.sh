@@ -138,6 +138,9 @@ function tune_xcode() {
     # To disable: defaults delete com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes
     defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes \
         -array-add "ViewModel" "View" "DataSource" "ViewData" "Tests"
+
+    # Avoid creating a default set of devices
+    defaults write com.apple.CoreSimulator EnableDefaultSetCreation -bool NO
 }
 
 function tune_textmate() {
