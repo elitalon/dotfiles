@@ -173,21 +173,8 @@ function tune_intellij() {
         return 2
     fi
 
-    local intellij_dotfiles="${script_directory}/intellij"
-
-    # Add custom keymaps
-    local jetbrains_keymaps_directory="${current_jetbrains_directory}/keymaps"
-    [[ ! -d "${jetbrains_keymaps_directory}" ]] && mkdir -p "${jetbrains_keymaps_directory}"
-    cp "${intellij_dotfiles}/keymaps/"*.xml "${jetbrains_keymaps_directory}"
-
     # Install custom themes
-    open -na "IntelliJ IDEA.app" --args installPlugins com.github.menwhorust.tomorrownighttheme
-
-    # Add custom options
-    local jetbrains_options_directory="${current_jetbrains_directory}/options"
-    [[ ! -d "${jetbrains_options_directory}" ]] && mkdir -p "${jetbrains_options_directory}"
-    cp "${intellij_dotfiles}/options/"*.xml "${jetbrains_options_directory}"
-    cp "${intellij_dotfiles}/options/mac/"*.xml "${jetbrains_options_directory}"
+    # open -na "IntelliJ IDEA.app" --args installPlugins com.github.menwhorust.tomorrownighttheme
 
     # Install idea.sh CLI tool
     local custom_binaries="/opt/bin"
