@@ -88,6 +88,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Additional add-on packages
 export PATH="$PATH:/opt/bin"
+export PATH="$PATH:${HOME}/.local/bin"
 
 
 
