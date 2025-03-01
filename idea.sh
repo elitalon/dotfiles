@@ -1,3 +1,3 @@
 #!/bin/sh
 
-open -na "IntelliJ IDEA.app" --args "$@"
+open -na "IntelliJ IDEA CE.app" --args "$@"
