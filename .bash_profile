@@ -120,6 +120,9 @@ export EDITOR=vim
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 
+# Make Java use English
+export JAVA_TOOL_OPTIONS='-Duser.language=en -Duser.country=CH'
+
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
 
