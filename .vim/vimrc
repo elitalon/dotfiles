@@ -70,6 +70,9 @@ set smartcase  " ...unless they contain at least one capital letter
 " Toggle hlsearch with <leader>hs
 nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
+" Replace current word with yanked text
+nmap cy "_diwP
+
 
 ""
 "" listchars (reveals invisible characters)
