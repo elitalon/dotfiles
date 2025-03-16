@@ -196,24 +196,12 @@ function add_homebrewed_bash() {
 function main() {
     satisfy_requirements || exit 2
 
-    local include_fonts=
-    while getopts ":-:" opt "$@"; do
-        case $opt in
-            -)
-                case "${OPTARG}" in
-                    fonts) include_fonts=1 ;;
-                esac
-                ;;
-            \?) echo "Unrecognized option: -$OPTARG"; exit 3 ;;
-        esac
-    done
-
     cd "${script_directory}"
 
     download_dotfiles
     update_ssh_config
     install_dotfiles
-    [ "$include_fonts" == "1" ] && install_fonts
+    install_fonts
     tune_xcode
     tune_textmate
     tune_vscode
