@@ -173,9 +173,6 @@ function tune_intellij() {
         return 2
     fi
 
-    # Install custom themes
-    # open -na "IntelliJ IDEA.app" --args installPlugins com.github.menwhorust.tomorrownighttheme
-
     # Install idea.sh CLI tool
     local custom_binaries="/opt/bin"
     [[ ! -d "${custom_binaries}" ]] && mkdir -p "${custom_binaries}"
