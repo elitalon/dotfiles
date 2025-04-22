@@ -190,6 +190,12 @@ function add_homebrewed_bash() {
     fi
 }
 
+function add_trash_symbolic_link() {
+    local uppercase_trash="$HOME/.Trash"
+    local lowercase_trash="$HOME/.trash"
+    [[ ! -f "${lowercase_trash}" ]] && ln -s "${uppercase_trash}" "${lowercase_trash}"
+}
+
 function main() {
     satisfy_requirements || exit 2
 
@@ -204,6 +210,7 @@ function main() {
     tune_vscode
     tune_intellij
     add_homebrewed_bash
+    add_trash_symbolic_link
 }
 
 main "$@"
