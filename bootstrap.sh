@@ -10,6 +10,10 @@ function command_exists() {
     [[ -n "$1" ]] && command -v "$1" 1>/dev/null 2>&1
 }
 
+function append_newline() {
+    [[ -z ${1+} ]] && [[ -f $1 ]] && [[ -w $1 ]] && echo >> "$1"
+}
+
 function satisfy_requirements() {
     command_exists brew \
         || { echo "Error: missing Homebrew installation"; return 2; }
@@ -17,22 +21,29 @@ function satisfy_requirements() {
         || { echo "Error: missing truncate (install coreutils)"; return 2; }
 }
 
-function download_dotfiles() {
-    [[ -n "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)" ]] \
-        && echo "Error: Git repository is dirty. Commit or discard your changes to continue." \
-        && exit 2
+function print_step_header() {
+    local command=${1:-}
+    local header_size="$(("${#command}" + 3))"
 
-    echo "Pulling changes from repository."
-    git pull
+    echo -e
+    echo -e "\033[93m*\e[${header_size}b\e[0m"
+    echo -e "\033[93m* ${command} *\e[0m"
+    echo -e "\033[93m*\e[${header_size}b\e[0m"
 }
 
-function append_newline() {
-    [[ -z ${1+} ]] && [[ -f $1 ]] && [[ -w $1 ]] && echo >> "$1"
+function download_dotfiles() {
+    print_step_header "Downloading dotfiles"
+
+    [[ -n "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)" ]] \
+        && echo "${tab}Error: Git repository is dirty. Commit or discard your changes to continue." \
+        && exit 2
+
+    git pull
 }
 
 function update_ssh_config() {
     local ssh_home="${HOME}/.ssh"
-    echo "Updating SSH config at ${ssh_home}"
+    print_step_header "Updating SSH config at ${ssh_home}"
 
     local ssh_config="${ssh_home}/config"
     truncate -s 0 "${ssh_config}"
@@ -60,6 +71,7 @@ function update_ssh_config() {
 }
 
 function install_fonts() {
+    print_step_header "Installing custom fonts"
     cd ~/Downloads
 
     local font_dir="$HOME/Library/Fonts/NerdFonts"
@@ -69,7 +81,7 @@ function install_fonts() {
 
     # shellcheck disable=SC2043
     for font_name in FiraMono; do
-        echo "Install ${font_name} font"
+        echo "Installing ${font_name} font"
         curl -fsSLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"${font_name}".zip
         unzip "${font_name}.zip" -d "${font_name}"
 
@@ -86,7 +98,7 @@ function install_fonts() {
 }
 
 function install_dotfiles() {
-    echo "Updating dotfiles in ${HOME}"
+    print_step_header "Updating dotfiles in ${HOME}"
 
     local source_directory="${script_directory}"
     local destination_directory="${HOME}"
@@ -118,6 +130,8 @@ function install_dotfiles() {
 }
 
 function tune_xcode() {
+    print_step_header "Tuning Xcode"
+
     # Show how long it takes to build a project
     defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
@@ -144,6 +158,8 @@ function tune_xcode() {
 }
 
 function tune_textmate() {
+    print_step_header "Tuning TextMate"
+
     local user_directory="$HOME/Library/Application Support/TextMate/"
     mkdir -p "${user_directory}"
 
@@ -151,6 +167,8 @@ function tune_textmate() {
 }
 
 function tune_vscode() {
+    print_step_header "Tuning VS Code"
+
     local user_directory="$HOME/Library/Application Support/Code/User/"
     mkdir -p "${user_directory}"
 
@@ -160,6 +178,8 @@ function tune_vscode() {
 }
 
 function tune_intellij() {
+    print_step_header "Tuning IntelliJ IDEA"
+
     local jetbrains_directory="$HOME/Library/Application Support/JetBrains/"
     if [[ ! -d "${jetbrains_directory}" ]]; then
         echo "IntelliJ IDEA doesn't seem to be installed."
@@ -176,12 +196,13 @@ function tune_intellij() {
     # Install idea.sh CLI tool
     local custom_binaries="/opt/bin"
     [[ ! -d "${custom_binaries}" ]] && mkdir -p "${custom_binaries}"
-    echo "Installing idea CLI tool"
     sudo cp "${script_directory}/idea.sh" "${custom_binaries}/idea"
     sudo chown root:wheel "${custom_binaries}/idea"
 }
 
 function add_homebrewed_bash() {
+    print_step_header "Adding Homebrew version of Bash"
+
     local bash_path=/opt/homebrew/bin/bash
 
     if ! grep -F -q "${bash_path}" /etc/shells; then
@@ -191,8 +212,10 @@ function add_homebrewed_bash() {
 }
 
 function add_trash_symbolic_link() {
-    local uppercase_trash="$HOME/.Trash"
-    local lowercase_trash="$HOME/.trash"
+    print_step_header "Adding symbolic link to ~/.Trash"
+
+    local lowercase_trash="${HOME}/.trash"
+    local uppercase_trash="${HOME}/.Trash"
     [[ ! -f "${lowercase_trash}" ]] && ln -s "${uppercase_trash}" "${lowercase_trash}"
 }
 
