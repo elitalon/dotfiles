@@ -7,3 +7,6 @@
 [submodule ".vim/pack/elitalon/start/ack"]
 	path = .vim/pack/elitalon/start/ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule ".vim/pack/elitalon/start/rust.vim"]
+	path = .vim/pack/elitalon/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim
