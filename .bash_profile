@@ -86,6 +86,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+# Rust environment
+rust_cargo_path="${HOME}/.cargo"
+[ -d "${rust_cargo_path}" ] && \. "${rust_cargo_path}/env"
+unset -f rust_cargo_path
+
 # Additional add-on packages
 export PATH="$PATH:/opt/bin"
 export PATH="$PATH:${HOME}/.local/bin"
