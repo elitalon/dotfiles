@@ -32,7 +32,7 @@
     # Maintenance
     prune-remote = "!f() { git remote | xargs git remote prune; }; f"
     sync = "!f() { git pull && git prune-remote; }; f"
-    sync-submodules = "!f() git sm foreach --recursive git sync"
+    sync-submodules = "!f() { git submodule foreach --recursive git sync; }; f"
 
     # Stats
     tags = tag -ln
