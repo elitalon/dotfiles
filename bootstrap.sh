@@ -216,7 +216,7 @@ function add_trash_symbolic_link() {
 
     local lowercase_trash="${HOME}/.trash"
     local uppercase_trash="${HOME}/.Trash"
-    [[ ! -f "${lowercase_trash}" ]] && ln -s "${uppercase_trash}" "${lowercase_trash}"
+    [[ ! -h "${lowercase_trash}" ]] && ln -s "${uppercase_trash}" "${lowercase_trash}"
 }
 
 function main() {
