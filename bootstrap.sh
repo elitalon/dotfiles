@@ -6,6 +6,23 @@ set -o errexit
 script_directory=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 readonly script_directory
 
+function fail() {
+    local message=${1:-"Error"}
+    local code=${2:-1}
+
+    if [[ $code -eq 0 ]]; then
+        code=1
+    fi
+
+    echo -e "\033[91m${message}\e[0m"
+    exit "$code"
+}
+
+function log() {
+    local message=${1:-}
+    echo -e "\033[93m${message}\e[0m"
+}
+
 function command_exists() {
     [[ -n "$1" ]] && command -v "$1" 1>/dev/null 2>&1
 }
@@ -15,10 +32,8 @@ function append_newline() {
 }
 
 function satisfy_requirements() {
-    command_exists brew \
-        || { echo "Error: missing Homebrew installation"; return 2; }
-    command_exists truncate \
-        || { echo "Error: missing truncate (install coreutils)"; return 2; }
+    command_exists brew || fail "Missing Homebrew installation"
+    command_exists truncate || fail "Missing truncate (install coreutils)"
 }
 
 function print_step_header() {
@@ -26,17 +41,16 @@ function print_step_header() {
     local header_size="$(("${#command}" + 3))"
 
     echo -e
-    echo -e "\033[93m*\e[${header_size}b\e[0m"
-    echo -e "\033[93m* ${command} *\e[0m"
-    echo -e "\033[93m*\e[${header_size}b\e[0m"
+    echo -e "\033[92m*\e[${header_size}b\e[0m"
+    echo -e "\033[92m* ${command} *\e[0m"
+    echo -e "\033[92m*\e[${header_size}b\e[0m"
 }
 
 function download_dotfiles() {
     print_step_header "Downloading dotfiles"
 
     [[ -n "$(command git status --porcelain --ignore-submodules -unormal 2> /dev/null)" ]] \
-        && echo "${tab}Error: Git repository is dirty. Commit or discard your changes to continue." \
-        && exit 2
+        && fail "Error: Git repository is dirty. Commit or discard your changes to continue."
 
     git pull
 }
@@ -81,7 +95,7 @@ function install_fonts() {
 
     # shellcheck disable=SC2043
     for font_name in FiraMono; do
-        echo "Installing ${font_name} font"
+        log "Installing ${font_name} font"
         curl -fsSLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"${font_name}".zip
         unzip "${font_name}.zip" -d "${font_name}"
 
@@ -119,6 +133,7 @@ function install_dotfiles() {
         --exclude "vscode/" \
         --exclude "intellij/" \
         --exclude "idea.sh" \
+        --exclude "mkscript.sh" \
         --recursive \
         --links \
         --perms \
@@ -177,29 +192,6 @@ function tune_vscode() {
     done
 }
 
-function tune_intellij() {
-    print_step_header "Tuning IntelliJ IDEA"
-
-    local jetbrains_directory="$HOME/Library/Application Support/JetBrains/"
-    if [[ ! -d "${jetbrains_directory}" ]]; then
-        echo "IntelliJ IDEA doesn't seem to be installed."
-        return 2
-    fi
-
-    local current_jetbrains_directory
-    current_jetbrains_directory=$(find "$jetbrains_directory" -maxdepth 1 -type d -name "IdeaIC*" | sort -n | tail -n 1 | sed "s|^\./||")
-    if [[ -z "${current_jetbrains_directory}" ]]; then
-        echo "IntelliJ IDEA doesn't seem to be installed."
-        return 2
-    fi
-
-    # Install idea.sh CLI tool
-    local custom_binaries="/opt/bin"
-    [[ ! -d "${custom_binaries}" ]] && mkdir -p "${custom_binaries}"
-    sudo cp "${script_directory}/idea.sh" "${custom_binaries}/idea"
-    sudo chown root:wheel "${custom_binaries}/idea"
-}
-
 function add_homebrewed_bash() {
     print_step_header "Adding Homebrew version of Bash"
 
@@ -216,11 +208,39 @@ function add_trash_symbolic_link() {
 
     local lowercase_trash="${HOME}/.trash"
     local uppercase_trash="${HOME}/.Trash"
-    [[ ! -h "${lowercase_trash}" ]] && ln -s "${uppercase_trash}" "${lowercase_trash}"
+    if [[ -h "${lowercase_trash}" ]]; then
+        log "Symlink to ${uppercase_trash} already exists"
+    else
+        ln -s "${uppercase_trash}" "${lowercase_trash}"
+    fi
+}
+
+function install_custom_scripts() {
+    print_step_header "Installing custom scripts"
+
+    local custom_binaries="/opt/bin"
+    if [[ ! -d "${custom_binaries}" ]]; then
+        fail "Target directory ${custom_binaries} does not exist."
+    fi
+
+    sudo -v
+    for script in mkscript.sh idea.sh; do
+        if [[ ! -e "${script_directory}/${script}" ]]; then
+            log "Script ${script} does not exist in ${script_directory}"
+        else
+            local target
+            target="${custom_binaries}/$(basename -- "${script}" .sh)"
+
+            log "Installing ${target}"
+            sudo cp "${script_directory}/${script}" "${target}"
+            sudo chown root:wheel "${target}"
+        fi
+    done
+    sudo -k
 }
 
 function main() {
-    satisfy_requirements || exit 2
+    satisfy_requirements
 
     cd "${script_directory}"
 
@@ -231,9 +251,9 @@ function main() {
     tune_xcode
     tune_textmate
     tune_vscode
-    tune_intellij
     add_homebrewed_bash
     add_trash_symbolic_link
+    install_custom_scripts
 }
 
 main "$@"
