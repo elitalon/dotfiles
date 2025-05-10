@@ -158,17 +158,27 @@ export BASH_SILENCE_DEPRECATION_WARNING=1;
 # Opens Xcode workspace in current directory
 function xcode() {
     local XED=xed
+
     local workspace=$(find . -maxdepth 1 -type d -name *.xcworkspace -print -quit)
-    if [[ -z "${workspace}" ]]; then
-        local project=$(find . -maxdepth 1 -type d -name *.xcodeproj -print -quit)
-        if [[ -z "${workspace}" ]]; then
-            ${XED} "${project}"
-        else
-            echo "Xcode workspace or project not found"
-        fi
-    else
+    if [[ -d "${workspace}" ]]; then
         ${XED} "${workspace}"
+        return
     fi
+
+    local project=$(find . -maxdepth 1 -type d -name *.xcodeproj -print -quit)
+    if [[ -d "${project}" ]]; then
+        ${XED} "${project}"
+        return
+    fi
+
+    local package=$(find . -maxdepth 1 -type f -name Package.swift -print -quit)
+    if [[ -f "${package}" ]]; then
+        ${XED} "${package}"
+        return
+    fi
+
+    echo "Xcode workspace, project or package not found"
+    return 1
 }
 
 function encrypt() {
