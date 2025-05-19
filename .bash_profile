@@ -95,6 +95,10 @@ unset -f rust_cargo_path
 export PATH="$PATH:/opt/bin"
 export PATH="$PATH:${HOME}/.local/bin"
 
+# SDKMAN
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 
 
 ########
