@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
 
-# -u, treat unset variables and parameters as an error
 set -o nounset
-
-# -e, exit immediately if a pipeline returns a non-zero status
 set -o errexit
-
-# The return value of a pipeline is the value of the last (rightmost) command
-# to exit with a non-zero status, or zero if all commands in the pipeline exit
-# successfully
 set -o pipefail
 
 function fail() {
@@ -19,13 +12,23 @@ function fail() {
         code=1
     fi
 
-    echo -e "\033[91m${message} (${code})\e[0m"
+    warn "${message} (${code})"
     exit "$code"
 }
 
-function log() {
+function warn() {
+    local message=${1:-}
+    echo -e "\033[91m${message}\e[0m"
+}
+
+function notice() {
     local message=${1:-}
     echo -e "\033[93m${message}\e[0m"
+}
+
+function info() {
+    local message=${1:-}
+    echo -e "${message}"
 }
 
 function make_template() {
@@ -33,7 +36,7 @@ function make_template() {
     [[ -z "${filename}" ]] && fail "missing filename" 2
     [[ -e "${filename}" ]] && fail "${filename} already exists" 3
 
-    log "Creating ${filename}"
+    info "Creating ${filename}"
     touch "${filename}"
 
     cat << 'END_OF_TEMPLATE' > "${filename}"
@@ -51,8 +54,8 @@ set -o errexit
 set -o pipefail
 
 
-script_directory=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
-readonly script_directory
+SCRIPT_DIRECTORY=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+readonly SCRIPT_DIRECTORY
 
 function fail() {
     local message=${1:-"Error"}
@@ -62,20 +65,30 @@ function fail() {
         code=1
     fi
 
-    echo -e "\033[91m${message} (${code})\e[0m"
+    warn "${message} (${code})"
     exit "$code"
 }
 
-function log() {
+function warn() {
+    local message=${1:-}
+    echo -e "\033[91m${message}\e[0m"
+}
+
+function notice() {
     local message=${1:-}
     echo -e "\033[93m${message}\e[0m"
+}
+
+function info() {
+    local message=${1:-}
+    echo -e "${message}"
 }
 
 #############################
 # Write your functions here #
 #############################
 function hello_world() {
-    echo "Hello, world!"
+    info "Hello, world!"
 }
 
 function main() {
@@ -88,14 +101,14 @@ function main() {
 main "$@"
 END_OF_TEMPLATE
 
-    log "Making ${filename} executable"
+    info "Making ${filename} executable"
     chmod 0755 "${filename}"
 
-    log "Executing ${filename}"
+    info "Executing ${filename}"
     # shellcheck source=/dev/null
     . "${filename}"
 
-    log "Done!"
+    info "Done!"
 }
 
 function main() {
