@@ -134,6 +134,7 @@ function install_dotfiles() {
         --exclude "intellij/" \
         --exclude "idea.sh" \
         --exclude "mkscript.sh" \
+        --exclude "install_script.sh" \
         --recursive \
         --links \
         --perms \
