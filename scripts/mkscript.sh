@@ -47,6 +47,9 @@ function make_template() {
 
     info "Making ${filename} executable"
     chmod 0755 "${filename}"
+
+    info "Moving ${filename} to bin/ directory"
+    mv "${filename}" bin/
 }
 
 ###
