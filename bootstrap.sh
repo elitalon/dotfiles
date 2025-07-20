@@ -133,8 +133,7 @@ function install_dotfiles() {
         --exclude "vscode/" \
         --exclude "intellij/" \
         --exclude "idea.sh" \
-        --exclude "mkscript.sh" \
-        --exclude "install_script.sh" \
+        --exclude "scripts/" \
         --recursive \
         --links \
         --perms \
