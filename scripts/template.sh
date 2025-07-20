@@ -12,7 +12,7 @@ fi
 # Constants
 ###
 SCRIPT_DIRECTORY=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
-PROGRAM_NAME="$(basename "${0:-int2hex}")"
+PROGRAM_NAME="$(basename "${0:-__PROGRAM_NAME__}")"
 readonly SCRIPT_DIRECTORY PROGRAM_NAME
 
 ###
