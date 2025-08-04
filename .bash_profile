@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 ##########
 # HELPERS
 #
@@ -82,9 +84,16 @@ vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 unset -f vscode_path
 
 # NVM environment
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+export PNPM_HOME="${HOME}/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 
 # Rust environment
 rust_cargo_path="${HOME}/.cargo"
