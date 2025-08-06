@@ -10,3 +10,6 @@
 [submodule ".vim/pack/elitalon/start/rust.vim"]
 	path = .vim/pack/elitalon/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

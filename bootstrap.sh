@@ -117,23 +117,7 @@ function install_dotfiles() {
     local source_directory="${script_directory}"
     local destination_directory="${HOME}"
     rsync \
-        --exclude "elitalon.terminal" \
-        --exclude "brew.sh" \
-        --exclude "macos.sh" \
-        --exclude ".git/" \
-        --exclude ".idea/" \
-        --exclude ".gitmodules" \
-        --exclude ".DS_Store" \
-        --exclude "bootstrap.sh" \
-        --exclude "README.md" \
-        --exclude "LICENSE" \
-        --exclude ".ssh/config*" \
-        --exclude "xcode/" \
-        --exclude "textmate/" \
-        --exclude "vscode/" \
-        --exclude "intellij/" \
-        --exclude "idea.sh" \
-        --exclude "scripts/" \
+        --exclude-from=rsync.filters \
         --recursive \
         --links \
         --perms \
