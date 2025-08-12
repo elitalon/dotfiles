@@ -190,6 +190,11 @@ function add_homebrewed_bash() {
 function add_trash_symbolic_link() {
     print_step_header "Adding symbolic link to ~/.Trash"
 
+    if [[ -e "${PWD^^}" ]]; then
+        log "Skipping symbolic link, filesystem is case insensitive"
+        return 0
+    fi
+
     local lowercase_trash="${HOME}/.trash"
     local uppercase_trash="${HOME}/.Trash"
     if [[ -h "${lowercase_trash}" ]]; then
