@@ -81,8 +81,8 @@ function set_up_finder() {
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
     defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
-    echo "Show the ~/Library folder"
-    chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+    # echo "Show the ~/Library folder"
+    # chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 }
 
 function set_up_dock() {
