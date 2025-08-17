@@ -3,6 +3,8 @@
 set -o nounset
 set -o errexit
 
+SCRIPT_DIRECTORY=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+readonly SCRIPT_DIRECTORY
 
 function set_up_system() {
     echo "Create Projects directory in $HOME"
@@ -11,39 +13,47 @@ function set_up_system() {
     echo "Restart automatically if the computer freezes"
     sudo systemsetup -setrestartfreeze on
 
-    echo "Set a blazingly fast keyboard repeat rate"
-    defaults write NSGlobalDomain KeyRepeat -int 1
-    defaults write NSGlobalDomain InitialKeyRepeat -int 10
-
-    echo "Set languages"
-    defaults write NSGlobalDomain AppleLanguages -array "en" "es" "de"
-
     echo "Require a password immediately after sleep or screen saver begins"
     defaults write com.apple.screensaver askForPassword -int 1
     defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-    echo "Save screenshots in PNG format"
-    defaults write com.apple.screencapture type -string "png"
+    echo "Restart automatically on power loss"
+    sudo pmset -a autorestart 1
 
-    echo "Disable shadow in screenshots"
-    defaults write com.apple.screencapture disable-shadow -bool true
+    echo "Restart automatically if the computer freezes"
+    sudo systemsetup -setrestartfreeze on
 
-    echo "Enable subpixel font rendering on non-Apple LCDs"
-    defaults write NSGlobalDomain AppleFontSmoothing -int 1
+    echo "Set languages"
+    defaults write NSGlobalDomain AppleLanguages -array "de" "en" "es"
+    defaults write NSGlobalDomain AppleLocale -string "de_CH"
 
-    echo "Enable drag on windows gesture"
-    defaults write -g NSWindowShouldDragOnGesture -bool true
+    echo "Show language menu in the top right corner of the boot screen"
+    sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
 
     echo "Increase sound quality for Bluetooth headphones/headsets"
     defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+    echo "Enable full keyboard access for all controls"
+    defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+    echo "Set a blazingly fast keyboard repeat rate"
+    defaults write NSGlobalDomain KeyRepeat -int 1
+    defaults write NSGlobalDomain InitialKeyRepeat -int 10
 }
 
 function set_up_finder() {
     echo "Enable transparency in menu bar"
     defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
 
-    echo "Set sidebar icon size to small"
-    defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+    echo "Set sidebar icon size to medium"
+    defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+    echo "Show scrollbars when scrolling"
+    defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+
+    # echo "Use scroll gesture with the Ctrl (^) modifier key to zoom"
+    # defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+    # defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
     echo "Disable the over-the-top focus ring animation"
     defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
@@ -65,6 +75,12 @@ function set_up_finder() {
     echo "Quit printer app automatically once the print jobs complete"
     defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
+    # Disable the "Are you sure you want to open this application" dialog
+    # defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+    # Disable Resume system-wide
+    defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
     echo "Do not show all filename extensions"
     defaults write NSGlobalDomain AppleShowAllExtensions -bool false
 
@@ -83,6 +99,26 @@ function set_up_finder() {
 
     # echo "Show the ~/Library folder"
     # chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
+    echo "Save screenshots in PNG format"
+    defaults write com.apple.screencapture type -string "png"
+
+    echo "Disable shadow in screenshots"
+    defaults write com.apple.screencapture disable-shadow -bool true
+
+    echo "Enable subpixel font rendering on non-Apple LCDs"
+    defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+    echo "Enable snap-to-grid for icons"
+    /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+    /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+    /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+    echo "Enable AirDrop over Ethernet"
+    defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
+    echo "Enable drag on windows gesture"
+    defaults write -g NSWindowShouldDragOnGesture -bool true
 }
 
 function set_up_dock() {
@@ -136,6 +172,9 @@ function set_up_terminal() {
 
     echo "Disable the annoying line marks in Terminal"
     defaults write com.apple.Terminal ShowLineMarks -int 0
+
+    echo "Install custom Terminal profile"
+    open "${SCRIPT_DIRECTORY}/elitalon.terminal"
 }
 
 function set_up_activity_monitor() {
@@ -167,27 +206,52 @@ function set_up_photos() {
     defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 }
 
+function set_up_transmission() {
+    echo "Use '~/Downloads' to store completed downloads in Transmission"
+    defaults write org.m0k.transmission DownloadLocationConstant -bool true
+
+    echo "Trash original torrent files in Transmission"
+    defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+
+    echo "Randomize Tranmission's port on launch"
+    defaults write org.m0k.transmission RandomPort -bool true
+
+    echo "Set IP block list in Transmission"
+    # Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
+    defaults write org.m0k.transmission BlocklistNew -bool true
+    defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
+    defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
+}
+
 function kill_affected_applications() {
     for app in "Activity Monitor" \
         "cfprefsd" \
         "Dock" \
         "Finder" \
         "Photos" \
+        "Safari" \
+        "Terminal" \
+        "Transmission" \
         "SystemUIServer" \
         "Terminal"; do
         killall "${app}" &> /dev/null
     done
 }
 
-
 function main() {
     # Close any open System Preferences panes, to prevent them from overriding
     # settings we're about to change
     osascript -e 'tell application "System Preferences" to quit'
 
-    # Ask for the admin password upfront and keep it alive until we're done
+    # Ask for the admin password upfront
     sudo -v
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+    # Keep-alive: update existing `sudo` time stamp until we're done
+    while true; do
+        sudo -n true
+        sleep 60
+        kill -0 "$$" || exit
+    done 2> /dev/null &
 
     set_up_system
     set_up_finder
@@ -197,6 +261,7 @@ function main() {
     set_up_activity_monitor
     set_up_text_edit
     set_up_photos
+    set_up_transmission
     kill_affected_applications
 
     echo
