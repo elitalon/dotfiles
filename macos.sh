@@ -75,10 +75,10 @@ function set_up_finder() {
     echo "Quit printer app automatically once the print jobs complete"
     defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-    # Disable the "Are you sure you want to open this application" dialog
+    # echo "Disable the 'Are you sure you want to open this application' dialog"
     # defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-    # Disable Resume system-wide
+    echo "Disable Resume system-wide"
     defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
     echo "Do not show all filename extensions"
@@ -155,9 +155,9 @@ function set_up_desktop() {
     defaults write com.apple.dock wvous-tr-corner -int 4
     defaults write com.apple.dock wvous-tr-modifier -int 0
 
-    echo "Show icons for hard drives, servers, and removable media on the desktop"
+    echo "Configure icons for hard drives, servers, and removable media on the desktop"
+    defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
     defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-    defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
     defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
     defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 }
