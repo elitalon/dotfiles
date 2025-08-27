@@ -1,59 +1,48 @@
 # shellcheck shell=bash
 
-##########
-# HELPERS
+###########################################
+# HELPER FUNCTIONS
 #
-# These functions are only used inside .bash_profile and will be unset at the
-# very end.
-##########
+# Used here only and unset at the very end.
+###########################################
 
-# Returns whether a given command exists
 function command_exists() {
     [[ -n "$1" ]] && hash "$1" 1>/dev/null 2>&1
 }
 
-# Returns whether a given pattern exists in $PATH
-function path_contains() {
-    [[ -z "$1" ]] && return 1
+function prepend_path_directory() {
+    local directory=${1:-}
 
-    local IFS_BACKUP=${IFS}
-    IFS=:
-    for DIRECTORY in ${PATH}; do
-        if [[ "${DIRECTORY}" == *"$1"* ]]; then
-            IFS=${IFS_BACKUP}
-            return 0
-        fi
-    done
+    # Remove directory from its current position
+    PATH=$(echo "$PATH" \
+        | awk -v RS=: -v ORS=: -v target="${directory}" '$0 != target' \
+        | sed 's/:$//')
 
-    IFS=${IFS_BACKUP}
-    return 1
+    # Prepend it
+    export PATH="${directory}:${PATH}"
 }
 
 
-
-##########
+#######################################################
 # SOURCING
 #
-# Needs to happen before anything else, so that further customisations can use
-# the paths defined here.
-##########
+# Needs to happen before anything else, so that further
+# configurations can use the paths defined here.
+#######################################################
 
 # HomeBrew binaries (always first)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-for package in coreutils findutils
-do
+for package in coreutils findutils; do
     package_path="/opt/homebrew/opt/${package}/libexec/gnubin"
-    command_exists brew \
-        && ! path_contains "${package_path}" \
-        && export PATH="${package_path}:${PATH}"
-unset -f package_path
+    command_exists brew && prepend_path_directory "${package_path}"
+    unset -f package_path
 done
 
 # pyenv binaries
 if command_exists pyenv; then
     export PYENV_ROOT="${HOME}/.pyenv"
-    export PATH="${PYENV_ROOT}/bin:${PATH}"
+    prepend_path_directory "${PYENV_ROOT}/bin"
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
 fi
@@ -64,23 +53,25 @@ command_exists rbenv && eval "$(rbenv init -)"
 # Go environment
 if command_exists go; then
     export GOPATH="${HOME}/Projects/golang"
-    export GOROOT="$(brew --prefix golang)/libexec"
-    export PATH="${PATH}:${GOPATH}/bin:${GOROOT}/bin"
+    prepend_path_directory "${GOPATH}/bin"
+
+    GOROOT="$(brew --prefix golang)/libexec"
+    export GOROOT
+    prepend_path_directory "${GOROOT}/bin"
+
     test -d "${GOPATH}" || mkdir -p "${GOPATH}"
 fi
 
 # Java environment
 if command_exists jenv; then
-    export PATH="${PATH}:${HOME}/.jenv/bin"
+    prepend_path_directory "${HOME}/.jenv/bin"
     eval "$(jenv init -)"
 fi
-export PATH="$PATH:/opt/apache-maven/bin"
+prepend_path_directory "/opt/apache-maven/bin"
 
 # Visual Studio Code
 vscode_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-[[ -e "${vscode_path}" ]] \
-    && ! path_contains "${vscode_path}" \
-    && export PATH="${PATH}:${vscode_path}"
+[[ -e "${vscode_path}" ]] && prepend_path_directory "${vscode_path}"
 unset -f vscode_path
 
 # NVM environment
@@ -91,9 +82,8 @@ export NVM_DIR="${HOME}/.nvm"
 export PNPM_HOME="${HOME}/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *) prepend_path_directory "$PNPM_HOME" ;;
 esac
-
 
 # Rust environment
 rust_cargo_path="${HOME}/.cargo"
@@ -101,8 +91,8 @@ rust_cargo_path="${HOME}/.cargo"
 unset -f rust_cargo_path
 
 # Additional add-on packages
-export PATH="$PATH:/opt/bin"
-export PATH="$PATH:${HOME}/.local/bin"
+prepend_path_directory "/opt/bin"
+prepend_path_directory "${HOME}/.local/bin"
 
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -120,7 +110,8 @@ function git_dirty() {
 }
 
 function git_branch() {
-    local current_branch="$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+    local current_branch
+    current_branch="$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)"
     [[ -z "${current_branch}" ]] || echo "[${current_branch}$(git_dirty)] "
 }
 
@@ -172,19 +163,22 @@ export BASH_SILENCE_DEPRECATION_WARNING=1;
 function xcode() {
     local XED=xed
 
-    local workspace=$(find . -maxdepth 1 -type d -name *.xcworkspace -print -quit)
+    local workspace
+    workspace=$(find . -maxdepth 1 -type d -name '*.xcworkspace' -print -quit)
     if [[ -d "${workspace}" ]]; then
         ${XED} "${workspace}"
         return
     fi
 
-    local project=$(find . -maxdepth 1 -type d -name *.xcodeproj -print -quit)
+    local project
+    project=$(find . -maxdepth 1 -type d -name '*.xcodeproj' -print -quit)
     if [[ -d "${project}" ]]; then
         ${XED} "${project}"
         return
     fi
 
-    local package=$(find . -maxdepth 1 -type f -name Package.swift -print -quit)
+    local package
+    package=$(find . -maxdepth 1 -type f -name Package.swift -print -quit)
     if [[ -f "${package}" ]]; then
         ${XED} "${package}"
         return
@@ -338,15 +332,14 @@ bash_autocompletion="/opt/homebrew/etc/profile.d/bash_completion.sh"
 unset -f bash_autocompletion
 
 # Kubernetes
-# for k8s_tool in kubectl minikube; do
-#     command_exists ${k8s_tool} && source <(${k8s_tool} completion bash)
-# done
+for k8s_tool in kubectl minikube; do
+    command_exists ${k8s_tool} && source <(${k8s_tool} completion bash)
+done
 
 
 
-##########
+#############
 # CLEANING UP
-##########
-
+#############
 unset -f command_exists
-unset -f path_contains
+unset -f prepend_path_directory
