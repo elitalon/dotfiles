@@ -213,7 +213,7 @@ function install_custom_scripts() {
     fi
 
     sudo -v
-    for script in scripts/mkscript.sh idea.sh; do
+    for script in scripts/bin/*.sh scripts/mkscript.sh idea.sh; do
         if [[ ! -e "${script_directory}/${script}" ]]; then
             log "Script ${script} does not exist in ${script_directory}"
         else
