@@ -197,7 +197,7 @@ function add_trash_symbolic_link() {
 
     local lowercase_trash="${HOME}/.trash"
     local uppercase_trash="${HOME}/.Trash"
-    if [[ -h "${lowercase_trash}" ]]; then
+    if [[ -L "${lowercase_trash}" ]]; then
         log "Symlink to ${uppercase_trash} already exists"
     else
         ln -s "${uppercase_trash}" "${lowercase_trash}"
