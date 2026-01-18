@@ -7,7 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "git": {
+    "branch_picker": {},
+    "inline_blame": {},
+    "blame": {},
+  },
   "disable_ai": true,
+  "toolbar": {},
   "buffer_font_family": "FiraMono Nerd Font Mono",
   "base_keymap": "TextMate",
   "ui_font_size": 16,
@@ -15,6 +21,6 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
-  }
+    "dark": "One Dark",
+  },
 }
