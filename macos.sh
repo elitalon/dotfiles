@@ -48,8 +48,8 @@ function set_up_finder() {
     echo "Set sidebar icon size to medium"
     defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
-    echo "Show scrollbars when scrolling"
-    defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+    echo "Always show scrollbars"
+    defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
     # echo "Use scroll gesture with the Ctrl (^) modifier key to zoom"
     # defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
