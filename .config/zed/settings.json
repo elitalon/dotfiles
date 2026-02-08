@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_wrap_guides": true,
+  "soft_wrap": "preferred_line_length",
+  "wrap_guides": [80, 110],
+  "format_on_save": "on",
   "git": {
     "branch_picker": {},
     "inline_blame": {},
@@ -22,5 +26,12 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark",
+  },
+  "languages": {
+    "Markdown": {
+      "prettier": {
+        "allowed": true,
+      },
+    },
   },
 }

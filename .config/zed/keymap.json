@@ -8,11 +8,15 @@
 [
   {
     "context": "Workspace",
-    "bindings": {},
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
   },
   {
     "context": "Editor && vim_mode == insert",
-    "bindings": {},
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
   },
   {
     "context": "Editor",
@@ -20,9 +24,9 @@
       "cmd-/": [
         "editor::ToggleComments",
         {
-          "advance_downwards": false,
-        },
-      ],
-    },
-  },
+          "advance_downwards": false
+        }
+      ]
+    }
+  }
 ]
