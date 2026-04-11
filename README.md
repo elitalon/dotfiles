@@ -1,5 +1,9 @@
 # elitalon's dotfiles
 
+> [!WARNING]
+> This repository is now maintained at [codeberg.org/elitalon/dotfiles](https://codeberg.org/elitalon/dotfiles) and this GitHub mirror may be out of date.
+>
+> Please file issues and contributions on Codeberg.
 
 ## Installing
 
